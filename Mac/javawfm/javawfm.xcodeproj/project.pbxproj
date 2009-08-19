@@ -1,0 +1,543 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		75B1CB8B103C43320024341B /* CBC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75B1CB85103C43320024341B /* CBC.cpp */; };
+		75B1CB8C103C43320024341B /* CBC.h in Headers */ = {isa = PBXBuildFile; fileRef = 75B1CB86103C43320024341B /* CBC.h */; };
+		75B1CB8D103C43320024341B /* CBCPeer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75B1CB87103C43320024341B /* CBCPeer.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0A603A8F0B8FCE76009D4747 /* resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = resources; sourceTree = "<group>"; };
+		0A603BA90B913D5E009D4747 /* bin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bin; sourceTree = "<group>"; };
+		0A603BB00B9158B9009D4747 /* jars */ = {isa = PBXFileReference; lastKnownFileType = folder; path = jars; sourceTree = "<group>"; };
+		0AB3653A0B2F688E00788B6C /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = lib; sourceTree = "<group>"; };
+		0AB3653C0B2F68A200788B6C /* dist */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dist; sourceTree = "<group>"; };
+		75B1CAE6103C405A0024341B /* CBCPeer.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = CBCPeer.java; sourceTree = "<group>"; };
+		75B1CAE7103C405A0024341B /* ConstraintBuilder.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = ConstraintBuilder.java; sourceTree = "<group>"; };
+		75B1CAE8103C405A0024341B /* GLPKPeer.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = GLPKPeer.java; sourceTree = "<group>"; };
+		75B1CAE9103C405A0024341B /* LPPeer.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = LPPeer.java; sourceTree = "<group>"; };
+		75B1CAEA103C405A0024341B /* LPX.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = LPX.java; sourceTree = "<group>"; };
+		75B1CAEB103C405A0024341B /* Matrix.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = Matrix.java; sourceTree = "<group>"; };
+		75B1CAEC103C405A0024341B /* MatrixElement.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = MatrixElement.java; sourceTree = "<group>"; };
+		75B1CAED103C405A0024341B /* MatrixRow.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = MatrixRow.java; sourceTree = "<group>"; };
+		75B1CAEE103C405A0024341B /* MatrixVariable.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = MatrixVariable.java; sourceTree = "<group>"; };
+		75B1CAEF103C405A0024341B /* ModelComponent.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = ModelComponent.java; sourceTree = "<group>"; };
+		75B1CAF0103C405A0024341B /* ModelPrimitive.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = ModelPrimitive.java; sourceTree = "<group>"; };
+		75B1CAF1103C405A0024341B /* Objective.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = Objective.java; sourceTree = "<group>"; };
+		75B1CAF2103C405B0024341B /* SOS2Primitive.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = SOS2Primitive.java; sourceTree = "<group>"; };
+		75B1CAF4103C405B0024341B /* BadModelException.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = BadModelException.java; sourceTree = "<group>"; };
+		75B1CAF5103C405B0024341B /* BoundaryComponent.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = BoundaryComponent.java; sourceTree = "<group>"; };
+		75B1CAF6103C405B0024341B /* BoundaryMaintenanceComponent.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = BoundaryMaintenanceComponent.java; sourceTree = "<group>"; };
+		75B1CAF7103C405B0024341B /* Crop.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = Crop.java; sourceTree = "<group>"; };
+		75B1CAF8103C405B0024341B /* CropComplexityComponent.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = CropComplexityComponent.java; sourceTree = "<group>"; };
+		75B1CAF9103C405B0024341B /* CropInput.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = CropInput.java; sourceTree = "<group>"; };
+		75B1CAFA103C405B0024341B /* CroppingComponent.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = CroppingComponent.java; sourceTree = "<group>"; };
+		75B1CAFB103C405B0024341B /* CropYear.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = CropYear.java; sourceTree = "<group>"; };
+		75B1CAFC103C405B0024341B /* Disease.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = Disease.java; sourceTree = "<group>"; };
+		75B1CAFD103C405B0024341B /* DitchLengthComponent.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = DitchLengthComponent.java; sourceTree = "<group>"; };
+		75B1CAFE103C405B0024341B /* ELS.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = ELS.java; sourceTree = "<group>"; };
+		75B1CAFF103C405B0024341B /* ELSOption.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = ELSOption.java; sourceTree = "<group>"; };
+		75B1CB00103C405B0024341B /* ELSOptionComponent.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = ELSOptionComponent.java; sourceTree = "<group>"; };
+		75B1CB01103C405B0024341B /* ELSOptionsComponent.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = ELSOptionsComponent.java; sourceTree = "<group>"; };
+		75B1CB02103C405B0024341B /* Farm.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = Farm.java; sourceTree = "<group>"; };
+		75B1CB03103C405B0024341B /* FieldMarginsComponent.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = FieldMarginsComponent.java; sourceTree = "<group>"; };
+		75B1CB04103C405B0024341B /* Formula.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = Formula.java; sourceTree = "<group>"; };
+		75B1CB05103C405B0024341B /* FormulaParser.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = FormulaParser.java; sourceTree = "<group>"; };
+		75B1CB06103C405B0024341B /* FreeTimeComponent.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = FreeTimeComponent.java; sourceTree = "<group>"; };
+		75B1CB07103C405B0024341B /* GLPKException.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = GLPKException.java; sourceTree = "<group>"; };
+		75B1CB08103C405B0024341B /* HedgerowLengthComponent.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = HedgerowLengthComponent.java; sourceTree = "<group>"; };
+		75B1CB09103C405B0024341B /* Labour.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = Labour.java; sourceTree = "<group>"; };
+		75B1CB0A103C405B0024341B /* LandUseComponent.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = LandUseComponent.java; sourceTree = "<group>"; };
+		75B1CB0B103C405B0024341B /* Limit.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = Limit.java; sourceTree = "<group>"; };
+		75B1CB0C103C405B0024341B /* Location.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = Location.java; sourceTree = "<group>"; };
+		75B1CB0D103C405B0024341B /* Machine.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = Machine.java; sourceTree = "<group>"; };
+		75B1CB0E103C405B0024341B /* MOTADRiskComponent.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = MOTADRiskComponent.java; sourceTree = "<group>"; };
+		75B1CB0F103C405B0024341B /* Operation.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = Operation.java; sourceTree = "<group>"; };
+		75B1CB10103C405B0024341B /* Output.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = Output.java; sourceTree = "<group>"; };
+		75B1CB11103C405B0024341B /* Rotation.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = Rotation.java; sourceTree = "<group>"; };
+		75B1CB12103C405B0024341B /* RotationMatrix.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = RotationMatrix.java; sourceTree = "<group>"; };
+		75B1CB13103C405B0024341B /* RotationPenalty.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = RotationPenalty.java; sourceTree = "<group>"; };
+		75B1CB14103C405B0024341B /* RotationsComponent.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = RotationsComponent.java; sourceTree = "<group>"; };
+		75B1CB15103C405B0024341B /* StubblesComponent.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = StubblesComponent.java; sourceTree = "<group>"; };
+		75B1CB16103C405B0024341B /* Types.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = Types.java; sourceTree = "<group>"; };
+		75B1CB17103C405C0024341B /* VariableHolder.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = VariableHolder.java; sourceTree = "<group>"; };
+		75B1CB18103C405C0024341B /* VARRiskComponent.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = VARRiskComponent.java; sourceTree = "<group>"; };
+		75B1CB19103C405C0024341B /* WoodlandComponent.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = WoodlandComponent.java; sourceTree = "<group>"; };
+		75B1CB1A103C405C0024341B /* WorkableHoursCalculator.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = WorkableHoursCalculator.java; sourceTree = "<group>"; };
+		75B1CB1B103C405C0024341B /* Worker.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = Worker.java; sourceTree = "<group>"; };
+		75B1CB1C103C405C0024341B /* WorkersComponent.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = WorkersComponent.java; sourceTree = "<group>"; };
+		75B1CB1E103C405C0024341B /* FarmerMOU.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = FarmerMOU.java; sourceTree = "<group>"; };
+		75B1CB1F103C405C0024341B /* FarmerMOUParser.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = FarmerMOUParser.java; sourceTree = "<group>"; };
+		75B1CB20103C405C0024341B /* MOUObjectParser.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = MOUObjectParser.java; sourceTree = "<group>"; };
+		75B1CB21103C405C0024341B /* ObjectiveU.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = ObjectiveU.java; sourceTree = "<group>"; };
+		75B1CB22103C405C0024341B /* ObjectiveUParser.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = ObjectiveUParser.java; sourceTree = "<group>"; };
+		75B1CB24103C405C0024341B /* CompositeFarmRepresentation.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = CompositeFarmRepresentation.java; sourceTree = "<group>"; };
+		75B1CB25103C405C0024341B /* DocumentEditor.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = DocumentEditor.java; sourceTree = "<group>"; };
+		75B1CB26103C405C0024341B /* FarmDocumentEditor.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = FarmDocumentEditor.java; sourceTree = "<group>"; };
+		75B1CB27103C405C0024341B /* FarmRepresentation.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = FarmRepresentation.java; sourceTree = "<group>"; };
+		75B1CB28103C405C0024341B /* MOUDocumentEditor.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = MOUDocumentEditor.java; sourceTree = "<group>"; };
+		75B1CB29103C405C0024341B /* SimpleFarmRepresentation.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = SimpleFarmRepresentation.java; sourceTree = "<group>"; };
+		75B1CB2A103C405C0024341B /* SimpleApp.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = SimpleApp.java; sourceTree = "<group>"; };
+		75B1CB2B103C405C0024341B /* SocialApp.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = SocialApp.java; sourceTree = "<group>"; };
+		75B1CB2C103C405C0024341B /* test.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = test.java; sourceTree = "<group>"; };
+		75B1CB2E103C405C0024341B /* JFMMath.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = JFMMath.java; sourceTree = "<group>"; };
+		75B1CB2F103C405C0024341B /* MathPrint.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = MathPrint.java; sourceTree = "<group>"; };
+		75B1CB31103C405C0024341B /* BoundaryMaintenanceParser.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = BoundaryMaintenanceParser.java; sourceTree = "<group>"; };
+		75B1CB32103C405C0024341B /* CropComplexityParser.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = CropComplexityParser.java; sourceTree = "<group>"; };
+		75B1CB33103C405C0024341B /* CropInputParser.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = CropInputParser.java; sourceTree = "<group>"; };
+		75B1CB34103C405C0024341B /* CropParser.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = CropParser.java; sourceTree = "<group>"; };
+		75B1CB35103C405C0024341B /* CroppingParser.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = CroppingParser.java; sourceTree = "<group>"; };
+		75B1CB36103C405C0024341B /* DiseaseParser.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = DiseaseParser.java; sourceTree = "<group>"; };
+		75B1CB37103C405C0024341B /* DitchLengthParser.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = DitchLengthParser.java; sourceTree = "<group>"; };
+		75B1CB38103C405C0024341B /* ELSOptionsParser.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = ELSOptionsParser.java; sourceTree = "<group>"; };
+		75B1CB39103C405C0024341B /* FarmParser.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = FarmParser.java; sourceTree = "<group>"; };
+		75B1CB3A103C405C0024341B /* FreeTimeParser.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = FreeTimeParser.java; sourceTree = "<group>"; };
+		75B1CB3B103C405C0024341B /* HedgerowLengthParser.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = HedgerowLengthParser.java; sourceTree = "<group>"; };
+		75B1CB3C103C405C0024341B /* JFMObjectParser.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = JFMObjectParser.java; sourceTree = "<group>"; };
+		75B1CB3D103C405C0024341B /* LabourParser.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = LabourParser.java; sourceTree = "<group>"; };
+		75B1CB3E103C405D0024341B /* LandUseParser.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = LandUseParser.java; sourceTree = "<group>"; };
+		75B1CB3F103C405D0024341B /* LimitParser.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = LimitParser.java; sourceTree = "<group>"; };
+		75B1CB40103C405D0024341B /* LocationParser.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = LocationParser.java; sourceTree = "<group>"; };
+		75B1CB41103C405D0024341B /* MachineParser.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = MachineParser.java; sourceTree = "<group>"; };
+		75B1CB42103C405D0024341B /* MOTADRiskParser.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = MOTADRiskParser.java; sourceTree = "<group>"; };
+		75B1CB43103C405D0024341B /* ObjectiveParser.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = ObjectiveParser.java; sourceTree = "<group>"; };
+		75B1CB44103C405D0024341B /* ObjectParser.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = ObjectParser.java; sourceTree = "<group>"; };
+		75B1CB45103C405D0024341B /* OperationParser.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = OperationParser.java; sourceTree = "<group>"; };
+		75B1CB46103C405D0024341B /* RotationParser.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = RotationParser.java; sourceTree = "<group>"; };
+		75B1CB47103C405D0024341B /* StubblesParser.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = StubblesParser.java; sourceTree = "<group>"; };
+		75B1CB48103C405D0024341B /* TextConverter.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = TextConverter.java; sourceTree = "<group>"; };
+		75B1CB49103C405D0024341B /* TextParser.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = TextParser.java; sourceTree = "<group>"; };
+		75B1CB4A103C405D0024341B /* VARRiskParser.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = VARRiskParser.java; sourceTree = "<group>"; };
+		75B1CB4B103C405D0024341B /* WorkersParser.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = WorkersParser.java; sourceTree = "<group>"; };
+		75B1CB4C103C405D0024341B /* XMLException.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = XMLException.java; sourceTree = "<group>"; };
+		75B1CB4D103C405D0024341B /* XMLObjectException.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = XMLObjectException.java; sourceTree = "<group>"; };
+		75B1CB4E103C405D0024341B /* XMLSyntaxException.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = XMLSyntaxException.java; sourceTree = "<group>"; };
+		75B1CB85103C43320024341B /* CBC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CBC.cpp; path = ../../native/CBC.cpp; sourceTree = SOURCE_ROOT; };
+		75B1CB86103C43320024341B /* CBC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBC.h; path = ../../native/CBC.h; sourceTree = SOURCE_ROOT; };
+		75B1CB87103C43320024341B /* CBCPeer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CBCPeer.cpp; path = ../../native/CBCPeer.cpp; sourceTree = SOURCE_ROOT; };
+		EB9FD8720AEECD83008E157E /* build.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = build.xml; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4CEBA78D08679EF10015D03E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		00E6828FFEC88D1A11DB9C8B = {
+			isa = PBXGroup;
+			children = (
+				75B1CB93103C43410024341B /* native */,
+				75B1CAE4103C405A0024341B /* jfm */,
+				EB9FD8720AEECD83008E157E /* build.xml */,
+				0A603A8F0B8FCE76009D4747 /* resources */,
+				0AB3653A0B2F688E00788B6C /* lib */,
+				0A603BA90B913D5E009D4747 /* bin */,
+				0A603BB00B9158B9009D4747 /* jars */,
+				0AB3653C0B2F68A200788B6C /* dist */,
+			);
+			sourceTree = "<group>";
+		};
+		75B1CAE4103C405A0024341B /* jfm */ = {
+			isa = PBXGroup;
+			children = (
+				75B1CAE5103C405A0024341B /* lp */,
+				75B1CAF3103C405B0024341B /* model */,
+				75B1CB1D103C405C0024341B /* mou */,
+				75B1CB23103C405C0024341B /* r */,
+				75B1CB2A103C405C0024341B /* SimpleApp.java */,
+				75B1CB2B103C405C0024341B /* SocialApp.java */,
+				75B1CB2C103C405C0024341B /* test.java */,
+				75B1CB2D103C405C0024341B /* utils */,
+				75B1CB30103C405C0024341B /* xml */,
+			);
+			name = jfm;
+			path = ../../java/src/jfm;
+			sourceTree = SOURCE_ROOT;
+		};
+		75B1CAE5103C405A0024341B /* lp */ = {
+			isa = PBXGroup;
+			children = (
+				75B1CAE6103C405A0024341B /* CBCPeer.java */,
+				75B1CAE7103C405A0024341B /* ConstraintBuilder.java */,
+				75B1CAE8103C405A0024341B /* GLPKPeer.java */,
+				75B1CAE9103C405A0024341B /* LPPeer.java */,
+				75B1CAEA103C405A0024341B /* LPX.java */,
+				75B1CAEB103C405A0024341B /* Matrix.java */,
+				75B1CAEC103C405A0024341B /* MatrixElement.java */,
+				75B1CAED103C405A0024341B /* MatrixRow.java */,
+				75B1CAEE103C405A0024341B /* MatrixVariable.java */,
+				75B1CAEF103C405A0024341B /* ModelComponent.java */,
+				75B1CAF0103C405A0024341B /* ModelPrimitive.java */,
+				75B1CAF1103C405A0024341B /* Objective.java */,
+				75B1CAF2103C405B0024341B /* SOS2Primitive.java */,
+			);
+			path = lp;
+			sourceTree = "<group>";
+		};
+		75B1CAF3103C405B0024341B /* model */ = {
+			isa = PBXGroup;
+			children = (
+				75B1CAF4103C405B0024341B /* BadModelException.java */,
+				75B1CAF5103C405B0024341B /* BoundaryComponent.java */,
+				75B1CAF6103C405B0024341B /* BoundaryMaintenanceComponent.java */,
+				75B1CAF7103C405B0024341B /* Crop.java */,
+				75B1CAF8103C405B0024341B /* CropComplexityComponent.java */,
+				75B1CAF9103C405B0024341B /* CropInput.java */,
+				75B1CAFA103C405B0024341B /* CroppingComponent.java */,
+				75B1CAFB103C405B0024341B /* CropYear.java */,
+				75B1CAFC103C405B0024341B /* Disease.java */,
+				75B1CAFD103C405B0024341B /* DitchLengthComponent.java */,
+				75B1CAFE103C405B0024341B /* ELS.java */,
+				75B1CAFF103C405B0024341B /* ELSOption.java */,
+				75B1CB00103C405B0024341B /* ELSOptionComponent.java */,
+				75B1CB01103C405B0024341B /* ELSOptionsComponent.java */,
+				75B1CB02103C405B0024341B /* Farm.java */,
+				75B1CB03103C405B0024341B /* FieldMarginsComponent.java */,
+				75B1CB04103C405B0024341B /* Formula.java */,
+				75B1CB05103C405B0024341B /* FormulaParser.java */,
+				75B1CB06103C405B0024341B /* FreeTimeComponent.java */,
+				75B1CB07103C405B0024341B /* GLPKException.java */,
+				75B1CB08103C405B0024341B /* HedgerowLengthComponent.java */,
+				75B1CB09103C405B0024341B /* Labour.java */,
+				75B1CB0A103C405B0024341B /* LandUseComponent.java */,
+				75B1CB0B103C405B0024341B /* Limit.java */,
+				75B1CB0C103C405B0024341B /* Location.java */,
+				75B1CB0D103C405B0024341B /* Machine.java */,
+				75B1CB0E103C405B0024341B /* MOTADRiskComponent.java */,
+				75B1CB0F103C405B0024341B /* Operation.java */,
+				75B1CB10103C405B0024341B /* Output.java */,
+				75B1CB11103C405B0024341B /* Rotation.java */,
+				75B1CB12103C405B0024341B /* RotationMatrix.java */,
+				75B1CB13103C405B0024341B /* RotationPenalty.java */,
+				75B1CB14103C405B0024341B /* RotationsComponent.java */,
+				75B1CB15103C405B0024341B /* StubblesComponent.java */,
+				75B1CB16103C405B0024341B /* Types.java */,
+				75B1CB17103C405C0024341B /* VariableHolder.java */,
+				75B1CB18103C405C0024341B /* VARRiskComponent.java */,
+				75B1CB19103C405C0024341B /* WoodlandComponent.java */,
+				75B1CB1A103C405C0024341B /* WorkableHoursCalculator.java */,
+				75B1CB1B103C405C0024341B /* Worker.java */,
+				75B1CB1C103C405C0024341B /* WorkersComponent.java */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		75B1CB1D103C405C0024341B /* mou */ = {
+			isa = PBXGroup;
+			children = (
+				75B1CB1E103C405C0024341B /* FarmerMOU.java */,
+				75B1CB1F103C405C0024341B /* FarmerMOUParser.java */,
+				75B1CB20103C405C0024341B /* MOUObjectParser.java */,
+				75B1CB21103C405C0024341B /* ObjectiveU.java */,
+				75B1CB22103C405C0024341B /* ObjectiveUParser.java */,
+			);
+			path = mou;
+			sourceTree = "<group>";
+		};
+		75B1CB23103C405C0024341B /* r */ = {
+			isa = PBXGroup;
+			children = (
+				75B1CB24103C405C0024341B /* CompositeFarmRepresentation.java */,
+				75B1CB25103C405C0024341B /* DocumentEditor.java */,
+				75B1CB26103C405C0024341B /* FarmDocumentEditor.java */,
+				75B1CB27103C405C0024341B /* FarmRepresentation.java */,
+				75B1CB28103C405C0024341B /* MOUDocumentEditor.java */,
+				75B1CB29103C405C0024341B /* SimpleFarmRepresentation.java */,
+			);
+			path = r;
+			sourceTree = "<group>";
+		};
+		75B1CB2D103C405C0024341B /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				75B1CB2E103C405C0024341B /* JFMMath.java */,
+				75B1CB2F103C405C0024341B /* MathPrint.java */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		75B1CB30103C405C0024341B /* xml */ = {
+			isa = PBXGroup;
+			children = (
+				75B1CB31103C405C0024341B /* BoundaryMaintenanceParser.java */,
+				75B1CB32103C405C0024341B /* CropComplexityParser.java */,
+				75B1CB33103C405C0024341B /* CropInputParser.java */,
+				75B1CB34103C405C0024341B /* CropParser.java */,
+				75B1CB35103C405C0024341B /* CroppingParser.java */,
+				75B1CB36103C405C0024341B /* DiseaseParser.java */,
+				75B1CB37103C405C0024341B /* DitchLengthParser.java */,
+				75B1CB38103C405C0024341B /* ELSOptionsParser.java */,
+				75B1CB39103C405C0024341B /* FarmParser.java */,
+				75B1CB3A103C405C0024341B /* FreeTimeParser.java */,
+				75B1CB3B103C405C0024341B /* HedgerowLengthParser.java */,
+				75B1CB3C103C405C0024341B /* JFMObjectParser.java */,
+				75B1CB3D103C405C0024341B /* LabourParser.java */,
+				75B1CB3E103C405D0024341B /* LandUseParser.java */,
+				75B1CB3F103C405D0024341B /* LimitParser.java */,
+				75B1CB40103C405D0024341B /* LocationParser.java */,
+				75B1CB41103C405D0024341B /* MachineParser.java */,
+				75B1CB42103C405D0024341B /* MOTADRiskParser.java */,
+				75B1CB43103C405D0024341B /* ObjectiveParser.java */,
+				75B1CB44103C405D0024341B /* ObjectParser.java */,
+				75B1CB45103C405D0024341B /* OperationParser.java */,
+				75B1CB46103C405D0024341B /* RotationParser.java */,
+				75B1CB47103C405D0024341B /* StubblesParser.java */,
+				75B1CB48103C405D0024341B /* TextConverter.java */,
+				75B1CB49103C405D0024341B /* TextParser.java */,
+				75B1CB4A103C405D0024341B /* VARRiskParser.java */,
+				75B1CB4B103C405D0024341B /* WorkersParser.java */,
+				75B1CB4C103C405D0024341B /* XMLException.java */,
+				75B1CB4D103C405D0024341B /* XMLObjectException.java */,
+				75B1CB4E103C405D0024341B /* XMLSyntaxException.java */,
+			);
+			path = xml;
+			sourceTree = "<group>";
+		};
+		75B1CB93103C43410024341B /* native */ = {
+			isa = PBXGroup;
+			children = (
+				75B1CB85103C43320024341B /* CBC.cpp */,
+				75B1CB86103C43320024341B /* CBC.h */,
+				75B1CB87103C43320024341B /* CBCPeer.cpp */,
+			);
+			name = native;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		4CEBA78B08679EF10015D03E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75B1CB8C103C43320024341B /* CBC.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXLegacyTarget section */
+		EB9FD8610AEECCF5008E157E /* javawfm */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-emacs $(ACTION)";
+			buildConfigurationList = EB9FD8690AEECD13008E157E /* Build configuration list for PBXLegacyTarget "javawfm" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/ant;
+			dependencies = (
+			);
+			name = javawfm;
+			passBuildSettingsInEnvironment = 1;
+			productName = AntJNIWrapper;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXNativeTarget section */
+		4CEBA78E08679EF10015D03E /* JNILib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4CEBA79108679F100015D03E /* Build configuration list for PBXNativeTarget "JNILib" */;
+			buildPhases = (
+				4CEBA78B08679EF10015D03E /* Headers */,
+				4CEBA78C08679EF10015D03E /* Sources */,
+				4CEBA78D08679EF10015D03E /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JNILib;
+			productName = JNILibN;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		00E6828EFEC88D1A11DB9C8B /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 4CEBA75C08679E4D0015D03E /* Build configuration list for PBXProject "javawfm" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 00E6828FFEC88D1A11DB9C8B;
+			productRefGroup = 00E6828FFEC88D1A11DB9C8B;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4CEBA78E08679EF10015D03E /* JNILib */,
+				EB9FD8610AEECCF5008E157E /* javawfm */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4CEBA78C08679EF10015D03E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75B1CB8B103C43320024341B /* CBC.cpp in Sources */,
+				75B1CB8D103C43320024341B /* CBCPeer.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		4CEBA75D08679E4D0015D03E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ZERO_LINK = NO;
+			};
+			name = Debug;
+		};
+		4CEBA75E08679E4D0015D03E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		4CEBA79208679F100015D03E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH)";
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_EXTENSION = jnilib;
+				EXECUTABLE_PREFIX = lib;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"/System/Library/Frameworks/JavaVM.framework/Headers/**",
+					"${TARGET_BUILD_DIR}/Headers/**",
+				);
+				HEADER_SEARCH_PATHS_QUOTED_1 = "\"${OBJROOT}/Headers\"";
+				HEADER_SEARCH_PATHS_QUOTED_2 = "\"$(SYSTEM_LIBRARY_DIR)/Frameworks/JavaVM.framework/Headers\"";
+				HEADER_SEARCH_PATHS_QUOTED_3 = "\"$(CONFIGURATION_BUILD_DIR)/Headers\"";
+				INSTALL_PATH = /usr/local/lib;
+				LIBRARY_STYLE = DYNAMIC;
+				MACH_O_TYPE = mh_dylib;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = antbasedjni;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = Debug;
+		};
+		4CEBA79308679F100015D03E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				COPY_PHASE_STRIP = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_EXTENSION = jnilib;
+				EXECUTABLE_PREFIX = lib;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(HEADER_SEARCH_PATHS_QUOTED_3)",
+					"$(HEADER_SEARCH_PATHS_QUOTED_4)",
+				);
+				HEADER_SEARCH_PATHS_QUOTED_1 = "\"${OBJROOT}/Headers\"";
+				HEADER_SEARCH_PATHS_QUOTED_2 = "\"$(SYSTEM_LIBRARY_DIR)/Frameworks/JavaVM.framework/Headers\"";
+				HEADER_SEARCH_PATHS_QUOTED_3 = "\"/System/Library/Frameworks/JavaVM.framework/Headers\"/**";
+				HEADER_SEARCH_PATHS_QUOTED_4 = "\"${TARGET_BUILD_DIR}/Headers\"/**";
+				INSTALL_PATH = /usr/local/lib;
+				LIBRARY_STYLE = DYNAMIC;
+				MACH_O_TYPE = mh_dylib;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = javawfm;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		EB9FD86A0AEECD13008E157E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = AntJNIWrapper;
+			};
+			name = Debug;
+		};
+		EB9FD86B0AEECD13008E157E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				PRODUCT_NAME = javawfm;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4CEBA75C08679E4D0015D03E /* Build configuration list for PBXProject "javawfm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4CEBA75D08679E4D0015D03E /* Debug */,
+				4CEBA75E08679E4D0015D03E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4CEBA79108679F100015D03E /* Build configuration list for PBXNativeTarget "JNILib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4CEBA79208679F100015D03E /* Debug */,
+				4CEBA79308679F100015D03E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EB9FD8690AEECD13008E157E /* Build configuration list for PBXLegacyTarget "javawfm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB9FD86A0AEECD13008E157E /* Debug */,
+				EB9FD86B0AEECD13008E157E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 00E6828EFEC88D1A11DB9C8B /* Project object */;
+}
