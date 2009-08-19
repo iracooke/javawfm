@@ -1,2 +1,12 @@
-HG:
-- Ensure coin-Cbc is excluded from the mercurial check in
+mac:
+- Resolve dependency on coin libs
+
+R:
+- Create a new R package to include local useful functions and import most of what was previously in "farmland" there
+- Create an R package called farmland containing a minimalist subset of functions
+- Decide what data to include with farmland
+- Write documentation for farmland functions
+- Write a vignette for the farmland package
+
+Build:
+- Write a configure script for the whole R package

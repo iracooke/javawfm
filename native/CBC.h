@@ -1,8 +1,9 @@
 #ifndef CBC_H_
 #define CBC_H_
 
-#include <coin/CbcModel.hpp>
-#include <coin/OsiClpSolverInterface.hpp>
+#include "../depends/coin-Cbc/include/coin/CbcModel.hpp"
+//#include <CbcModel.hpp>
+#include "../depends/coin-Cbc/include/coin/OsiClpSolverInterface.hpp"
 #include <jni.h>
 #include <iostream>
 
