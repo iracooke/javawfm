@@ -1,0 +1,24 @@
+/*!
+ *  
+ * \mainpage JFM A Linear Programming Toolkit for Farm Economics.
+ * 
+ * JFM is a toolkit for building and solving farming models. It is mainly designed to 
+ * allow programmers to create their own custom farm models, but it also comes with a 
+ * sample standalone application called \ref wfmapp that is ready to use. 
+ * 
+ * - \ref whatis : For a brief introduction to the project and its origins. 
+ * - \ref lptutorial : For a quick introduction to linear programming. 
+ * - \ref install : For installation instructions on Mac OS X and links to source code. 
+ * - \ref wfmapp : For instructions on how to use the supplied example application. 
+ * - \ref api : To get started building custom model applications. 
+ * - \ref xmlschema : To see how the input format for data works.
+ * - \ref constraints : A list of all the constraints used by JFM
+ * 
+ * \page xmlschema Writing an xml input file 
+ * 
+ *  This section of the documentation isn't done yet 
+ *  
+ * A useful reference containing large amounts of farming data for the UK is;
+ * \verbatim The Agricultural Pocketbook. John Nix (2007) \endverbatim 
+ * 
+ * */

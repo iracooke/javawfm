@@ -1,0 +1,51 @@
+ /*! \page api API Overview
+ * 
+ * This page is the starting point for those who wish to create custom scripts 
+ * based on the JFM class library and API.  An API (Application Programming Interface) is 
+ * a set of functions and classes which allow a programmer to make use of the JFM functionality
+ * in their own code without having to learn the complete JFM code base. 
+ * 
+ * Actually the JFM only provides a relatively small degree of flexibility via its API, but 
+ * this should be enough for most farming linear program applications. 
+ * 
+ * The usual starting point for creating a model is to read a \link jfm.model.Farm Farm \endlink 
+ * object from an xml input 
+ * file. The farm object that is created via this process can then be copied, and modified. 
+ *  
+ * - The usual way to create a Farm object is via a call to the  \link jfm.model.Farm.fromXML fromXML \endlink 
+ * method of Farm as follows;
+ * \code 
+ * 	Farm myFarm = Farm.fromXML("myInput.xml")
+ * \endcode
+ * 
+ * - Changes to crops, diseases, rotations and the total area of cropping can be made 
+ * by accessing the \link jfm.model.Cropping Cropping \endlink object contained within 
+ * \link jfm.model.Farm Farm \endlink. 
+ * For example, the following code gets the WINTERWHEAT crop object of cropping and changes its 
+ * price;
+ \code 
+ 	Cropping cropping = myFarm.cropping;
+ 	Crop ww = cropping.getCrop(Types.CropType.WINTERWHEAT); 
+ 	ww.setPrimaryPrice(100.0);
+  \endcode
+ * 
+ * - At present the \link jfm.model.Rotations Rotations \endlink object should probably not 
+ *  be modified. 
+ *
+ * - Workers (labour and machinery ) can be added or deleted by accessing the 
+ * \link jfm.model.Workers Workers \endlink object. 
+ *  - One can also modify the \link jfm.model.Location Location \endlink 
+ *  object of a farm to specify rainfall and soiltype 
+ *  - Objectives will typically be associated with a particular model component 
+ *  and hard coded into the constructor for that object. The objective weight can 
+ *  be modified on the fly for particular objectives by getting a pointer to the required 
+ *  \link jfm.lp.Objective objective \endlink and then using the required setter function. 
+ * - The \link jfm.model model \endlink package provides the \link jfm.model.Output Output \endlink class
+ * for extracting commonly required formatted output from model objects.  
+ * 
+ * The full range of API classes can be seen in the following;
+ * - jfm.model 
+ * - jfm.lp.Objective 
+ * - \ref constraints 
+ * 
+ * */

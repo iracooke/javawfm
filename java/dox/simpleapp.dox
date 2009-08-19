@@ -1,0 +1,46 @@
+/*! \page wfmapp SimpleApp 
+ * 
+ * JFM comes with a simple application, SimpleApp which reads an xml input file and 
+ * solves the model. These tasks can be accomplished with just three lines of code as follows;
+ * 
+ * \code
+	Farm farm = Farm.fromXML("filename.xml");// Parses filename.xml to produce a Farm object 
+	farm.solve();// Solves the farm 
+	System.out.println(Output.printSolution(farm)); // Prints a summary of the solution
+	\endcode
+ * 
+ * A slightly more complex application might read the Farm object and then modify it within a loop 
+ * to scan over a particular parameter.  For parameters such as farm area this is achieved very 
+ * simply as the following example shows;
+ * 
+ * \code
+	Farm farm = Farm.fromXML("filename.xml");
+	double[] areas = { 100, 200, 500 ,1000 };// A sequence of farm areas to be modelled 
+	for ( int i=0;i< areas.length;i++){
+		farm.cropping.setArea(areas[i]); // This change will automatically be reflected in the matrix 
+		farm.solve();
+		System.out.println(Output.printSolution(farm)); 
+	}
+	\endcode
+ * 
+ * Often it is necessary to modify the details of crops or other components of the Farm. This 
+ * can be achieved by getting a pointer to the relevant component and then modifying it directly. 
+ * Changes to the component will automatically be reflected in the LP matrix 
+ * 
+ * \code
+ 	Farm farm = Farm.fromXML("filename.xml");
+ 	Crop wwheat = farm.cropping.get(CropType.WINTERWHEAT);// Get the WINTERWHEAT crop object from this farm 
+ 	double basePrice=wwheat.getPrimaryPrice(); 
+	double[] winterwheatprices = { 1, 1.2, 1.4 ,1.6,1.8,2.0};// Series of prices to be modelled
+	for ( int i=0;i< winterwheatprices.length;i++){
+		wwheat.setPrimaryPrice(basePrice*winterwheatprices[i]); // This change will automatically be reflected in the matrix 
+		farm.solve();
+		System.out.println(Output.printSolution(farm)); 
+	}
+	\endcode
+ * 
+ * 
+ * The syntax for calling SimpleApp from the command line is 
+ * \verbatim java jfm.SimpleApp input.xml \endverbatim
+ 
+ */

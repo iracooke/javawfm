@@ -1,0 +1,92 @@
+/*! \page whatis What is JFM?
+ * 
+ * JFM is a toolkit for building Linear Programming models for farm economics.  It
+ * provides re-usable components for building models of any type but also provides 
+ * an initial set of specific classes to implement the constraints and objective functions 
+ * that form the Silsoe whole farm model.  
+ * 
+ * \section reltoswfm Relationship to the Silsoe Whole Farm Model 
+ * 
+ * The Silsoe whole farm model was originally developed by Eric Audsley 
+ * and collaborators at Silsoe research institute and continues to be developed 
+ * and enhanced by the team at Cranfield University. JFM is not a replacement 
+ * for the Silsoe whole farm model as it lacks key features such as a user 
+ * interface,  however, it is designed to facilitate larger simulations with multiple model runs, and 
+ * to permit great flexibility in manipulating the underlying model specification (both at runtime and
+ * in terms of ease of programming via its API). 
+ * Current development of JFM and the Silsoe whole farm model is proceeding in 
+ * parallel with new model features being implemented in both code-bases. JFM is based on 
+ * the same linear programming model of farming systems used in the Silsoe whole farm 
+ * model and described in detail in the following reference;
+
+ Rounsevell, Annetts, Audsley, Mayr, and Reginster M. D. Rounsevell, 
+ J. E. Annetts, E. Audsley, T. Mayr, and I. Reginster, <em> Agriculture, Ecosystems 
+ and Environment </em> \b 95, 465 (2003). 
+
+\section appr How JFM Solves the Linear Programme
+
+Since JFM is a linear programme it requires a linear program solver. The only solver with which 
+it has been used so far is the GNU Linear Programming Kit [http://en.wikipedia.org/wiki/GNU_Linear_Programming_Kit]. It 
+should be noted however that the code connecting JFM with its solver is simple and should 
+permit other solvers to be accomodated easily.
+
+Prior to packaging the model up for solution by the LP solver, 
+JFM uses an internal representation of the problem matrix. 
+This internal representation is designed to minimize errors and allow the model 
+framework to be extended with minimum effort. 
+
+\section Availability
+
+JFM Source code can be downloaded at http://code.google.com/p/javawfm/
+
+\section Features
+
+  * - <b> MIP. </b> Use of the MIP (Mixed Integer Programming) solver feature of the 
+  * Gnu Linear Programming Kit allows model variables to be specified as integer
+  *  or continous. This is particularly useful for labour and machinery where the
+  *   distinction between casual (continuous variable) labour and full time labour 
+  *   (integer) is sometimes important.
+
+  * - <b> Multiple Objectives. </b> Any number of arbitrary objective functions with different 
+  * weights may be applied. JFM uses a simple system whereby each model object 
+  * can be assigned to particular objectives via a function call. Different objectives 
+  * and weights can be declared in the xml input file
+
+  * - \b Extensibility.  As much as possible, the process of reading inputs, using 
+  * inputs to create a linear programme and packaging that programme for a solver 
+  * has been divided into independent and discrete objects. As a consequence, the 
+  * process of adding new constraints and new terms in the objective function is 
+  * extremely easy. The internal representation of the LP model used by JFM makes 
+  * it almost impossible to erroneously assign a row or column value in the problem 
+  * matrix so programmers can spend their time worrying about other stuff :). 
+
+  * - <b> Platform Independence.</b> JFM will run at full native speed on pretty much any 
+  * type of computer (Windows, Mac, Linux). In order to communicate with the 
+  * GNU Linear Programming Kit, a native library is needed which is platform specific.  
+  * Once this platform specific library has been installed, any changes or updates to 
+  * the java part of the program can be used without recompiling. 
+
+\section Limitations
+  * - <b> Arable Only.</b> At present JFM only implements parts of the original Silsoe 
+  * Whole Farm Model which refer to arable systems. Livestock and grassland are not included.  
+
+  * - <b> No GUI.</b> JFM is a set of classes rather than a pre-packaged application. 
+  * It is therefore highly extensible and useful for academic research but lacks
+  *  a graphical user interface that would make it useful to a more general user base. Implementation 
+  *  of a GUI on top of the JFM engine would be relatively easy since the JFM uses xml as its 
+  *  default input format.  
+
+  * - <b> Soils and Rainfall  </b> The original Silsoe Whole farm model contains 
+  * algorithms to calculate the number of workable hours in a given period 
+  * based on rainfall and soiltype. These algorithms are not yet implemented in the JFM. 
+
+\section roadmap Road Map
+  * - <b> Social Objectives. </b> Objective functions for a variety of factors in the 
+  * farmer's decision making are to be taken into account. Designing these 
+  * social objectives is part of an ongoing research program 
+  * [http://www.relu.ac.uk/research/projects/SecondCall/Sutherland.htm]
+ * 
+ * - <b> Validated Input. </b> One of the most user unfriendly aspects of JFM is its xml interface. 
+ * Since xml files must presently be written by hand by users it would be useful to create a DTD to 
+ * validate the xml input and provide feedback to the user on mistakes in their input files.
+*/

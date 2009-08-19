@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="javawfm.makejavawfmjar" default="makejavawfmjar" basedir=".">
+	<target name ="makejavawfmjar" description="Create a jar for the HW project">
+		<jar jarfile="javawfm.jar" excludes="*.jar *.xml" basedir="./"/>
+	</target>
+</project>

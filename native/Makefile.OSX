@@ -1,0 +1,23 @@
+JAVAEXTDIR=${HOME}/Library/Java/Extensions/
+
+GLPKLIBOBJECTS= GLPKPeer.o GLPK.o 
+CBCLIBOBJECTS = CBCPeer.o CBC.o
+
+CC=g++
+
+%.o: %.cpp
+	$(CC) -c $< -I/System/Library/Frameworks/JavaVM.framework/Headers -I/usr/local/include 
+
+default	: all
+
+all	: libjfmnativeglpk.jnilib 
+	cp libjfmnativeglpk.jnilib $(JAVAEXTDIR)
+	
+libjfmnativeglpk.jnilib	: jfm_lp_GLPKPeer.h $(GLPKLIBOBJECTS) 
+	g++ -Q -bundle -framework JavaVM -I/System/Library/Frameworks/JavaVM.framework/Headers -o libjfmnativeglpk.jnilib -L/usr/local/lib -lglpk $(GLPKLIBOBJECTS)
+	
+jfm_lp_GLPKPeer.h	:	../javawfm/bin/jfm/lp/GLPKPeer.class
+	javah -jni -classpath .:${HOME}/Sources/EclipseWS/javawfm/bin/ jfm.lp.GLPKPeer
+	
+clean:
+	rm $(GLPKLIBOBJECTS) $(CBCLIBOBJECTS) libjfmnativeglpk.jnilib jfm_lp_GLPKPeer.h

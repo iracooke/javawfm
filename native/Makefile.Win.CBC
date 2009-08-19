@@ -1,0 +1,48 @@
+
+CBCLIBOBJECTS = CBCPeer.o CBC.o
+
+JAVA_HOME = C:/Program\ Files/Java/jdk1.6.0_03/
+JINCLUDES = -I$(JAVA_HOME)/include/ -I$(JAVA_HOME)/include/win32 
+
+
+# Directory with COIN header files
+COININCDIR = /mingw/include/coin
+
+# Directory with COIN libraries
+COINLIBDIR = /mingw/lib
+
+LIBDIRS = -L$(JAVA_HOME)/lib -L/usr/local/lib 
+
+
+# Libraries necessary to link with Clp
+LIBS = -L$(COINLIBDIR) -lCbc -lCgl -lOsiClp -lOsiCbc -lOsi -lClp -lCoinUtils \
+	-lm  \
+	`cat /mingw/lib/../share/doc/coin/Cgl/cgl_addlibs.txt` \
+	`cat /mingw/lib/../share/doc/coin/Cbc/cbc_addlibs.txt` \
+	`cat /mingw/lib/../share/doc/coin/Clp/clp_addlibs.txt` \
+	`cat /mingw/lib/../share/doc/coin/CoinUtils/coinutils_addlibs.txt`
+	
+CXX=g++
+CXXFLAGS = 
+#-O3 -fomit-frame-pointer -pipe -DNDEBUG  -Wimplicit -Wparentheses -Wreturn-type -Wcast-qual -Wall -Wpointer-arith -Wwrite-strings -Wconversion 
+
+
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< $(JINCLUDES) 
+	
+default	: all 
+
+all	: jfmnativecbc.dll 
+	cp jfmnativecbc.dll /bin/
+	
+jfmnativecbc.dll	: jfm_lp_CBCPeer.h $(CBCLIBOBJECTS) 
+	$(CXX) $(CXXFLAGS) -Wall -D_JNI_IMPLEMENTATION_ -Wl,--kill-at -shared -o jfmnativecbc.dll --add-stdcall-alias   $(LIBDIRS) $(CBCLIBOBJECTS)  $(LIBS) 
+	
+
+	
+
+jfm_lp_CBCPeer.h	:
+	$(JAVA_HOME)/bin/javah.exe -jni -classpath "C:\cygwin\home\zoovisa\EclipseWS\javawfm\jfm.jar" jfm.lp.CBCPeer
+
+clean:
+	rm $(LIBOBJECTS) jfmnativecbc.dll jfm_lp_CBCPeer.h

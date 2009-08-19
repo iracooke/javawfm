@@ -1,0 +1,71 @@
+/*! \page lptutorial A Quick Intro to Linear Programming 
+
+JFM attempts to find the farm plan which maximises
+its overall objective function (usually profit) subject to a set of constraints.  
+The technique it uses for this is called linear programming.  A linear programme 
+always consists of a linear objective function which can be written down very simply as a 
+sum of factors ... \n
+
+
+\f[
+  \mathcal{O}=\sum_iC_ix_i
+\f]
+
+where \f$ \mathcal{O} \f$ is the objective to be maximised, the \f$ C_i \f$ are
+constant coefficients and the \f$ x_i \f$ are variables. Without any
+constraints on the values of \f$ x_i \f$ no optimal solution to this equation 
+exists.  A linear programme only becomes useful once
+constraints are added, and it is through the imposition of constraints
+that the interesting features of the problem are typically specified.
+Each time a constraint is added to the problem it cuts the available
+solution space, and if a sufficient number of such constraints are
+added, the surface of available solutions may eventually resemble a
+curve rather than a series of straight lines.  To see how this might
+be the case, consider an objective function which maximises the profit from two crops, A
+and B.  The area of crop A is \f$ x \f$ and the area of crop y is \f$ y \f$. The 
+overall profit \f$ \mathcal{P} \f$ will be given by;
+\f[
+  \mathcal{P}= G_A x + G_B y 
+\f]
+Assuming a gross margin for crop A of \f$ G_A = 1 \f$ and for crop B of 
+\f$ G_B = 2.5 \f$ we can plot the profit as a function of \f$ x \f$ and \f$ y \f$. 
+Such a plot is shown below where green indicates low profit. 
+
+\image html lptutorial.jpg
+
+It is clear that no optimal solution can 
+be found here ( ie we could just have an infinite amount of either crop). But obviously 
+a farmer cannot have an infinite amount of any crop so we can immediately add 
+some realism to this model through the constraint .. 
+\f[ 
+	x + y \leq A_{total}
+	\f]
+
+The plot below illustrates this graphically. The solution 
+space is now bounded, and the optimum solution can be found by finding the maximum
+value of profit within the bounded area.  
+
+\image html lptutorial1.jpg
+
+In this case the optimum happens to be at 
+\f$ y = A_{total} \f$ because the crop B is the most valuable. Imagine now that 
+there is a maximum to the amount of crop B that can be grown irrespective of the 
+amount of A.  Introducing this constraint (see below) further reduces the 
+solution space and changes the optimum to a mixture of crops A and B. 
+
+\image html lptutorial2.jpg 
+
+This is the basic idea behind constructing a linear programme.  We define an 
+objective function as a sum of linear factors and then successively add 
+constraints to restrict the space of possible solutions.  To find the optimum 
+solution it turns out that we only need to look along the boundary of the 
+solution space, and this permits very large problems to be solved quickly on  
+a computer (The JFM uses a third party solver called GLPK to do this). Since the objective 
+function is usually defined as the sum of many factors (not just two as in this 
+example) the solution space will have many dimensions, and constraints will be hyperplanes
+cutting off parts of this space.  As a consequence of the imposition of large numbers 
+of constraints the boundary to the solution space will be quite complex, and despite having a 
+very simple linear objective function a linear programme can exhibit quite complex and subtle 
+behaviour.  
+
+*/

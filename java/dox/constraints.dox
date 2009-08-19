@@ -1,0 +1,139 @@
+/*! \page constraints Constraints 
+ * 
+ * \section coding Coding Constraints
+ * 
+ * Each constraint is given its own class in the JFM.  All 
+ * constraint classes are subclasses of the abstract \link jfm.lp.ConstraintBuilder ConstraintBuilder \endlink
+ * class, which defines the abstract method \link jfm.lp.ConstraintBuilder.build() build() \endlink. 
+ * 
+ * 
+ * Every constraint will be associated with a particular \link jfm.lp.ModelComponent ModelComponent \endlink 
+ * . One typically defines a constraint class as a private class to the associated 
+ * model component class.  Because of this tight associated between model components and 
+ * constraints it is not possible to arbitrarily swap constraints around (not that one would 
+ * want to), but it is possible to control which of the constraints for a model 
+ * component are turned on or off.
+ * 
+ * \section builtin Built in Constraints 
+ * 
+ * In this documentation, and in the JFM, constraints are grouped into sets that can be 
+ * written down in a single equation.  Usually the entire set is itself just called a 
+ * constraint, although in reality it may consist of many rows in the constraint matrix.  
+ * 
+ * 
+ * In the following documentation we use an abbreviated notation to describe sets of constraints, 
+ * 
+ * \f[ \{ \Phi(i,k) \}  \forall i,k \in \mathbf{P}  \f] 
+ * 
+ * where the constraint equation, \f$ \Phi(i,k) \f$ is a function of \f$ i,k\f$ and we use the \f$ \forall \f$ 
+ * symbol to denote that there is a constraint of this type for every possible \f$ i \f$ and 
+ * \f$ k \f$.  The set of possible \f$ i \f$ in this case is just assumed to be the complete 
+ * set for whatever \f$ i \f$ describes (eg, crops, operations). We use an abbreviated set notation 
+ * to denote that \f$ k \f$ in this case must come from a restricted set of possibilities which we 
+ * denote by a boldface capital ( eg. \f$ \mathbf{P} \f$ ). 
+ * 
+ * 
+ * Some further notational definitions are; 
+ * 
+ *  - \f$ a_c \f$ : The area of crop \f$ c \f$. \n
+ *  - \f$ x_{c,o,k} \f$ : The area of operation \f$ o \f$ on crop \f$ c \f$ in period \f$ k \f$. 
+ *  - \f$ B_d \f$ : The number of years break required between crops of disease type \f$ d \f$.
+ *  - \f$ r_{t,f,k} \f$ : The area rotating from crop \f$ f \f$ to crop \f$ t \f$ in period \f$ k \f$.
+ *  - \f$ R_{c,o,k,w} \f$ is the number of hours required for worker \f$ w \f$ on crop \f$ c \f$ 
+* , operation \f$ o \f$ and in period \f$ k \f$.
+*  - \f$ H_{w,k} \f$ is the number of hours available for worker \f$ w \f$ in period \f$ k \f$.
+ *  - \f$ N_w \f$ is the number of workers of type \f$ w \f$. 
+*  - \f$ \mathbf{P}_{c,o} \f$ : Is the set of periods in which operation \f$ o \f$ can be carried out on crop \f$ c \f$.
+ *  - \f$ \mathbf{R}_{t,f} \f$ is the set of crops \f$ t \f$ for which the rotation from crop \f$ f \f$ is allowed.
+
+ * \subsection clist Complete list of constraints in JFM
+ * 
+* \subsubsection Cropping 
+* 
+ * - 1 \anchor cnstrTotalArea \link jfm.model.Cropping.TotalAreaConstraint Total Area \endlink. Constrains the 
+ * sum of areas of all crops to be equal to the total area cropped.
+ * \f[ \left \{ \sum_{c} a_{c} = A \right \} \forall c \f]
+ * where \f$ A \f$ is the total area cropped.
+ * 
+ * - 2 \link jfm.model.Cropping.OperationAreaConstraint Operation Area \endlink Constrains the 
+ * area of the first operation on any crop to equal the crop area.
+ * \f[ \left \{ \sum_{k \in \mathbf{P}_{c,1} } x_{c,1,k} = a_c \right \}   \forall c  \f]
+ * 
+ * - 3 \link jfm.model.Cropping.NonSequentialOperationConstraint Non Sequential Operation Area \endlink
+ * Constrain the total area of each operation on a crop (regardless of sequence) to equal the crop area. 
+ * \f[
+ * 		\left \{ \sum_{k \in \mathbf{P}_{c,o} } x_{c,o,k} = a_c \right \} \forall c,o
+ * \f]
+ * 
+ * - 4 \link jfm.model.Cropping.OperationSequencingConstraint Constraint on Operation sequencing \endlink
+ * Constrain the operational areas to conform to sequencing requirements. The sum of operation areas in a given period cannot exceed 
+ * the sum of areas of the preceeding operation up to that period
+ * \f[
+ * 	\left \{ \sum_{k \leq K} x_{c,o,k} \leq \sum_{k \leq K} x_{c,(o-1),k} \right \} \forall c, (o > 1 ), K \in \mathbf{P}_K
+ * \f]
+ * where the set \f$ \mathbf{P}_K = \mathbf{P}_{c,o} \cap \mathbf{P}_{c,o-1} \f$ is 
+ * the set of periods in which both operations \f$ o \f$ and \f$ o-1 \f$ can be carried out 
+* on crop \f$ c \f$.  Note that the set \f$ \mathbf{P}_K \f$ should be a continuous sequence.  
+ * 
+* 
+*  - 5 \link jfm.model.Cropping.OperationMinAreaConstraint Minimum area of constraints required in period \endlink
+* Constrain the area of certain operations in each period to be at least some minimum (rarely used constraint ). 
+* \f[ 
+* 	x_{c,o,k} \geq x_{c,o,k}^{min}  
+* \f]
+*
+* - 6 \link jfm.model.Cropping.DiseaseConstraint Constraint on crop areas due to Disease \endlink. Constrain 
+* the area of crops with a certain disease type and/or associated disease to be no greater than the area of all 
+* other crops divided by the number of years break required between crops with the disease. 
+* \f[
+*	\left \{ \sum_{c \in \mathbf{C}^d} a_c B_d + \sum_{c \in \mathbf{C}^{d'}} a_c Min(B_{d'},B_d)  
+	\leq \sum_{c \notin \mathbf{C}^d \cup \mathbf{C}^{d'} }  \right \}  \forall d
+* \f]
+* where the set of crops with a particular disease is written as \f$ \mathbf{C}^d \f$.
+* 
+- 7 \link jfm.model.Cropping.AreaLimitConstraint Limits on individual crops \endlink. Constrains the area of specific individual crops. 
+* \f[
+*	a^{min}_c \leq a_c \leq a_c^{max} 
+* \f]
+* 
+* \subsubsection Rotations 
+* 
+* - 8 \link jfm.model.Rotations.LastOpRotationConstraint Rotation sequencing for the last operation on a crop \endlink. 
+* Constrain the total area rotating from a particular crop to all other crops to be equal to the total area 
+* of the last operation of that crop (in a specific period).
+* \f[
+*	\left \{ \sum_t r_{t,f,k} = x_{f,o',k} \right \} \forall f \in \mathbf{R}_{t,f},k \in \mathbf{P}_{f,o'}
+* \f]
+* where \f$ o' \f$ is the last operation on the from crop \f$ f \f$. 
+* 
+* - 9 \link jfm.model.Rotations.NonSeqFirstOpRotationConstraint Rotation constraints on non-sequential operations \endlink. 
+* Constrain the area of the first operation in the to crop \f$ t \f$ to be no greater than the 
+* area rotating from all other crops.  This is a less restrictive constraint than (10), but is 
+* required for cases where there are no overlapping periods between the last operation of \f$ f \f$ 
+* and the first operation of \f$ t \f$.
+* \f[
+*	\left \{ \sum_k x_{t,1,k} \leq \sum_f r_{t,f,k} \right \} \forall t \in \mathbf{R}_{t,f}
+* \f]
+* 
+* - 10 \link jfm.model.Rotations.SeqFirstOpRotationConstraint Rotation constraint on first operation \endlink. Constrain 
+* the total area of the first operation on a crop up to a period to be no more than the total amount 
+* rotating to that crop up to that period. 
+* \f[
+*	\left \{ \sum_{k\leq K} x_{t,1,k} \leq \sum_f r_{t,f,k} \right \} \forall t \in \mathbf{R}_{t,f}, K\in \mathbf{K}_{t,f}
+* \f]
+* where the set \f$ \mathbf{K}_{t,f} = \mathbf{P}_{t,1} \cap \mathbf{P}_{f,o'} \f$ is the set of periods in which 
+* the last operation of crop \f$ f \f$ overlaps with the to crop \f$ t \f$. In the case where the intersection 
+* is null the constraint (9) ensures continuity of operations from one crop to the next.
+* 
+* \subsubsection Workers 
+* 
+* - 11 \link jfm.model.Workers.ResourcesConstraint Constraint on available resources \endlink. Constrain the 
+* total number of hours required for a worker type to be no more than the number of hours available.
+* \f[
+* \left \{ \sum_{o,c} R_{c,o,k,w} \leq N_w H_{w,k} \right \} \forall k,w
+* \f]
+* 
+* 
+* 
+* 
+*/

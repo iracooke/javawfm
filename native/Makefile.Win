@@ -1,0 +1,28 @@
+
+LIBOBJECTS= LPPeer.o LP.o 
+JAVA_HOME = C:/Program\ Files/Java/jdk1.6.0_03/
+JINCLUDES = -I$(JAVA_HOME)/include/ -I$(JAVA_HOME)/include/win32 
+GLPKINCLUDES = -I/usr/local/include
+LIBDIRS = -L$(JAVA_HOME)/lib -L/usr/local/lib 
+LIBS = -lglpk
+CC=g++
+
+%.o: %.cpp
+	$(CC) -c $< $(JINCLUDES) $(GLPKINCLUDES)
+	
+default	: all 
+
+all	: jfmnative.dll 
+	cp jfmnative.dll /bin/
+	
+jfmnative.dll	: wfm_lp_LPPeer.h $(LIBOBJECTS) 
+	$(CC) -Wall -D_JNI_IMPLEMENTATION_ -Wl,--kill-at -shared -o jfmnative.dll --add-stdcall-alias   $(LIBDIRS) $(LIBOBJECTS)  $(LIBS) 
+	
+
+	
+
+wfm_lp_LPPeer.h	:
+	$(JAVA_HOME)/bin/javah.exe -jni -classpath "C:\cygwin\home\zoovisa\EclipseWS\javawfm\jfm.jar" jfm.lp.LPPeer
+
+clean:
+	rm $(LIBOBJECTS) jfmnative.dll wfm_lp_LPPeer.h
