@@ -1,0 +1,11 @@
+Javawfm depends on coin-Cbc:
+- The coin-Cbc web page is https://projects.coin-or.org/Cbc
+
+To fulful the dependency on coin-Cbc:
+- Check out the latest sources 
+svn co https://projects.coin-or.org/svn/Cbc/stable/2.3 ./coin-Cbc
+- Configure and Build
+cd coin-Cbc
+./configure -C
+make
+make install

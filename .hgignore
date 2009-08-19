@@ -1,0 +1,9 @@
+# use glob syntax.
+syntax: glob
+
+.DS_Store
+depends/coin-Cbc
+Mac/javawfm/build
+Mac/javawfm/bin
+Mac/javawfm/lib
+Mac/javawfm/javawfm.xcodeproj/iracooke.*

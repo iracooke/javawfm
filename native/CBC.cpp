@@ -156,7 +156,9 @@ void CBC::loadMatrix(){
 	needsInitialSolve=TRUE; // Problem structure could have changed
 	matrixLoaded=TRUE;
 	delete matrix;
-	delete ri,ci,vrc;
+	delete ri;
+	delete ci;
+	delete vrc;
 	delete col_lb;
 	delete col_ub;
 	delete row_ub;
@@ -173,7 +175,7 @@ jint CBC::solveWithNewCoefficients(JNIEnv *env,jdoubleArray soln_j,jdoubleArray 
 		std::cout<< "Matrix not loaded. Try solveWithNewProblem \n" << std::endl;
 		exit(1);
 	}
-	int numcols=solver->getNumCols();
+//	int numcols=solver->getNumCols();
 //	const double* oldcoeff=solver->getObjCoefficients();
 
 //	for ( int c=0;c<numcols ;c++){

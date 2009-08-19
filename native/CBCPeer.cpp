@@ -1,4 +1,4 @@
-// Pur JNI code for the CBCPeer class here
+// Pure JNI code for the CBCPeer class here
 
 #include <jni.h>
 #include "./CBC.h"
