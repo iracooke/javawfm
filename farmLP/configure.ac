@@ -1,5 +1,5 @@
 AC_PREREQ(2.61)
-AC_INIT(farmland,1.0,iracooke@gmail.com)
+AC_INIT(farmLP,1.0,iracooke@gmail.com)
 AC_CONFIG_SRCDIR([src/CBC.h])
 AC_CONFIG_HEADER([])
 
@@ -14,14 +14,17 @@ CC=`"${RBIN}" CMD config CC`;
 CFLAGS=`"${RBIN}" CMD config CFLAGS`
 CPPFLAGS=`"${RBIN}" CMD config CPPFLAGS`
 
-if test -z "${OSTYPE}"; then
-	echo "could not determine OSTYPE"
-	exit 1
-fi
-PLATFORM=`echo ${OSTYPE}`
+#AC_CANONICAL_HOST
+
+PLATFORM=darwin
+#If darwin change platform
+#case "${host_os}" in
+#  darwin*)
+#    PLATFORM=darwin
+#    ;;
+#	*)
+
 AC_SUBST(PLATFORM)
-
-
 
 # Checks for programs.
 AC_PROG_CXX
@@ -148,6 +151,6 @@ AC_SUBST(JAVAH)
 
 # Checks for library functions.
 
-AC_CONFIG_FILES([src/Makefile])
+AC_CONFIG_FILES([src/Makevars])
 #AC_CONFIG_SUBDIRS([src/depends/coin-Cbc])
 AC_OUTPUT

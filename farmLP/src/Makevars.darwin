@@ -1,7 +1,7 @@
 
 
 
-JARDIR = ../inst/java
+JARDIR = $(RINSTDIR)/java
 CBCLIBOBJECTS = CBCPeer.o CBC.o
 
 # Libraries to link with Cbc
@@ -12,6 +12,12 @@ LIBS = -L$(COINLIBDIR) -lCbc -lCgl -lOsiClp -lOsiCbc -lOsi -lClp -lCoinUtils \
 	`cat $(COINLIBDIR)../share/doc/coin/Clp/clp_addlibs.txt` \
 	`cat $(COINLIBDIR)../share/doc/coin/CoinUtils/coinutils_addlibs.txt`
 
+SUBDIRS = depends/coin-Cbc/
+
+subdirs:
+	for dir in $(SUBDIRS); do \
+		$(MAKE) -C $$dir; \
+		done
 
 %.o: %.cpp
 	$(CXX) -c $< $(CPPFLAGS) 
@@ -19,7 +25,7 @@ LIBS = -L$(COINLIBDIR) -lCbc -lCgl -lOsiClp -lOsiCbc -lOsi -lClp -lCoinUtils \
 default	: all
 
 all	: libfarmland.jnilib 
-#	cp libfarmland.jnilib $(JAVAEXTDIR)
+	cp libfarmland.jnilib $(RINSTDIR)/jnilibs
 	
 libfarmland.jnilib	: jfm_lp_CBCPeer.h $(CBCLIBOBJECTS) 
 	$(CXX) -Q -bundle $(JAVA_LIBS) $(JAVA_CPPFLAGS) -o libfarmland.jnilib -L$(COINLIBDIR) $(LIBS) $(CBCLIBOBJECTS)
@@ -29,3 +35,5 @@ jfm_lp_CBCPeer.h	:	./java/src/jfm/lp/CBCPeer.java
 	
 clean:
 	rm $(CBCLIBOBJECTS) libfarmland.jnilib jfm_lp_CBCPeer.h
+	
+.PHONY : clean, all, subdirs

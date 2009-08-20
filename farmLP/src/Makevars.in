@@ -16,6 +16,6 @@ COINLIBDIR = ./depends/coin-Cbc/lib/
 CPPFLAGS+=-Iinclude @JAVA_CPPFLAGS@ -I$(COININCDIR)
 CXX=@CXX@
 
+RINSTDIR=../inst/
 
-
-include Makefile.$(PLATFORM)
+include Makevars.$(PLATFORM)

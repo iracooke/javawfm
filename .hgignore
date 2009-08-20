@@ -2,12 +2,13 @@
 syntax: glob
 
 .DS_Store
-farmland/src/depends/coin-Cbc
-farmland/src/java/build
-farmland/config.log
-farmland/config.status
-farmland/autom4te.cache
-farmland/src/Makefile
+farmLP/src/depends/coin-Cbc
+farmLP/src/java/build
+farmLP/config.log
+farmLP/config.status
+farmLP/autom4te.cache
+farmLP/src/Makefile
+farmLP/src/install-sh
 osx/javawfm/build
 osx/javawfm/bin
 osx/javawfm/lib

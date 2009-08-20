@@ -1,12 +1,17 @@
-mac:
-- Resolve dependency on coin libs
-
 R:
-- Create a new R package to include local useful functions and import most of what was previously in "farmland" there
-- Create an R package called farmland containing a minimalist subset of functions
+- farmLP functions [totally minimalist]
+	
+- Remove all farmLP functions from the farmland package and include deps on these for farmland
 - Decide what data to include with farmland
 - Write documentation for farmland functions
 - Write a vignette for the farmland package
 
 Build:
-- Write a configure script for the whole R package
+Archive:
+- Create an R package called farmLP containing a minimalist subset of functions @done @project(R)
+- Create a new R package to include local @done @project(R)
+- Change Makevars.darwin to Makevars.unix and have it use this for all unix flavours @done @project(Build)
+- Write a configure script for the whole R package @done @project(Build)
+	mac: @done @project(mac)
+- Resolve dependency on coin libs @done @project(mac)
+
