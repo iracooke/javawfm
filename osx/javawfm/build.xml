@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="javawfm" default="install" basedir=".">
-	<property name="src" location="../../java/src"/> <!-- java source folder -->
+	<property name="src" location="../../src/java/src/"/> <!-- java source folder -->
 	<property name="bin" location="bin"/> <!-- intermediate build products -->
 	<property name="jars" location="jars"/> <!-- jar files -->
 	<property name="lib" location="../../depends/lib"/> <!-- local libraries linked against -->

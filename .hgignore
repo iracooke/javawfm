@@ -2,10 +2,10 @@
 syntax: glob
 
 .DS_Store
-depends/coin-Cbc
-Mac/javawfm/build
-Mac/javawfm/bin
-Mac/javawfm/lib
-Mac/javawfm/jars
-Mac/javawfm/dist
-Mac/javawfm/javawfm.xcodeproj/iracooke.*
+src/depends/coin-Cbc
+osx/javawfm/build
+osx/javawfm/bin
+osx/javawfm/lib
+osx/javawfm/jars
+osx/javawfm/dist
+osx/javawfm/javawfm.xcodeproj/iracooke.*
