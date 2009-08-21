@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<!-- Input file for Java Farm Model. 
+This is the master document. 
+Add crops by including their xml files 
+-->
+
+<!-- Lets this document know where your crop files are. 
+This setup assumes everything is in the same directory as 
+this file -->
+
+<!DOCTYPE farm [
+<!ENTITY driedpeas SYSTEM "defradatabase/driedpeas.xml">
+<!ENTITY setaside SYSTEM "defradatabase/setaside.xml">
+<!ENTITY linseed SYSTEM "defradatabase/linseed.xml">
+<!ENTITY linseedsa SYSTEM "defradatabase/linseedsa.xml">
+<!ENTITY springbarley SYSTEM "defradatabase/springbarley.xml">
+<!ENTITY winterbarley SYSTEM "defradatabase/winterbarley.xml">
+<!ENTITY winterbarleysa SYSTEM "defradatabase/winterbarleysa.xml">
+<!ENTITY potatoes SYSTEM "defradatabase/potatoes.xml">
+<!ENTITY sosr SYSTEM "defradatabase/sosr.xml">
+<!ENTITY wosr SYSTEM "defradatabase/wosr.xml">
+<!ENTITY winterwheat SYSTEM "defradatabase/winterwheat.xml">
+<!ENTITY springwheat SYSTEM "defradatabase/springwheat.xml">
+
+<!ENTITY sosrsa SYSTEM "defradatabase/sosrsa.xml">
+<!ENTITY wosrsa SYSTEM "defradatabase/wosrsa.xml">
+<!ENTITY winterwheatsa SYSTEM "defradatabase/winterwheatsa.xml">
+<!ENTITY springwheatsa SYSTEM "defradatabase/springwheatsa.xml">
+<!ENTITY sugarbeet SYSTEM "defradatabase/sugarbeet.xml">
+<!ENTITY winterbeans SYSTEM "defradatabase/winterbeans.xml">
+<!ENTITY springbeans SYSTEM "defradatabase/springbeans.xml">
+]>
+
+<!-- Create a Farm and set some overall parameters. fuelprice affects the cost of operations especially those that use fuel guzzling machinery. Interest rate will affect the overall cost of machinery. Solver determines the type of back-end solver that is used. Allowable options are glpk or cbc .. use cbc -->
+<farm nperiods="26" fuelprice="0.47" interestrate="0.05" solver="cbc" >
+<!-- Location specific information. soil is the soil type according to a numerical description used by the SWFM. rain is the rainfall in mm -->
+<location soil="2.5" rain="500"/><!-- Need to change to Heavy Clay -->
+<landuse area="250">
+  <cropping >
+    <!-- Here is where you include all the crops you wish to model. Comment out or delete the crops you don't want -->
+<!--    &driedpeas;-->
+<!-- &linseed;-->
+<!--    &linseedsa;-->
+    &springbarley;
+    &winterbarley;
+    <!--  &winterbarleysa;-->
+   &winterbeans;
+   &springbeans;
+    &winterwheat;
+    <!--  &winterwheatsa;-->
+    <!--  &springwheat;
+	 &springwheatsa;-->
+    &sugarbeet;
+    &setaside;
+    &potatoes;
+    <!--  &sosr;
+	 &sosrsa;-->
+    &wosr;
+<!--    &wosrsa;-->    
+    <!-- Setup the disease classes. These are used to determine allowable rotations between crops. break means that this crop requires a break of a certain number of years in between cultivations. assoc is the associated disease type -->
+    <disease id="none" assoc="none" break="1"/>    
+    <disease id="brassica" break="2"/>
+    <disease id="wheat" assoc="barley"/>
+    <disease id="barley" assoc="wheat"  />
+    <disease id="potatoes" break="3"/>
+    <disease id="oats" />
+    <disease id="sugarbeet" break="2"/>
+    <disease id="peasbeans" break="3"/>
+    <disease id="linseed" break="2"/>
+    
+<!-- This is an example of a limit construct. 
+     In this case the area of setaside is fixed to be 20ha. -->
+<!--<limit id="area" min="20" max="100.0" type="lpx_lo" >
+  <csv data="croptype">setaside</csv>
+</limit>-->
+  </cropping>
+
+  <!-- We could do costs for timing here but it would not be likely to have an effect on 
+       labour req because it occurs over a long time period and not at a busy time of year -->
+  <!-- Historical is in miles, costs are in pounds per mile -->
+<!--  <hedgerows historical="6.6" creationCost="100" destructionCost="50" maintenanceCost="80" discountRate="0.05"/>-->
+
+</landuse>  
+  <workers>
+<!-- Describe the available labour and machinery for this farm -->
+<!-- Standard Labour.  The variable glpkV can be set to lpx_cv (continuous variable) 
+     which means fractional numbers of workers are allowed. 
+     If instead it is set to lpx_iv (integer variable) only 
+     integer numbers of workers will be allowed -->
+<labour wktype="labour" wkstype="labour" cost="19660.0" glpkV="lpx_cv" lowB="0" upB="2000" glpkB="lpx_db"/>
+<!-- Special type of labour representing the farmer. This is usually fixed to 1 and set to be free or perhaps some price representing opportunity costs that are incurred by not taking up another job (ie doing contract farming) -->
+<labour wktype="labour" wkstype="farmer" cost="0.0" glpkV="lpx_iv" lowB="0" upB="1" glpkB="lpx_db"/>
+<!-- Standard Machinery Costs -->
+<!--
+  <machine wktype="tractor" cost="42965" replace="5" depreciationRate="22.0" repairCosts="12.05"/>    
+  <machine wktype="combine" cost="109376" replace="7" depreciationRate="18.0" repairCosts="5.8"/>
+  <machine wktype="sprayer" cost="15500" replace="7" depreciationRate="18.0" repairCosts="6.8"/>
+  <machine wktype="baler" cost="18000" replace="7" depreciationRate="11.0" repairCosts="5.5"/>
+  <machine wktype="potato-harvester" cost="60000" replace="7" depreciationRate="18.0" repairCosts="6.0" />
+  <machine wktype="sugarbeet-harvester" cost="60000" replace="7" depreciationRate="18.0" repairCosts="5.0"/>
+  <machine wktype="powerharrow" cost="8000" replace ="4" depreciationRate="14.0" repairCosts="5.0" />
+-->
+  <machine wktype="tractor" cost="42965" replace="5" glpkV="lpx_cv" depreciationRate="22.0" repairCosts="12.05"/>    
+  <machine wktype="combine" cost="109376" replace="7" glpkV="lpx_cv" depreciationRate="18.0" repairCosts="5.8"/>
+  <machine wktype="sprayer" cost="15500" replace="7" glpkV="lpx_cv" depreciationRate="18.0" repairCosts="6.8"/>
+  <machine wktype="baler" cost="18000" replace="7" glpkV="lpx_cv" depreciationRate="11.0" repairCosts="5.5"/>
+  <machine wktype="potato-harvester" cost="60000" replace="7" glpkV="lpx_cv" depreciationRate="18.0" repairCosts="6.0" />
+  <machine wktype="sugarbeet-harvester" cost="60000" replace="7"  glpkV="lpx_cv" depreciationRate="18.0" repairCosts="5.0"/>
+  <machine wktype="powerharrow" cost="8000" replace ="4" glpkV="lpx_cv" depreciationRate="14.0" repairCosts="5.0" />
+</workers>
+
+<!-- If desired we can add specify objectives other than the base objective ( profit ) here -->
+
+<varrisk alpha="0.25" offset="170"/>
+
+<!--<motadrisk />-->
+
+<!--<stubbles endPeriod="3" subsidy="0" />
+<hedgerows maxlen="8.0" 	     
+	   historical="4.0" creationCost="100" destructionCost="80" 
+	   maintenanceCost="120" discountRate="0.05"/>-->
+
+<!-- Threshold percentage of farm for a crop to count -->
+<cropcomplexity threshold="0.01"/> <!-- Using FBS data we found that this should indeed be quite small -->
+
+</farm>
+
+

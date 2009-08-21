@@ -1,0 +1,207 @@
+<!-- Details for Sugar Beet 
+ Gross margin
+  Primary yield:        (54.543-(37.82*(0.984^({N fertiliser}))))*0.86 = 43.67; Cash Crop
+  Secondary yield:      0.0 = 0.00
+  Primary yield price:  22.6
+  Secondary yield price:0.0
+  Area subsidy:         184.0
+  TOTAL OUTPUT =        1170.9-->
+<crop id="sugarbeet" 
+      allowContinuous="false" 
+      price="30.8" 
+      yield="(54.543-(37.82*(0.984^({N fertiliser}))))*0.86" 
+      subsidy="0" 
+      disease="sugarbeet" yrisk="7" prisk="4" eostdev="11.0">
+      
+  <!--
+      Inputs:
+      Seed kg/ha:           6.0 @ 23.00 £/kg
+      Other  £/ha:          373.0
+      N fertiliser:         115.0 @ 0.45 £/kg=                                                                    
+      P fertiliser:         58.0 @ 0.31 £/kg=    
+      K fertiliser:         190.0 @ 0.24 £/kg=     
+      Water:                0.0 @ 0.30 £/kg=         
+  TOTAL INPUTS =        626.3
+  GROSS MARGIN =        544.5-->
+    <input type="N fertiliser" unitCost="0.45" baseAmount="115" />
+    <input type="P fertiliser" unitCost="0.31" baseAmount="58" />
+    <input type="K fertiliser" unitCost="0.24" baseAmount="240" />
+    <input type="Seed Amount of crop" unitCost="23.0" baseAmount="6" />
+    <input type="Transport" unitCost="0.1" baseAmount="30" /><!-- Based on 30km av distance to factory -->
+    <!-- Units are pounds per ha per km amounts are nums of km
+    This is for sprays 
+     -->
+    <input type="Unspecified" unitCost="1" baseAmount="250" />
+<!--
+ Rotation penalties (N.A. = Not Allowed)
+                        A      B      C      D             F
+  Wheat                 0      20     3      0      0
+  Barley                0      0      3      0      0
+  Oats                  0      20     0      0      0
+  Peas/Beans            0      0      0      0      0
+  Brassica              N.A.   0      0      0      0
+  Potato                N.A.   0      0      0      0
+  Linseed               0      0      0      0      0
+  Rotational setaside   0      0      0      0      0-->
+<rotation id="sugarbeet">
+  <csv data="rotpenalty">wheat,0,20</csv>
+  <csv data="rotpenalty">oats,0,20</csv>
+  <csv data="forbidden">brassica,potatoes</csv>
+</rotation>
+
+<!-- Sequential operations
+  Plough25cm-Spring cr  from [1: Sep 24] to [2: Mar 25]    Periods gap: min 0 max -
+  Power Harrow(Mar/Apr  from [2: Feb 26] to [2: Apr 22]    Periods gap: min 0 max -
+  Drill SBeet           from [2: Mar 12] to [2: May 6]     Periods gap: min 0 max -
+  Harvest SBeet         from [2: Sep 24] to [2: Dec 16]    Periods gap: min 0 max - -->
+<operation type="plough" workability="r100">
+  <csv data="allow">[1: Sep 24],[2: Mar 25]</csv>
+  <csv data="wkrate">(1.80*(50*{Soil Type}+20))/{Size of first machine in system definition}</csv>
+  <csv data="machines">tractor,labour</csv>
+</operation>
+<operation type="harrow" workability="r80">
+  <csv data="allow">[2: Feb 26],[2: Apr 22]</csv>
+  <csv data="wkrate">(25*{Soil Type}+33)/{Size of first machine in system definition}</csv><!--0.83-->
+  <csv data="machines">powerharrow,tractor,labour</csv>
+</operation>
+<operation type="plant" workability="r70">
+  <csv data="allow">[2: Mar 12],[2: May 6]</csv>
+  <csv data="wkrate">0.39+157/{Size of first machine in system definition}</csv>
+  <csv data="machines">tractor,labour</csv>
+  <csv data="yieldpenalties">0,1,5,11</csv>
+</operation> 
+<operation type="harvest" workability="r80" handover="true">
+  <csv data="allow">[2: Sep 24],[2: Dec 16]</csv>
+  <csv data="wkrate">(403/600)+2/(3*(1.25+0.51*{Soil Type})*({Primary yield of crop}/37.728))</csv><!--1.03-->
+  <csv data="machines">sugarbeet-harvester,tractor 3,labour 3</csv>
+  <csv data="minarea">14,14,14,0,0,0</csv>
+  <csv data="yieldpenalties">5,2,0,0,4,8</csv>
+</operation> 
+<!-- Non-sequential operations
+  Base Fert-Spring      from [2: Jan 1] to [2: Mar 25]
+  Spray   Mar/Apr       from [2: Feb 26] to [2: Apr 22]
+  Inter-row Hoe(May)    from [2: Apr 23] to [2: May 20]
+  Spray   May           from [2: Apr 23] to [2: May 20]
+  Inter-row hoe(Jun)    from [2: May 21] to [2: Jul 1]
+  Spray   July          from [2: Jul 2] to [2: Jul 29] -->
+<operation type="fert" workability="r80" nonsequential="true">	
+  <csv data="allow">[2: Jan 1],[2: Mar 25]</csv>
+  <csv data="wkrate">(0.06+0.00025*({P fertiliser}+{K fertiliser}))+(64.48+0.094*({P fertiliser}+{K fertiliser}))/1200</csv>
+  <csv data="machines">tractor,labour</csv>
+</operation>
+<operation type="spray" workability="r60" nonsequential="true">	
+  <csv data="allow">[2: Feb 26],[2: Apr 22]</csv>
+  <csv data="wkrate">0.11+191.6/{Size of first machine in system definition}</csv>
+  <csv data="machines">sprayer,tractor,labour</csv>
+</operation>
+<operation type="hoe" workability="r80" nonsequential="true">	
+  <csv data="allow">[2: Apr 23],[2: May 20]</csv>
+  <csv data="wkrate">1.02</csv>
+  <csv data="machines">tractor,labour</csv>
+</operation>
+<operation type="spray" workability="r60" nonsequential="true">	
+  <csv data="allow">[2: Apr 23],[2: May 20]</csv>
+  <csv data="wkrate">0.11+191.6/{Size of first machine in system definition}</csv>
+  <csv data="machines">sprayer,tractor,labour</csv>
+</operation>
+<operation type="hoe" workability="r80" nonsequential="true">	
+  <csv data="allow">[2: May 21],[2: Jul 1]</csv>
+  <csv data="wkrate">1.02</csv>
+  <csv data="machines">tractor,labour</csv>
+</operation>
+<operation type="spray" workability="r60" nonsequential="true">	
+  <csv data="allow">[2: Jul 2],[2: Jul 29]</csv>
+  <csv data="wkrate">0.11+191.6/{Size of first machine in system definition}</csv>
+  <csv data="machines">sprayer,tractor,labour</csv>
+</operation>
+</crop>
+
+
+<!--CROP Sugar Beet             DATABASE: JFMTest   MODEL: min  04/04/2008 
+ Minimum area:          0.0
+ Type of crop:          Annual
+ Setaside type:         Sugar
+ Crop rotation class:   Sugar Beet
+ Decrease by successive growing:
+                        Not possible to grow consecutive yields ofSugar Beet
+
+
+
+
+Primary Yield Dry Matter Not defined%
+
+Primary Yield N Content, kg N/t freshweight Not defined
+
+Primary Yield P Content, kg P2O5/t freshweight Not defined
+
+Primary Yield K Content, kg K2O/t freshweight Not defined
+
+Secondary Yield Dry Matter Not defined%
+
+Secondary Yield N Content, kg N/t freshweight Not defined
+
+Secondary Yield P Content, kg P2O5/t freshweight Not defined
+
+Secondary Yield K Content, kg K2O/t freshweight Not defined
+
+Harvest Index Not defined
+
+
+
+
+
+
+ RISK
+
+  Disease variability:  5
+
+  Price variability:    9
+
+
+
+
+ Storage type: 0        Minimum storage = 0 tonnes
+
+
+
+
+
+ Key to table column titles
+
+A = Yield Loss (%) 
+
+B = Cost / ha
+
+C = Blackgrass herbicide
+
+D = Wild Oat herbicide  
+
+E = N fertiliser        
+
+
+
+Rotational Penalty Formula
+
+
+
+ Base Environmental effects
+
+
+
+  Nitrate leaching:  
+
+   39. = (({N fertiliser}-1.7*{Primary yield of crop}+25))*(120/(120+33+67*{Soi
+
+         l Type}))                                        
+
+  Blackgrass herbicide:  
+
+   No Effect
+
+  Wild Oat herbicide:  
+
+   No Effect
+
+
+
+-->

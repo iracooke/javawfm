@@ -1,0 +1,198 @@
+
+<!-- Details for spring beans 
+ Gross margin
+  Primary yield:        ((0.7+1.25*({Soil Type}))*1.05)*1.2 = 4.03; Cash Crop
+  Secondary yield:      0.00 = 0.00
+  Primary yield price:  87.0
+  Secondary yield price:0.0
+  Area subsidy:         219.0
+  TOTAL OUTPUT =        569.8-->
+
+
+<crop id="springbeans" allowContinuous="false" price="83.0" 
+      yield="((0.7+1.25*({Soil Type}))*1.02)" 
+      subsidy="268" disease="peasbeans"  yrisk="26" prisk="7" eostdev="28"> 
+        
+<!--
+ Inputs:
+  Seed kg/ha:           225.0 @ 0.23 £/kg
+  Other  £/ha:          58.5
+  P fertiliser:         38.0 @ 0.31 £/kg=                                                                                
+  K fertiliser:         44.0 @ 0.24 £/kg=                                                                                
+  TOTAL INPUTS =        132.6
+  GROSS MARGIN =        437.2
+-->  
+  <input type="Seed Amount of crop" unitCost="0.23" baseAmount="225" increments="0,0,0,0"/>
+  <input type="Unspecified" unitCost="1" baseAmount="58.5" increments="0,0,0,0"/>
+  <input type="P fertiliser" unitCost="0.31" baseAmount="38" increments="0,0,0,0"/>
+  <input type="K fertiliser" unitCost="0.24" baseAmount="44" increments="0,0,0,0"/>
+
+<!-- Rotation penalties (N.A. = Not Allowed)
+                        A      B      C             E
+  Wheat                 0      0      0      0
+  Barley                0      0      0      0
+  Oats                  0      0      0      0
+  Brassica              N.A.   0      0      0
+  Potato                0      0      0      0
+  Sugar Beet            N.A.   N.A.   0      0
+  Linseed               0      0      0      0
+  Rotational setaside   0      0      0      0 -->
+  <rotation id="springbeans">
+    <csv data="forbidden">brassica,sugarbeet</csv>
+  </rotation>
+
+
+<!-- Sequential operations
+  Spread P/K-Autumn     from [1: Jul 30] to [1: Nov 18]    Periods gap: min 0 max -
+  Plough (Spring crop)  from [1: Sep 24] to [2: Mar 25]    Periods gap: min 0 max -
+  Plant SBeans          from [2: Feb 12] to [2: Apr 8]     Periods gap: min 0 max -
+  Combine SBeans        from [2: Aug 27] to [2: Sep 23]    Periods gap: min 0 max - -->
+
+  <operation type="fert" workability="r80">
+    <csv data="allow">[1: Jul 30],[1: Nov 18]</csv> 
+    <csv data="wkrate">(0.06+0.00025*({P fertiliser}+{K fertiliser}))+(64.48+0.094*({P fertiliser}+{K fertiliser}))/1200</csv>
+    <csv data="machines">labour,tractor</csv>
+  </operation>
+  <operation type="plough" workability="r100">
+    <csv data="allow">[1: Sep 24],[2: Mar 25]</csv>
+    <csv data="wkrate">(1.44*(50*{Soil Type}+20))/{Size of first machine in system definition}</csv>
+    <csv data="machines">tractor,labour</csv>
+  </operation>
+  <operation type="plant" workability="r70"><!-- Drill SOSR/Beans -->
+    <csv data="allow">[2: Feb 12],[2: Apr 8]</csv>
+    <csv data="wkrate">(0.06+0.00069*{Seed Amount of crop})+(92.42+0.00626*{Seed Amount of crop}+41.5*{Soil Type})/{Size of first machine in system definition}</csv>
+    <csv data="machines">tractor,labour</csv>
+    <csv data="yieldpenalties">0,0,3,8</csv>
+  </operation>
+  <operation type="combine" workability="r70" handover="true"><!-- Combine-rape/peas -->
+    <csv data="allow">[2: Aug 27],[2: Sep 23]</csv>
+    <csv data="wkrate">((4.05*{Primary yield of crop}+24)/4)/{Size of first machine in system definition}</csv>
+    <csv data="machines">combine,tractor 2,labour 3</csv>
+    <csv data="yieldpenalties">0,4</csv>
+  </operation>
+
+<!-- Non-sequential operations
+  Spray   May           from [2: Apr 23] to [2: May 20]
+  Spray   June          from [2: Jun 4] to [2: Jul 1]-->
+  <operation type="spray" workability="r60" nonsequential="true">	
+    <csv data="allow">[2: Apr 23],[2: May 20]</csv>
+    <csv data="wkrate">0.11+191.6/{Size of first machine in system definition}</csv>
+    <csv data="machines">sprayer,tractor,labour</csv>
+  </operation>
+  <operation type="spray" workability="r60" nonsequential="true">	
+    <csv data="allow">[2: Jun 4],[2: Jul 1]</csv>
+    <csv data="wkrate">0.11+191.6/{Size of first machine in system definition}</csv>
+    <csv data="machines">sprayer,tractor,labour</csv>
+  </operation>
+</crop>
+
+
+
+<!-- CROP Spring Beans           DATABASE: JFMTest   MODEL: min  04/04/2008 
+
+
+
+ Minimum area:          0.0
+
+
+
+ Type of crop:          Annual
+
+ Setaside type:         Arable
+
+ Crop rotation class:   Peas/Beans
+
+
+
+ Decrease by successive growing:
+
+  Year                  2         3         4         5 
+
+  Yield loss (%)        No penalties
+
+
+
+  Cost/ha               No penalties
+
+
+
+
+
+
+
+
+Primary Yield Dry Matter Not defined%
+
+Primary Yield N Content, kg N/t freshweight Not defined
+
+Primary Yield P Content, kg P2O5/t freshweight Not defined
+
+Primary Yield K Content, kg K2O/t freshweight Not defined
+
+Secondary Yield Dry Matter Not defined%
+
+Secondary Yield N Content, kg N/t freshweight Not defined
+
+Secondary Yield P Content, kg P2O5/t freshweight Not defined
+
+Secondary Yield K Content, kg K2O/t freshweight Not defined
+
+Harvest Index Not defined
+
+
+
+
+ RISK
+
+  Disease variability:  5
+
+  Price variability:    15
+
+
+
+
+
+
+ Storage type: 0        Minimum storage = 0 tonnes
+
+
+
+
+
+ Key to table column titles
+
+A = Yield Loss (%) 
+
+B = Cost / ha
+
+C = Wild Oat herbicide  
+
+D = N fertiliser        
+
+
+
+Rotational Penalty Formula
+
+
+
+ Base Environmental effects
+
+
+
+  Nitrate leaching:  
+
+   64. = ((52+75+25))*120/(120+33+67*{Soil Type})                              
+
+                           
+
+  Blackgrass herbicide:  
+
+   No Effect
+
+  Wild Oat herbicide:  
+
+   No Effect
+
+
+
+-->

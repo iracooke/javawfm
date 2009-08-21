@@ -23,14 +23,6 @@ setPriceInProfitDocument<-function(doc,newPrice,cropName){
     return(doc)
 }
 
-#setPricesInProfitDocument<-function(doc,priceVector){#
-#	cropNames=names(priceVector)
-#	for( c in 1:length(cropNames)){
-#		setPriceInProfitDocument(doc,priceVector[c],cropNames[c])
-#	}
-#	doc
-#}#
-
 setPricesInProfitDocument <- function(doc,pricesVector){
   jfmCropNames=.jcall("jfm/r/FarmDocumentEditor","[Ljava/lang/String;","cropNames",doc)
   for( c in 1:length(jfmCropNames)){
@@ -45,16 +37,6 @@ setSubsidyInProfitDocument <- function(doc,newSubsidy,cropName){
   doc=.jcall("jfm/r/FarmDocumentEditor","Lorg/w3c/dom/Document;","setSubsidyForCrop",doc,as.double(newSubsidy),cropName)
   return(doc)
 }
-
-#setSubsidiesInProfitDocument<-function(doc,subsidyVector){#
-#	cropNames=names(subsidyVector)
-#	for( c in 1:length(cropNames)){
-#		setSubsidyInProfitDocument(doc,subsidyVector[c],cropNames[c])
-#	}
-#	doc
-#}##
-
-
 
 setSubsidiesInProfitDocument <- function(doc,subsidyVector){
   jfmCropNames=.jcall("jfm/r/FarmDocumentEditor","[Ljava/lang/String;","cropNames",doc)

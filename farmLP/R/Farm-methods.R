@@ -1,6 +1,6 @@
 
 
-Farm <- function(econ) { # TODO: Type checks for arguments
+Farm <- function(econ) { 
   farm=new("Farm")
   farm@model=.jnew("jfm/r/SimpleFarmRepresentation",econ)
   farm@cropNames=.jcall(farm@model,"[Ljava/lang/String;","cropNames")   
@@ -14,6 +14,7 @@ set.mou <- function(farm,mou){
 }
 
 set.sugarbeet <- function(sfarm,coords,SBFactories,haulagePerTonnePerKm,maxSBHaulageDistance){
+
   sugarDists=spDistsN1(coordinates(SBFactories),coords,longlat=TRUE)
   minDist=min(sugarDists)
   if ( minDist > maxSBHaulageDistance ){

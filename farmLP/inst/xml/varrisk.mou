@@ -1,0 +1,8 @@
+<?xml version="1.0"?> 
+<farmermou> 
+<ObjectiveU type="profit"  units="Unknown" weight="100.0" min="60000" max="180000" />
+<ObjectiveU type="varrisk" units="Unknown" weight="1"     min="56000" max="0"/>
+<!--<ObjectiveU type="profit" units="Unknown" weight="100.0" x="-3000,35000,100000" y="0,50,100" />
+<ObjectiveU type="risk" units="Unknown" weight="9.8" x="10000,5500,1000" y="0,70,100" />-->
+<ObjectiveU type="cropcomplexity" units="Unknown" weight="0" x="0,4,7,14" y="0,100,47,0" />
+</farmermou>

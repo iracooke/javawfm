@@ -1,20 +1,11 @@
 import(rJava)
 
 exportClasses(Farm,CompositeFarm,FarmRepresentation)
+
 exportMethods(set,model,solvefm,isSolved,profit,eo,cropArea,setInputCost,cropNames,objectiveNames,objectiveValues,objectiveScaleFactors)
-export(CompositeFarm,Farm,pathForFarmDBFilename)
+export(CompositeFarm,Farm)
 
 export(parseXMLDocument,setWeightInMOUDocument,setRiskInMOUDocument,setCropComplexityInMOUDocument,setPriceInProfitDocument,setPricesInProfitDocument,setSubsidiesInProfitDocument,setSubsidyInProfitDocument)
-export(fbsCropNames,jfmCropNames)
-
-export(runSpatial,printProgress,modellableAreaAgCensus,modelvsactualAgCensus)
-export(runFBS,modelCropnameToFBSCropname,modellableAreaFBS,modelvsactualFBS) # For FBS
-export(closestPoint,closestPointIndices,cleanupSoilsAndRainfall,pointsInPolygons)
-export(bbsPredict,applyCroppingPredictionToBBSVariables)
-export(landscapeColSums,spatialListBarplot,startEPSDevice,printBarplot)
-
-export(lowlandArable,getLowlandFarmsInCounties)
-export(rbindlist,resetFarm,makeDir,makePathname,makePairedResults,makePairedTotals,numCrops)
 
 S3method(as.data.frame, FarmRepresentation)
 S3method(as.data.frame, Farm)

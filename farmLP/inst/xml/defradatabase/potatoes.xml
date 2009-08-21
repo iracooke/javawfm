@@ -1,0 +1,228 @@
+<!-- Details for Potatoes 
+ Gross margin
+  Primary yield:         = 48.11; Cash Crop
+  Secondary yield:      	 = 3.01; Cash Crop
+  Primary yield price:  90.0
+  Secondary yield price:10.0
+  Area subsidy:         184.0
+  TOTAL OUTPUT =        4544.3
+-->
+<crop id="warepotatoes" allowContinuous="false" price="99.5" price2="0.0" 
+      yield="(44.507-(29.135*(0.992^({N fertiliser}))))*1.2" 
+      yield2="(44.507-(29.135*(0.992^({N fertiliser}))))*0.075" subsidy="0" yrisk="9" prisk="14" disease="potatoes" eostdev="38">
+
+<!--
+ Inputs:
+  Seed kg/ha:           2800.0 @ 0.22 £/kg
+  Other  £/ha:          1547.0
+  N fertiliser:         213.0 @ 0.45 £/kg=                                                                             
+  P fertiliser:         250.0 @ 0.31 £/kg=                                                                             
+  K fertiliser:         275.0 @ 0.24 £/kg=                                                                             
+  Water:                0.0 @ 0.30 £/kg=                                                                               
+  TOTAL INPUTS =        2402.4
+  GROSS MARGIN =        2142.0-->
+
+  <input type="N fertiliser" unitCost="0.45" baseAmount="213" />
+  <input type="P fertiliser" unitCost="0.31" baseAmount="250"/>
+  <input type="K fertiliser" unitCost="0.24" baseAmount="275" />
+  <input type="BGHerbicide" unitCost="1.8" baseAmount="0" />
+  <input type="WOHerbicide" unitCost="2.75" baseAmount="0"/>
+  <input type="Seed Amount of crop" unitCost="0.22" baseAmount="2800" />
+  <input type="Unspecified" unitCost="1" baseAmount="1847" />
+
+  <!--
+ Rotation penalties (N.A. = Not Allowed)
+                        A      B      C      D             F
+  Wheat                 0      20     3      0      0
+  Barley                0      0      3      0      0
+  Oats                  0      20     0      0      0
+  Peas/Beans            0      0      0      0      0
+  Brassica              0      0      0      0      0
+  Sugar Beet            5      0      0      0      0
+  Linseed               0      0      0      0      0
+  Rotational setaside   0      0      0      0      0 -->
+
+  <rotation id="warepotatoes">
+    <csv data="rotpenalty">wheat,0,20</csv>
+    <csv data="rotpenalty">oats,0,20</csv>
+    <csv data="rotpenalty">sugarbeet,5,0</csv>
+  </rotation>
+
+
+<!-- Sequential operations
+  Plough25cm-Spring cr  from [1: Sep 24] to [2: Mar 25]    Periods gap: min 0 max -
+  Power Harrow(Mar/Apr  from [2: Feb 26] to [2: Apr 22]    Periods gap: min 0 max -
+  Plant maincrop pots   from [2: Mar 12] to [2: May 6]     Periods gap: min 0 max -
+  Ridging               from [2: Mar 26] to [2: May 6]     Periods gap: min 0 max -
+  Harvest Maincrop Pot  from [2: Sep 24] to [2: Nov 4]     Periods gap: min 0 max -
+-->
+<operation type="plough" workability="r100">
+  <csv data="allow">[1: Sep 24],[2: Mar 25]</csv>
+  <csv data="wkrate">(1.80*(50*{Soil Type}+20))/{Size of first machine in system definition}</csv>
+  <csv data="machines">tractor,labour</csv>
+</operation>
+<operation type="harrow" workability="r80">
+  <csv data="allow">[2: Feb 26],[2: Apr 22]</csv>
+  <csv data="wkrate">(25*{Soil Type}+33)/{Size of first machine in system definition}</csv>
+  <csv data="machines">tractor,powerharrow,labour</csv>
+</operation>
+<operation type="plant" workability="r70">
+  <csv data="allow">[2: Mar 12],[2: May 6]</csv>
+  <csv data="wkrate">(278/{Size of first machine in system definition}+0.04+0.55*{Seed Amount of crop})/2000</csv>
+  <csv data="machines">tractor 3,labour 3</csv>
+  <csv data="yieldpenalties">5,0,5,15</csv>
+</operation>
+<operation type="ridging" workability="r80">
+  <csv data="allow">[2: Mar 26],[2: May 6]</csv>
+  <csv data="wkrate">(40*{Soil Type}+33)/{Size of first machine in system definition}</csv>
+  <csv data="machines">tractor,labour</csv>
+</operation>
+<operation type="harvest" workability="r80" handover="true">
+  <csv data="allow">[2: Sep 24],[2: Nov 4]</csv>
+  <csv data="wkrate">2.32</csv><!--2.32 Formula in SWFM might be an error .. check! -->
+  <csv data="machines">potato-harvester,tractor 4,labour 4</csv>
+  <csv data="yieldpenalties">0,0,5</csv>
+</operation>
+
+<!-- Non-sequential operations
+  Base fert-pots        from [2: Jan 1] to [2: Mar 25]
+  Spray   Mar/Apr       from [2: Feb 26] to [2: Apr 22]
+  Inter-row Hoe(May)    from [2: Apr 23] to [2: May 20]
+  Inter-row hoe(Jun)    from [2: May 21] to [2: Jul 1]
+  Spray   June          from [2: Jun 4] to [2: Jul 1]
+  Spray   July          from [2: Jul 2] to [2: Jul 29]
+  Spray   Aug           from [2: Jul 30] to [2: Aug 26] -->
+<operation type="fert" workability="r80" nonsequential="true">
+  <csv data="allow">[2: Jan 1],[2: Mar 25]</csv>
+  <csv data="wkrate">(0.06+0.00025*({P fertiliser}+{K fertiliser}))+(64.48+0.094*({P fertiliser}+{K fertiliser}))/1200</csv>
+  <csv data="machines">tractor,labour</csv>
+</operation>
+<operation type="spray" workability="r60" nonsequential="true">	
+  <csv data="allow">[2: Feb 26],[2: Apr 22]</csv>
+  <csv data="wkrate">0.11+191.6/{Size of first machine in system definition}</csv>
+  <csv data="machines">sprayer,tractor,labour</csv>
+</operation>
+
+<operation type="hoe" workability="r80" nonsequential="true">	
+  <csv data="allow">[2: Apr 23],[2: May 20]</csv>
+  <csv data="wkrate">1.02</csv><!-- Formula in SWFM has no variables -->
+  <csv data="machines">tractor,labour</csv>
+</operation>
+
+<operation type="hoe" workability="r80" nonsequential="true">
+  <csv data="allow">[2: May 21],[2: Jul 1]</csv>
+  <csv data="wkrate">1.02</csv>
+  <csv data="machines">tractor,labour</csv>
+</operation>
+<operation type="spray" workability="r60" nonsequential="true">	
+  <csv data="allow">[2: Jun 4],[2: Jul 1]</csv>
+  <csv data="wkrate">0.11+191.6/{Size of first machine in system definition}</csv>
+  <csv data="machines">sprayer,tractor,labour</csv>
+</operation>
+<operation type="spray" workability="r60" nonsequential="true">	
+  <csv data="allow">[2: Jul 2],[2: Jul 29]</csv>
+  <csv data="wkrate">0.11+191.6/{Size of first machine in system definition}</csv>
+  <csv data="machines">sprayer,tractor,labour</csv>
+</operation>
+<operation type="spray" workability="r60" nonsequential="true">	
+  <csv data="allow">[2: Jul 30],[2: Aug 26]</csv>
+  <csv data="wkrate">0.11+191.6/{Size of first machine in system definition}</csv>
+  <csv data="machines">sprayer,tractor,labour</csv>
+</operation>
+</crop>
+
+<!--
+ CROP Potato-main            DATABASE: JFMTest   MODEL: min  04/04/2008 
+ Minimum area:          0.0
+ Type of crop:          Annual
+ Setaside type:         Negative list
+ Crop rotation class:   Potato
+
+
+
+ Decrease by successive growing:
+
+                        Not possible to grow consecutive yields ofPotato-main
+
+
+
+
+Primary Yield Dry Matter Not defined%
+
+Primary Yield N Content, kg N/t freshweight Not defined
+
+Primary Yield P Content, kg P2O5/t freshweight Not defined
+
+Primary Yield K Content, kg K2O/t freshweight Not defined
+
+Secondary Yield Dry Matter Not defined%
+
+Secondary Yield N Content, kg N/t freshweight Not defined
+
+Secondary Yield P Content, kg P2O5/t freshweight Not defined
+
+Secondary Yield K Content, kg K2O/t freshweight Not defined
+
+Harvest Index Not defined
+
+
+
+
+
+
+ RISK
+
+  Disease variability:  5
+
+  Price variability:    32
+
+
+
+ Storage type: 1        Minimum storage = 0 tonnes
+
+
+
+
+
+
+ Key to table column titles
+
+A = Yield Loss (%) 
+
+B = Cost / ha
+
+C = Blackgrass herbicide
+
+D = Wild Oat herbicide  
+
+E = N fertiliser        
+
+
+
+Rotational Penalty Formula
+
+
+
+ Base Environmental effects
+
+
+
+  Nitrate leaching:  
+
+   38. = (({N fertiliser}-3.3*{Primary yield of crop}-3.3*{Secondary yield of c
+
+         rop}+25))*(120/(120+33+67*{Soil Type}))                                
+
+  Blackgrass herbicide:  
+
+   No Effect
+
+  Wild Oat herbicide:  
+
+   No Effect
+
+
+
+
+
+-->

@@ -1,17 +1,10 @@
 
-#.onAttach <- function(libname, pkgname) {
-#  print("Attaching")#
-#	if( !require(methods) ) stop("we require methods for package farmland") 
-#	where <- match(paste("package:", pkgname, sep=""), search()) 
-#	.initfarmland(where)
-#} 
-
 .onLoad <- function(libname,pkgname){
   require(methods)
-  print("Loading")
-  .jinit(parameters="-Xmx500m") # this starts the JVM
-  .jpackage(pkgname)
-
+  jloc = system.file("java",package="farmLP")
+  jpars=c("-Xmx500m",paste(c("-Djava.library.path=",jloc),collapse=""))
+  .jinit(parameters=jpars) # this starts the JVM
+  .jpackage(pkgname,jars="*",nativeLibrary=FALSE)
 }
 
 setClass("FarmRepresentation")

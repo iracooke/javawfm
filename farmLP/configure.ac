@@ -2,6 +2,10 @@ AC_PREREQ(2.61)
 AC_INIT(farmLP,1.0,iracooke@gmail.com)
 AC_CONFIG_SRCDIR([src/CBC.h])
 AC_CONFIG_HEADER([])
+AC_CONFIG_AUX_DIR([tools])
+
+AC_CANONICAL_BUILD
+AC_CANONICAL_HOST
 
 # find R home and set CC/CFLAGS
 : ${R_HOME=`R RHOME`}
@@ -14,17 +18,23 @@ CC=`"${RBIN}" CMD config CC`;
 CFLAGS=`"${RBIN}" CMD config CFLAGS`
 CPPFLAGS=`"${RBIN}" CMD config CPPFLAGS`
 
-#AC_CANONICAL_HOST
-
-PLATFORM=darwin
-#If darwin change platform
-#case "${host_os}" in
-#  darwin*)
-#    PLATFORM=darwin
-#    ;;
-#	*)
-
 AC_SUBST(PLATFORM)
+
+JNIPREFIX=lib
+JNISO=.so
+
+# we need to adjust a few things according to OS ..
+case "${host_os}" in
+  darwin*)
+    JNISO=.jnilib
+	;;	
+  *)
+    ;;
+esac
+
+AC_SUBST(JNIPREFIX)
+AC_SUBST(JNISO)
+
 
 # Checks for programs.
 AC_PROG_CXX
@@ -147,6 +157,18 @@ AC_SUBST(JAVA)
 AC_SUBST(JAVAC)
 AC_SUBST(JAVAH)
 
+
+
+
+
+
+(cd src/depends/coin-Cbc/ && \
+./configure \
+--enable-static --disable-shared --with-pic \
+    --with-application=no --disable-dependency-tracking \
+    --disable-cplex-libcheck --disable-glpk-libcheck \
+    --disable-osl-libcheck --disable-soplex-libcheck \
+    --disable-xpress-libcheck )
 
 
 # Checks for library functions.

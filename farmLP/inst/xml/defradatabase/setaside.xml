@@ -1,0 +1,183 @@
+<!-- Details for set aside -->
+
+<crop id="setaside" allowContinuous="true" price="0.0" yield="0.0" subsidy="230" disease="none">
+  <input type="Unspecified" unitCost="1" baseAmount="22" />
+  
+  <rotation id="setaside">
+    <csv data="forbidden">sugarbeet</csv>
+  </rotation>
+  <operation type="start" workability="r100">
+    <csv data="allow">[1: Dec 17],[1: Dec 31]</csv>
+  </operation>
+  <operation type="plough" workability="r100">
+    <csv data="allow">[2: May 7],[2: Jun 3]</csv>
+    <csv data="wkrate">(1.44*(50*{Soil Type}+20))/{Size of first machine in system definition}</csv>
+    <csv data="machines">tractor,labour</csv>
+  </operation>
+  <operation type="end" workability="r100" handover="true">
+    <csv data="allow">[2: Jul 16],[2: Jul 29]</csv>
+  </operation>  
+  <operation type="spray" nonsequential="true" workability="r60"><!-- Spray - boom -->
+    <csv data="allow">[2: Apr 23],[2: May 20]</csv>
+    <csv data="wkrate">0.11+191.6/{Size of first machine in system definition}</csv>
+    <csv data="machines">sprayer,tractor,labour</csv>
+  </operation>    
+</crop>
+
+<!-- CROP Rotational setaside    DATABASE: JFMTest   MODEL: min  04/04/2008 
+
+
+
+ Maximum area:          20.0
+
+
+
+ Type of crop:          Annual
+
+ Setaside type:         Setaside
+
+ Crop rotation class:   Rotational setaside
+
+
+
+ Decrease by successive growing:
+
+                        Not possible to grow consecutive yields ofRotational setaside
+
+ Gross margin
+
+  Primary yield:        0.00 = 0.00; Cash Crop
+
+***There is no harvest operation defined for the primary yield.
+
+  Secondary yield:      0.00 = 0.00
+
+  Primary yield price:  0.0
+
+  Secondary yield price:0.0
+
+  Area subsidy:         184.0
+
+  TOTAL OUTPUT =        184.0
+
+
+
+Primary Yield Dry Matter Not defined%
+
+Primary Yield N Content, kg N/t freshweight Not defined
+
+Primary Yield P Content, kg P2O5/t freshweight Not defined
+
+Primary Yield K Content, kg K2O/t freshweight Not defined
+
+Secondary Yield Dry Matter Not defined%
+
+Secondary Yield N Content, kg N/t freshweight Not defined
+
+Secondary Yield P Content, kg P2O5/t freshweight Not defined
+
+Secondary Yield K Content, kg K2O/t freshweight Not defined
+
+Harvest Index Not defined
+
+
+
+ Inputs:
+
+  Seed kg/ha:           0.0 @ 0.00 £/kg
+
+  Other  £/ha:          22.0
+
+  TOTAL INPUTS =        22.0
+
+  GROSS MARGIN =        162.0
+
+
+
+ RISK
+
+  Disease variability:  0
+
+  Price variability:    0
+
+
+
+ Sequential operations
+
+  Start setaside        from [1: Dec 17] to [1: Dec 31]    Periods gap: min 0 max -
+
+  Cult setaside         from [2: May 7] to [2: Jun 3]      Periods gap: min 0 max -
+
+  End setaside          from [2: Jul 16] to [2: Jul 29]    Periods gap: min 0 max -
+
+
+
+ Non-sequential operations
+
+  Spray   May           from [2: Apr 23] to [2: May 20]
+
+
+
+ Storage type: 0        Minimum storage = 0 tonnes
+
+
+
+ Rotation penalties (N.A. = Not Allowed)
+
+                        A      B      C             E
+
+  Wheat                 0      0      0      0
+
+  Barley                0      0      0      0
+
+  Oats                  0      0      0      0
+
+  Peas/Beans            0      0      0      0
+
+  Brassica              0      0      0      0
+
+  Potato                0      0      0      0
+
+  Sugar Beet            0      N.A.   0      0
+
+  Linseed               0      0      0      0
+
+
+
+ Key to table column titles
+
+A = Yield Loss (%) 
+
+B = Cost / ha
+
+C = Wild Oat herbicide  
+
+D = N fertiliser        
+
+
+
+Rotational Penalty Formula
+
+
+
+ Base Environmental effects
+
+
+
+  Nitrate leaching:  
+
+   43. = (0.79*(-0.5+50*{Soil Type})+25)*120/(120+33+67*{Soil Type})           
+
+                                   
+
+  Blackgrass herbicide:  
+
+   No Effect
+
+  Wild Oat herbicide:  
+
+   No Effect
+
+
+
+-->

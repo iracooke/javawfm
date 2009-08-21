@@ -1,5 +1,3 @@
-
-
 if (!isGeneric("model"))
   setGeneric("model", function(farm) standardGeneric("model"))
 setMethod("model", "FarmRepresentation", function(farm) farm@model)
@@ -7,6 +5,7 @@ setMethod("model", "FarmRepresentation", function(farm) farm@model)
 if (!isGeneric("cropNames"))
   setGeneric("cropNames", function(farm) standardGeneric("cropNames"))
 setMethod("cropNames", "FarmRepresentation", function(farm) farm@cropNames)
+
 
 solve.farm <- function(farm){
   .jcall(model(farm),"I","solve")
@@ -62,6 +61,31 @@ if (!isGeneric("cropArea"))
              standardGeneric("cropArea"))
 setMethod("cropArea","FarmRepresentation",cropArea.default)
 
+cropPrice.default <- function(farm,cropName){
+  if ( !isSolved(farm)){
+    return(-1)
+#    warning("Can only calculate crop prices for solved farms. Call solveFarm first")
+  }
+  .jcall(model(farm),"D","priceOfCropNamed",cropName)
+}
+if (!isGeneric("cropPrice"))
+  setGeneric("cropPrice", function(farm,cropName)
+             standardGeneric("cropPrice"))
+setMethod("cropPrice","FarmRepresentation",cropPrice.default)
+
+
+cropYield.default <- function(farm,cropName){
+  if ( !isSolved(farm)){
+    return(-1)
+#    warning("Can only calculate crop prices for solved farms. Call solveFarm first")
+  }
+  .jcall(model(farm),"D","yieldOfCropNamed",cropName)
+}
+if (!isGeneric("cropYield"))
+  setGeneric("cropYield", function(farm,cropName)
+             standardGeneric("cropYield"))
+setMethod("cropYield","FarmRepresentation",cropYield.default)
+
 
 objectiveNames.default <- function(farm){
   .jcall(model(farm),"[Ljava/lang/String;","objectiveNames")
@@ -88,6 +112,7 @@ if (!isGeneric("objectiveScaleFactors"))
              standardGeneric("objectiveScaleFactors"))
 setMethod("objectiveScaleFactors","FarmRepresentation",objectiveScaleFactors.default)
 
+
 setInputCost.default<-function(farm,inputName,inputCost){
     .jcall(model(farm),"V","setInputCost",inputName,inputCost)
 }
@@ -98,16 +123,18 @@ setMethod("setInputCost","FarmRepresentation",setInputCost.default)
 
 
 
-#as.data.frame.FarmRepresentation = function(x, row.names, optional, ...) {
-#  data.frame(profit(x))
-#}
-
 as.data.frame.FarmRepresentation = function(x, row.names, optional, ...) {
   farm=c()
   nms=c()
   cropAreas=sapply(1:length(cropNames(x)),function(i) cropArea(x,cropNames(x)[i]) )
+  cropPrices=sapply(1:length(cropNames(x)),function(i) cropPrice(x,cropNames(x)[i]))
+  cropYields=sapply(1:length(cropNames(x)),function(i) cropYield(x,cropNames(x)[i]))
   farm=append(c(profit(x),eo(x)),cropAreas)
+  farm=append(farm,cropPrices)
+  farm=append(farm,cropYields)
   nms=append(c("profit","eo"),cropNames(x))
+  nms=append(nms,sapply(cropNames(x),function(i) paste(c(i,"simprice"),collapse=".")))
+  nms=append(nms,sapply(cropNames(x),function(i) paste(c(i,"simyield"),collapse=".")))
   names(farm) <- nms
   df=data.frame(farm)
   df

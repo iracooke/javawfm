@@ -3,7 +3,7 @@
 	<property name="src" location="src/"/> <!-- java source folder -->
 	<property name="bin" location="build/bin"/> <!-- intermediate build products -->
 	<property name="jars" location="build/jars"/> <!-- jar files -->
-	<property name="lib" location="../depends/lib"/> <!-- local libraries linked against -->
+	<property name="lib" location="../depends/libs"/> <!-- local libraries linked against -->
 	<property name="dist" location="../../inst/java"/> <!-- build product location -->
 	<property name="resources" location="resources"/> <!-- location of general java resources -->
     <property name="compile.debug" value="true"/>

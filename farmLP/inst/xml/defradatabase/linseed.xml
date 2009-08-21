@@ -1,0 +1,187 @@
+<!-- Details for Linseed 
+ Gross margin
+  Primary yield:        0.75+0.45*{Soil Type} = 1.65; Cash Crop
+  Secondary yield:      0*(1.0+1.00*{Soil Type}) = 0.00
+  Primary yield price:  160.0
+  Secondary yield price:0.0
+  Area subsidy:         184.0
+  TOTAL OUTPUT =        448.0 -->
+<crop id="linseed" allowContinuous="false" price="166.0" 
+      yield="0.75+0.45*{Soil Type}" 
+      subsidy="230"  disease="linseed" yrisk="5" prisk="19" eostdev="69">        
+
+  <!-- Inputs:
+  Seed kg/ha:           79.0 @ 1.20 £/kg
+  Other  £/ha:          42.0
+  N fertiliser:         88.0 @ 0.45 £/kg=                                                                                
+  P fertiliser:         50.0 @ 0.31 £/kg=                                                                                
+  K fertiliser:         38.0 @ 0.24 £/kg=                                                                                
+  TOTAL INPUTS =        201.0
+  GROSS MARGIN =        247.0-->
+  <input type="N fertiliser" unitCost="0.45" baseAmount="88" />
+  <input type="P fertiliser" unitCost="0.31" baseAmount="50" />
+  <input type="K fertiliser" unitCost="0.24" baseAmount="38" />
+  <input type="BGHerbicide" unitCost="1.8" baseAmount="0" />
+  <input type="WOHerbicide" unitCost="2.75" baseAmount="0" />
+  <input type="Seed Amount of crop" unitCost="1.2" baseAmount="79" />
+  <input type="Unspecified" unitCost="1" baseAmount="42" />
+  
+<!-- Rotation penalties (N.A. = Not Allowed)
+                        A      B      C             E
+  Wheat                 0      0      0      0
+  Barley                0      0      0      0
+  Oats                  0      0      0      0
+  Peas/Beans            N.A.   0      0      0
+  Brassica              0      0      0      0
+  Potato                N.A.   0      0      0
+  Sugar Beet            N.A.   N.A.   0      0
+  Rotational setaside   0      0      0      0-->
+<rotation id="linseed">
+  <csv data="forbidden">peasbeans,potatoes,sugarbeet</csv>
+</rotation>
+
+
+
+<!-- Sequential operations
+  Spread P/K-Autumn     from [1: Jul 30] to [1: Nov 18]    Periods gap: min 0 max -
+  Plough (Spring crop)  from [1: Sep 24] to [2: Mar 25]    Periods gap: min 0 max -
+  Drill linseed         from [2: Feb 26] to [2: May 6]     Periods gap: min 0 max -
+  Dessicate (Sept)      from [2: Aug 27] to [2: Sep 23]    Periods gap: min 0 max -
+  Combine linseed       from [2: Sep 24] to [2: Oct 21]    Periods gap: min 0 max - -->
+<operation type="fert" workability="r80">
+  <csv data="allow">[1: Jul 30],[1: Nov 18]</csv> 
+  <csv data="wkrate">(0.06+0.00025*({P fertiliser}+{K fertiliser}))+(64.48+0.094*({P fertiliser}+{K fertiliser}))/1200</csv>
+  <csv data="machines">labour,tractor</csv>
+</operation>
+<operation type="plough" workability="r100">
+  <csv data="allow">[1: Sep 24],[2: Mar 25]</csv>
+ <csv data="wkrate">(1.44*(50*{Soil Type}+20))/{Size of first machine in system definition}</csv>
+  <csv data="machines">tractor,labour</csv>
+</operation>
+<operation type="plant" workability="r70"><!-- Drill OSR/Grass -->
+  <csv data="allow">[2: Feb 26],[2: May 6]</csv>
+  <csv data="wkrate">(0.06+0.00069*{Seed Amount of crop})+(92.42+0.00626*{Seed Amount of crop}+41.5*{Soil Type})/{Size of first machine in system definition}</csv>
+  <csv data="machines">tractor,labour</csv>
+</operation>
+<operation type="spray" workability="r60" nonsequential="true">	
+  <csv data="allow">[2: Aug 27],[2: Sep 23]</csv>
+  <csv data="wkrate">0.11+191.6/{Size of first machine in system definition}</csv>
+  <csv data="machines">sprayer,tractor,labour</csv>
+</operation>
+<operation type="combine" workability="r28" handover="true"><!-- Combine-rape/peas -->
+  <csv data="allow">[2: Sep 24],[2: Oct 21]</csv>
+  <csv data="wkrate">(1.5*(6.57*{Primary yield of crop}+24)/4)/{Size of first machine in system definition}</csv>
+  <csv data="machines">combine,tractor 1,labour 2</csv>
+  <csv data="yieldpenalties">0,20</csv>
+</operation>
+
+
+<!-- Non-sequential operations
+  Spray   May           from [2: Apr 23] to [2: May 20]
+  Spray   June          from [2: Jun 4] to [2: Jul 1] -->
+<operation type="spray" workability="r60" nonsequential="true">	
+  <csv data="allow">[2: Apr 23],[2: May 20]</csv>
+  <csv data="wkrate">0.11+191.6/{Size of first machine in system definition}</csv>
+  <csv data="machines">sprayer,tractor,labour</csv>
+</operation>
+<operation type="spray" workability="r60" nonsequential="true">	
+  <csv data="allow">[2: Jun 4],[2: Jul 1]</csv>
+  <csv data="wkrate">0.11+191.6/{Size of first machine in system definition}</csv>
+  <csv data="machines">sprayer,tractor,labour</csv>
+</operation>
+</crop>
+
+<!--CROP Linseed                DATABASE: JFMTest   MODEL: min  04/04/2008 
+
+
+
+ Minimum area:          0.0
+
+
+
+ Type of crop:          Annual
+
+ Setaside type:         Arable
+
+ Crop rotation class:   Linseed
+
+
+
+ Decrease by successive growing:
+
+                        Not possible to grow consecutive yields ofLinseed
+
+
+
+Primary Yield Dry Matter Not defined%
+
+Primary Yield N Content, kg N/t freshweight Not defined
+
+Primary Yield P Content, kg P2O5/t freshweight Not defined
+
+Primary Yield K Content, kg K2O/t freshweight Not defined
+
+Secondary Yield Dry Matter Not defined%
+
+Secondary Yield N Content, kg N/t freshweight Not defined
+
+Secondary Yield P Content, kg P2O5/t freshweight Not defined
+
+Secondary Yield K Content, kg K2O/t freshweight Not defined
+
+Harvest Index Not defined
+
+
+
+
+
+ RISK
+
+  Disease variability:  5
+
+  Price variability:    19
+
+
+
+ Storage type: 0        Minimum storage = 0 tonnes
+
+
+
+
+
+
+ Key to table column titles
+
+A = Yield Loss (%) 
+
+B = Cost / ha
+
+C = Wild Oat herbicide  
+
+D = N fertiliser        
+
+
+
+Rotational Penalty Formula
+
+
+
+ Base Environmental effects
+
+
+
+  Nitrate leaching:  
+
+   21. = (({N fertiliser}-38*{Primary yield of crop}+25))*(120/(120+33+67*{Soil
+
+          Type}))                                         
+
+  Blackgrass herbicide:  
+
+   No Effect
+
+  Wild Oat herbicide:  
+
+   No Effect
+
+-->

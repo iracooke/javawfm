@@ -1,0 +1,230 @@
+<!-- Gross margin
+  Primary yield:        (11.841-(9.211*(0.9907^({N fertiliser})))-(0.0075*({N fertiliser})))*(0.743+0.1714*({Soil Type})) = 9.63; Cash Crop
+  Secondary yield:      (11.841-(9.211*(0.9907^({N fertiliser})))-(0.0075*({N fertiliser})))*(0.743+0.1714*({Soil Type}))*0.5 = 4.82; Livestock and Cash
+
+  Primary yield price:  78.0
+  Secondary yield price:0.0
+  Area subsidy:         184.0
+  TOTAL OUTPUT =        935.2--> 
+<crop id="winterwheat" price="74" allowContinuous="true" 
+      yield="(11.841-(9.211*(0.9907^({N fertiliser})))-(0.0075*({N fertiliser})))*(0.743+0.1714*({Soil Type}))"  
+      subsidy="225.0" 
+      disease="wheat" yieldReduction="0.11,0.11,0.15,0.15" selfRotCost="20,20,20,20" yield2="4.5" price2="20" 
+      yrisk="5" prisk="9" eostdev="18">
+<!--
+ Decrease by successive growing:
+  Year                  2         3         4         5 
+  Yield loss (%)        11.0      11.0      15.0      15.0
+  Cost/ha               20.0      20.0      20.0      20.0
+  Blackgrass herbicide  1.0       2.0       3.0       5.0
+  Wild Oat herbicide    2.0       2.0       3.0       4.0 
+
+ Inputs:
+  Seed kg/ha:           185.0 @ 0.24 £/kg
+  Other  £/ha:          104.0
+  N fertiliser:         192.0 @ 0.45 £/kg=                                                                          
+  P fertiliser:         48.0 @ 0.31 £/kg=                                                                           
+  K fertiliser:         48.0 @ 0.24 £/kg=                                                                           
+  Blackgrass herbicide: 0.0 @ 1.80 £/kg=                                                                           
+  Wild oat herbicide:   0.0 @ 2.75 £/kg=                                                                           
+  TOTAL INPUTS =        261.2
+  GROSS MARGIN =        674.0-->
+  <input type="N fertiliser" unitCost="0.45" baseAmount="192" increments="0,0,0,0"/>
+  <input type="P fertiliser" unitCost="0.31" baseAmount="48" increments="0,0,0,0"/>
+  <input type="K fertiliser" unitCost="0.24" baseAmount="48" increments="0,0,0,0"/>
+  <input type="BGHerbicide" unitCost="1.8" baseAmount="0" increments="1,2,3,5"/>
+  <input type="WOHerbicide" unitCost="2.75" baseAmount="0" increments="2,2,3,4"/>
+  <input type="Seed Amount of crop" unitCost="0.24" baseAmount="185" increments="0,0,0,0"/>
+  <input type="Unspecified" unitCost="1" baseAmount="104" increments="0,0,0,0"/>
+  
+<!-- Rotation penalties (N.A. = Not Allowed)
+                        A      B      C      D      E
+  Barley                11     20     0      0      0
+  Oats                  6      20     0      0      0
+  Peas/Beans            0      0      0      0      0
+  Brassica              0      32     0      0      0
+  Potato                0      0      0      0      0
+  Sugar Beet            0      0      0      0      0
+  Linseed               0      0      0      0      0
+  Rotational setaside   6      0      0      0      0 -->
+  <rotation id="winterwheat">      
+    <csv data="rotpenalty">barley,11,20</csv>
+    <csv data="rotpenalty" >brassica,0,32</csv>
+    <csv data="rotpenalty" >oats,6,20</csv>
+    <csv data="rotpenalty">none,6,0</csv>
+  </rotation>
+
+<!-- Sequential operations
+  Spread P/K-Autumn     from [1: Jul 30] to [1: Nov 18]    Periods gap: min 0 max -
+  Plough20cm-autumn     from [1: Jul 30] to [1: Dec 31]    Periods gap: min 0 max -
+  Plant WWheat          from [1: Sep 10] to [1: Dec 31]    Periods gap: min 0 max -
+  Roll-autumn           from [1: Sep 10] to [1: Dec 31]    Periods gap: min 0 max -
+  Spray   Autumn        from [1: Oct 22] to [2: Mar 25]    Periods gap: min 2 max -
+  Combine WWheat        from [2: Aug 13] to [2: Sep 9]     Periods gap: min 0 max -
+  Bale-WWstraw          from [2: Aug 13] to [2: Sep 23]    Periods gap: min 0 max - -->
+    <operation type="fert" workability="r80"><!-- Spread base fert -->
+      <csv data="allow">[1:Jul 30],[1:Nov 18]</csv> 
+      <csv data="wkrate">(0.06+0.00025*({P fertiliser}+{K fertiliser}))+(64.48+0.094*({P fertiliser}+{K fertiliser}))/1200</csv><!--  time required h/ha, percentage hours avail -->
+      <csv data="machines">labour,tractor</csv>
+    </operation>
+    <operation type="plough" workability="r100"><!-- Plough(20 cm deep) -->
+      <csv data="allow">[1: Jul 30],[1: Dec 31]</csv>
+      <csv data="wkrate">(1.44*(50*{Soil Type}+20))/{Size of first machine in system definition}</csv>
+      <csv data="machines">tractor,labour</csv>
+    </operation>
+    <operation type="plant" workability="r70"><!-- Drill cereals -->
+      <csv data="allow">[1: Sep 10],[1: Dec 31]</csv>
+      <csv data="wkrate">(0.06+0.00069*{Seed Amount of crop})+(58.82+41.5*{Soil Type}+0.00626*{Seed Amount of crop})/{Size of first machine in system definition}</csv><!--1.41-->
+      <csv data="machines">tractor,labour</csv>
+      <csv data="yieldpenalties">2,0,5,9,11,13,15,16</csv>
+<!-- Time penalties on yield as a percentage of yield -->
+    </operation>
+    <operation type="roll" workability="r80"><!-- Roll -->
+      <csv data="allow">[1: Sep 10],[1: Dec 31]</csv>
+      <csv data="wkrate">1.96/6</csv>
+      <csv data="machines">tractor,labour</csv>
+    </operation>
+      <operation type="spray" workability="r60" mingap="1"><!-- Spray - boom -->
+	<csv data="allow">[1: Oct 22],[2: Mar 25]</csv>
+<!--	<csv data="allow">[2: Aug 13],[2: Sep 9]</csv>-->
+	<csv data="wkrate">0.11+191.6/{Size of first machine in system definition}</csv>
+	<csv data="machines">sprayer,tractor,labour</csv>
+	<csv data="yieldpenalties">0,0,0,0,0,1,2,3,4,5,6</csv>
+      </operation>
+      <operation type="combine" workability="r70" handover="true"><!-- Combine-wheat-->
+	<csv data="allow">[2: Aug 13],[2: Sep 9]</csv>
+	<csv data="wkrate">((1.00*{Primary yield of crop}+24)/4)/{Size of first machine in system definition}</csv>
+	<csv data="machines">combine,tractor 2,labour 3</csv>
+	<csv data="yieldpenalties">0,2</csv><!-- Combine WWheat-->
+      </operation>
+<!--Bale straw & cart operation not used when no price for hay -->
+<!--<operation type="bale" handover="true" workability="r70">
+	<csv data="allow">[2: Aug 13],[2: Sep 23]</csv>
+	<csv data="wkrate">(({Secondary yield of crop}+13)/4)/{Size of first machine in system definition}</csv>
+	<csv data="machines">baler,tractor 2,labour 2</csv>
+	<csv data="yieldpenalties">0,0,20</csv>
+      </operation>-->
+
+<!-- Non-sequential operations
+  Spray   Mar/Apr       from [2: Feb 26] to [2: Apr 22]
+  Fertilise(Apr)        from [2: Mar 26] to [2: Apr 22]
+  Spray   April         from [2: Mar 26] to [2: Apr 22]
+  Spray   May           from [2: Apr 23] to [2: May 20]-->
+      <operation type="spray" nonsequential="true" workability="r60"><!-- Spray - boom -->
+	<csv data="allow">[2: Feb 26],[2: Apr 22]</csv>
+	<csv data="wkrate">0.11+191.6/{Size of first machine in system definition}</csv>
+	<csv data="machines">sprayer,tractor,labour</csv>
+      </operation>
+      <operation type="fert" nonsequential="true" workability="r80"><!-- Spread N fertiliser -->
+	<csv data="allow">[2: Mar 26],[2: Apr 22]</csv>
+	<csv data="wkrate">(0.06+0.00025*({N fertiliser}))+(64.68+0.094*({N fertiliser}))/1200</csv>
+	<csv data="machines">tractor,labour</csv>
+      </operation>
+      <operation type="spray" nonsequential="true" workability="r60"><!-- Spray - boom -->
+	<csv data="allow">[2: Mar 26],[2: Apr 22]</csv>
+	<csv data="wkrate">0.11+191.6/{Size of first machine in system definition}</csv>
+	<csv data="machines">sprayer,tractor,labour</csv>	
+      </operation>
+      <operation type="spray" nonsequential="true" workability="r60"><!-- Spray - boom -->
+	<csv data="allow">[2: Apr 23],[2: May 20]</csv>
+	<csv data="wkrate">0.11+191.6/{Size of first machine in system definition}</csv>
+	<csv data="machines">sprayer,tractor,labour</csv>
+      </operation>
+    </crop>
+
+<!--CROP Winter wheat           DATABASE: JFMTest   MODEL: min  04/04/2008 
+
+
+
+ Minimum area:          0.0
+
+
+
+ Type of crop:          Annual
+
+ Setaside type:         Arable
+
+ Crop rotation class:   Wheat
+
+
+
+
+
+
+
+
+
+Primary Yield Dry Matter Not defined%
+
+Primary Yield N Content, kg N/t freshweight Not defined
+
+Primary Yield P Content, kg P2O5/t freshweight Not defined
+
+Primary Yield K Content, kg K2O/t freshweight Not defined
+
+Secondary Yield Dry Matter Not defined%
+
+Secondary Yield N Content, kg N/t freshweight Not defined
+
+Secondary Yield P Content, kg P2O5/t freshweight Not defined
+
+Secondary Yield K Content, kg K2O/t freshweight Not defined
+
+Harvest Index Not defined
+
+
+
+
+
+ RISK
+
+  Disease variability:  9
+
+  Price variability:    6
+
+
+
+
+ Storage type: 0        Minimum storage = 0 tonnes
+
+
+
+
+
+ Key to table column titles
+
+A = Yield Loss (%) 
+
+B = Cost / ha
+
+C = Blackgrass herbicide
+
+D = Wild Oat herbicide  
+
+E = N fertiliser        
+
+
+
+Rotational Penalty Formula
+
+
+
+ Base Environmental effects
+
+
+
+  Nitrate leaching:  
+
+   No Effect
+
+  Blackgrass herbicide:  
+
+   0. =  {Blackgrass herbicide}                                                
+
+                                      
+
+  Wild Oat herbicide:  
+
+   0. =  {Wild oat herbicide}                                                  
+
+                                    -->

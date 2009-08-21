@@ -1,0 +1,141 @@
+<!-- Details for spring wheat 
+     CROP Spring Wheat           DATABASE: JFMTest   MODEL: min  04/04/2008 
+     Minimum area:          0.0
+     Type of crop:          Annual
+     Setaside type:         Arable
+     Crop rotation class:   Wheat
+     Decrease by successive growing:
+     Year                  2         3         4         5 
+     Yield loss (%)        11.0      11.0      11.0      11.0
+     Cost/ha               20.0      20.0      20.0      20.0
+     Wild Oat herbicide    2.0       2.0       3.0       4.0
+     Gross margin
+     Primary yield:        (5.885-(2.893*(0.984^({N fertiliser}))))*(0.73+0.18*({Soil Type})) = 5.96; Cash Crop
+     Secondary yield:      (5.885-(2.893*(0.984^({N fertiliser}))))*(0.73+0.18*({Soil Type}))*0.5 = 2.98; Livestock and Cash
+     Primary yield price:  81.0
+     Secondary yield price:0.0
+     Area subsidy:         184.0
+     TOTAL OUTPUT =        666.7
+-->
+<crop id="springwheat" allowContinuous="false" price="74" 
+      yield="(5.885-(2.893*(0.984^({N fertiliser}))))*(0.73+0.18*({Soil Type}))"      
+      subsidy="225.0" 
+      disease="wheat" yieldReduction="0.11,0.11,0.11,0.11" selfRotCost="20,20,20,20" yrisk="20" prisk="9" eostdev="24">
+  
+  <!-- Inputs:
+       Seed kg/ha:           195.0 @ 0.24 £/kg
+       Other  £/ha:          74.0
+       N fertiliser:         145.0 @ 0.45 £/kg=  
+       P fertiliser:         45.0 @ 0.31 £/kg=                                                                             K fertiliser:         45.0 @ 0.24 £/kg=                                                                             Wild oat herbicide:   0.0 @ 2.75 £/kg=                                                                                
+       TOTAL INPUTS =        210.8
+       GROSS MARGIN =        455.9-->
+  
+  <input type="N fertiliser" unitCost="0.45" baseAmount="145" increments="0,0,0,0"/>
+  <input type="P fertiliser" unitCost="0.31" baseAmount="45" increments="0,0,0,0"/>
+  <input type="K fertiliser" unitCost="0.24" baseAmount="45" increments="0,0,0,0"/>
+  <input type="WOHerbicide" unitCost="2.75" baseAmount="0" increments="2,2,3,4"/>
+  <input type="Seed Amount of crop" unitCost="0.24" baseAmount="195" increments="0,0,0,0"/>
+  <input type="Unspecified" unitCost="1" baseAmount="74" increments="0,0,0,0"/>
+  
+  <!--
+      Rotation penalties (N.A. = Not Allowed)
+      A      B      C      D             F
+      Barley                11     20     0      0      0
+      Oats                  4      20     0      0      0
+      Peas/Beans            0      0      0      0      0
+      Brassica              0      20     0      0      0
+      Potato                0      0      0      0      0
+      Sugar Beet            0      0      0      0      0
+      Linseed               0      0      0      0      0
+      Rotational setaside   6      0      0      0      0-->
+  
+  <rotation id="springwheat">      
+    <csv data="rotpenalty">barley,11,20</csv>
+    <csv data="rotpenalty" >brassica,0,20</csv>
+    <csv data="rotpenalty" >oats,4,20</csv>
+    <csv data="rotpenalty">none,6,0</csv>
+  </rotation>
+  
+<!--Sequential operations
+    Spread P/K-Autumn     from [1: Jul 30] to [1: Nov 18]    Periods gap: min 0 max -
+    Plough (Spring crop)  from [1: Sep 24] to [2: Mar 25]    Periods gap: min 0 max -
+    Plant SWheat          from [2: Jan 1] to [2: Apr 8]      Periods gap: min 0 max -
+    Roll-spring           from [2: Feb 26] to [2: May 6]     Periods gap: min 0 max -
+    Combine SWheat        from [2: Aug 27] to [2: Sep 23]    Periods gap: min 0 max -
+    Bale-WWstraw          from [2: Aug 13] to [2: Sep 23]    Periods gap: min 0 max - -->
+
+<operation type="fert" workability="r80"><!-- Spread base fert -->
+  <csv data="allow">[1:Jul 30],[1:Nov 18]</csv> 
+  <csv data="wkrate">(0.06+0.00025*({P fertiliser}+{K fertiliser}))+(64.48+0.094*({P fertiliser}+{K fertiliser}))/1200</csv>
+  <csv data="machines">labour,tractor</csv>
+</operation>
+<operation type="plough" workability="r100"><!-- Plough(20 cm deep) -->
+  <csv data="allow">[1: Sep 24],[2: Mar 25]</csv>
+  <csv data="wkrate">(1.44*(50*{Soil Type}+20))/{Size of first machine in system definition}</csv>
+  <csv data="machines">tractor,labour</csv>
+</operation>
+<operation type="plant" workability="r70"><!-- Drill cereals -->
+  <csv data="allow">[2: Jan 1],[2: Apr 8]</csv>
+  <csv data="wkrate">(0.06+0.00069*{Seed Amount of crop})+(58.82+41.5*{Soil Type}+0.00626*{Seed Amount of crop})/{Size of first machine in system definition}</csv><!--1.41-->
+  <csv data="machines">tractor,labour</csv>
+  <csv data="yieldpenalties">19,7,1,0,4,9,17</csv><!-- Time penalties on yield as a percentage of yield -->
+</operation>
+<operation type="roll" workability="r80"><!-- Roll -->
+  <csv data="allow">[2: Feb 26],[2: May 6]</csv>
+  <csv data="wkrate">0.33</csv>
+  <csv data="machines">tractor,labour</csv>
+</operation>
+<!-- OPERATION Combine SWheat
+     System definition              :  Combine-wheat
+     Percentage of the area         :  100 
+     Number of passes               :  1 
+     Costs of contracting out       :  No contracting possible
+     Apply                          :  from [2: Aug 27] to [2: Sep 23]
+     2: Aug 27| 2: Sep 10
+     Maximum % crop per period      :  No change
+     Time penalties on costs        :  No time penalties
+     Time penalties on yield        : 0      |   5
+     Workrate change over time      : 200    |   200
+     Env effects change over time: :  No effect-->
+<operation type="combine" workability="r70" handover="true"><!-- Combine-wheat-->
+  <csv data="allow">[2: Aug 27],[2: Sep 23]</csv>
+<!-- Note a 2* multiplier is used on the formula here 
+     to account for the workrate change over time effect above -->
+  <csv data="wkrate">2*((1.00*{Primary yield of crop}+24)/4)/{Size of first machine in system definition}</csv>
+  <csv data="machines">combine,tractor 2,labour 3</csv>
+  <csv data="yieldpenalties">0,5</csv>
+</operation>
+<!--Bale straw & cart-->
+<!--      <operation type="bale" handover="true" workability="r70">
+     <csv data="allow">[2: Aug 13],[2: Sep 23]</csv>
+     <csv data="wkrate">0.87</csv>
+     <csv data="machines">baler,tractor 2,labour 2</csv>
+     <csv data="yieldpenalties">0,0,20</csv>
+     </operation>-->
+
+<!-- Non-sequential operations
+     Fertilise(Apr)        from [2: Mar 26] to [2: Apr 22]
+     Spray   April         from [2: Mar 26] to [2: Apr 22]
+     Spray   May           from [2: Apr 23] to [2: May 20]-->
+<operation type="fert" nonsequential="true" workability="r80">
+  <csv data="allow">[2: Mar 26],[2: Apr 22]</csv>
+  <csv data="wkrate">(0.06+0.00025*({N fertiliser}))+(64.68+0.094*({N fertiliser}))/1200</csv>
+  <csv data="machines">tractor,labour</csv>
+</operation>
+<operation type="spray" nonsequential="true" workability="r60">
+  <csv data="allow">[2: Mar 26],[2: Apr 22]</csv>
+  <csv data="wkrate">0.11+191.6/{Size of first machine in system definition}</csv>
+  <csv data="machines">sprayer,tractor,labour</csv>
+</operation>
+<operation type="spray" nonsequential="true" workability="r60">
+  <csv data="allow">[2: Apr 23],[2: May 20]</csv>
+  <csv data="wkrate">0.11+191.6/{Size of first machine in system definition}</csv>
+  <csv data="machines">sprayer,tractor,labour</csv>
+</operation>
+<!--
+    RISK
+    Disease variability:  5
+    Price variability:    6
+    Storage type: 0        Minimum storage = 0 tonnes
+-->
+</crop>

@@ -1,4 +1,4 @@
-pathForFarmDBFilename <- function(name){ # Could return multiple matches. Up to user to check
-  data(parameters)
-  baseFiles[grep(name,baseFiles)]
+basicArableFarmParameterFile<-function(){
+	file=system.file("xml/defra.MOTAD.NCdp.lins.sw.sosr.profit",package="farmLP")
+	return(parseXMLDocument(file))
 }

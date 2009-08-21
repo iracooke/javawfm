@@ -90,7 +90,7 @@ public class CBCPeer extends LPPeer {
 	//	System.out.println("Loading native library");
 	//	String jlpath = System.getProperty("java.library.path");
 	//	System.out.println(jlpath);
-		System.loadLibrary("farmland");		
+		System.loadLibrary("farmLP");		
 	//	System.out.println("Loaded");
 	}
 

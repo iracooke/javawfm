@@ -1,6 +1,6 @@
 R:
 - farmLP functions [totally minimalist]
-	
+- Fix portability issues due to using .jinit in farmLP and not putting the jni code in the libs dir
 - Remove all farmLP functions from the farmland package and include deps on these for farmland
 - Decide what data to include with farmland
 - Write documentation for farmland functions

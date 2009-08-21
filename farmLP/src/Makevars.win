@@ -1,4 +1,25 @@
 
+SYMPHONY_LIBS = -lSym -lCgl -lOsiClp -lClp -lOsi -lCoinUtils
+PKG_CPPFLAGS = -I$(SYMPHONY_HOME)/include
+PKG_LIBS = -L$(SYMPHONY_HOME)/lib $(SYMPHONY_LIBS)
+
+JAVA_LIBS=@JAVA_LIBS@
+JAVA_CPPFLAGS=@JAVA_CPPFLAGS@
+JAVA_HOME=@JAVA_HOME@
+JAVA=@JAVA@
+JAVAC=@JAVAC@
+JAVAH=@JAVAH@
+
+# Directory with COIN header files
+COININCDIR = depends/coin-Cbc/include
+
+# Directory with COIN libraries
+COINLIBDIR = ./depends/coin-Cbc/lib/
+
+CPPFLAGS+=-Iinclude @JAVA_CPPFLAGS@ -I$(COININCDIR)
+CXX=@CXX@
+
+RINSTDIR=../inst/
 
 
 JARDIR = $(RINSTDIR)/java
@@ -14,17 +35,20 @@ LIBS = -L$(COINLIBDIR) -lCbc -lCgl -lOsiClp -lOsiCbc -lOsi -lClp -lCoinUtils \
 
 SUBDIRS = depends/coin-Cbc/
 
-subdirs:
-	for dir in $(SUBDIRS); do \
-		$(MAKE) -C $$dir; \
-		done
+SHLIB_EXT=jnilib
 
-%.o: %.cpp
-	$(CXX) -c $< $(CPPFLAGS) 
+#cd $(SUBDIRS)
+#$(MAKE) install
+#cd ../..
+
+
+%.o: %.cpp subdirs
+	$(CXX) -c $< $(CPPFLAGS)
 
 default	: all
 
 all	: libfarmland.jnilib 
+	touch dummy.so
 	cp libfarmland.jnilib $(RINSTDIR)/jnilibs
 	
 libfarmland.jnilib	: jfm_lp_CBCPeer.h $(CBCLIBOBJECTS) 
@@ -32,8 +56,12 @@ libfarmland.jnilib	: jfm_lp_CBCPeer.h $(CBCLIBOBJECTS)
 	
 jfm_lp_CBCPeer.h	:	./java/src/jfm/lp/CBCPeer.java
 	javah -jni -classpath $(JARDIR)/javawfm.jar jfm.lp.CBCPeer
+
+subdirs:
+	$(MAKE) install -C $(SUBDIRS)
+
 	
 clean:
 	rm $(CBCLIBOBJECTS) libfarmland.jnilib jfm_lp_CBCPeer.h
 	
-.PHONY : clean, all, subdirs
+.PHONY : clean, subdirs
