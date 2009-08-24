@@ -1,10 +1,12 @@
 
 .onLoad <- function(libname,pkgname){
   require(methods)
-  jloc = system.file("java",package="farmLP")
-  jpars=c("-Xmx500m",paste(c("-Djava.library.path=",jloc),collapse=""))
-  .jinit(parameters=jpars) # this starts the JVM
-  .jpackage(pkgname,jars="*",nativeLibrary=FALSE)
+
+debug()
+#  jloc = system.file("java",package="farmLP")
+#  jpars=c("-Xmx500m",paste(c("-Djava.library.path=",jloc),collapse=""))
+#  .jinit(parameters=jpars) # this starts the JVM
+  .jpackage(pkgname,jars="*",nativeLibrary=TRUE)
 }
 
 setClass("FarmRepresentation")

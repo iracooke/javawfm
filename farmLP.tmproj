@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>farmLP/src/Makevars.in</string>
+	<string>farmLP/R/AAA.R</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -40,30 +40,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>45</integer>
+				<integer>7</integer>
 				<key>line</key>
-				<integer>3</integer>
+				<integer>4</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>2</integer>
-				<key>line</key>
-				<integer>3</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>45</integer>
-				<key>line</key>
-				<integer>3</integer>
-			</dict>
 		</dict>
 		<key>farmLP/R/CompositeFarm-methods.R</key>
 		<dict>
@@ -91,7 +75,7 @@
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<key>farmLP/R/FarmRepresentation-methods.R</key>
 		<dict>
@@ -112,9 +96,9 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>1</integer>
+				<integer>78</integer>
 				<key>line</key>
-				<integer>3</integer>
+				<integer>1</integer>
 			</dict>
 			<key>columnSelection</key>
 			<false/>
@@ -125,16 +109,16 @@
 			<key>selectFrom</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>6</integer>
 				<key>line</key>
-				<integer>0</integer>
+				<integer>1</integer>
 			</dict>
 			<key>selectTo</key>
 			<dict>
 				<key>column</key>
-				<integer>1</integer>
+				<integer>78</integer>
 				<key>line</key>
-				<integer>3</integer>
+				<integer>1</integer>
 			</dict>
 		</dict>
 		<key>farmLP/R/getParams.R</key>
@@ -268,28 +252,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>6</integer>
+				<integer>31</integer>
 				<key>line</key>
-				<integer>61</integer>
+				<integer>26</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>22</integer>
-		</dict>
-		<key>farmLP/src/java/build.xml</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>47</integer>
-				<key>line</key>
-				<integer>5</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>2</integer>
+			<integer>15</integer>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
@@ -297,12 +267,11 @@
 		<string>farmLP/R/CompositeFarm-methods.R</string>
 		<string>farmLP/data/BasicFarm.R</string>
 		<string>farmLP/data/XMLFiles.R</string>
-		<string>farmLP/R/database.R</string>
-		<string>farmLP/src/java/build.xml</string>
-		<string>farmLP/src/Makevars.in</string>
 		<string>farmLP/R/AAA.R</string>
+		<string>farmLP/src/Makevars.in</string>
 		<string>farmLP/man/farmLP-package.Rd</string>
 		<string>farmLP/R/Farm-methods.R</string>
+		<string>farmLP/R/database.R</string>
 		<string>farmLP/man/Farm-class.Rd</string>
 		<string>farmLP/NAMESPACE</string>
 		<string>farmLP/man/runSpatial.Rd</string>
@@ -315,6 +284,6 @@
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{66, 221}, {1119, 807}}</string>
+	<string>{{298, 105}, {870, 673}}</string>
 </dict>
 </plist>
