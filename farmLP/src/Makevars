@@ -24,10 +24,13 @@ COINLIBDIR = depends/coin-Cbc/lib/
 PKG_CXXFLAGS=-Iinclude -I/System/Library/Frameworks/JavaVM.framework/Versions/1.5.0/Home/include -I$(COININCDIR)
 
 RINSTDIR=../inst/
-JNIINSTDIR=$(RINSTDIR)/libsi386
+#JNIINSTDIR=$(RINSTDIR)/jnilibs
+JNIINSTDIR=$(RINSTDIR)/libs/i386
 
 JARDIR = $(RINSTDIR)/java
-OBJECTS = CBCPeer.o CBC.o
+OBJECTS = 
+
+JNIINSTDIR=$(JARDIR)
 
 PKG_LIBS=-L$(COINLIBDIR) -lCbc -lCgl -lOsiClp -lOsiCbc -lOsi -lClp -lCoinUtils 
 
@@ -37,17 +40,21 @@ SUBDIRS = depends/coin-Cbc/
 
 FARMLP_LIB=libfarmLP.jnilib
 
-.PHONY: all subdirs
+.PHONY: all subdirs javajar
 
-all: $(SHLIB) jnilib
+all: $(SHLIB) jnilib 
 	
-jnilib: farmlib subdirs CBCPeer.o CBC.o jfm_lp_CBCPeer.h
+jnilib: javajar farmlib subdirs CBCPeer.o CBC.o jfm_lp_CBCPeer.h
+	
+javajar:
+	ant -buildfile java/build.xml install
 	
 farmlib:	subdirs CBCPeer.o CBC.o jfm_lp_CBCPeer.h
-	$(CXX) -Q -bundle $(JAVA_LIBS) $(JAVA_CPPFLAGS) -o $(FARMLP_LIB) $(PKG_LIBS) $(CBCLIBOBJECTS)
+	$(CXX) -Q -dynamiclib $(JAVA_LIBS) $(JAVA_CPPFLAGS) -o $(FARMLP_LIB) $(PKG_LIBS) $(CBCLIBOBJECTS)
+	mkdir -p $(JNIINSTDIR)
 	cp $(FARMLP_LIB) $(JNIINSTDIR)
 	
-jfm_lp_CBCPeer.h	:	./java/src/jfm/lp/CBCPeer.java
+jfm_lp_CBCPeer.h	:	./java/src/jfm/lp/CBCPeer.java javajar
 	javah -jni -classpath $(JARDIR)/javawfm.jar jfm.lp.CBCPeer
 	
 CBCPeer.o: CBCPeer.cpp jfm_lp_CBCPeer.h subdirs
