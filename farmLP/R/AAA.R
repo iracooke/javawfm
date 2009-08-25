@@ -1,12 +1,15 @@
 
 .onLoad <- function(libname,pkgname){
-  require(methods)
+	require(methods)
 
-debug()
-#  jloc = system.file("java",package="farmLP")
-#  jpars=c("-Xmx500m",paste(c("-Djava.library.path=",jloc),collapse=""))
-#  .jinit(parameters=jpars) # this starts the JVM
-  .jpackage(pkgname,jars="*",nativeLibrary=TRUE)
+	  jloc = system.file("java",package="farmLP")
+	  jpars=c("-Xmx500m",paste(c("-Djava.library.path=",jloc),collapse=""))
+	  .jinit(parameters=jpars) # this starts the JVM
+#	.jpackage(pkgname,jars="*",nativeLibrary=FALSE)
+	jniloc <- system.file("jnilibs", package=pkgname)
+	print(jniloc)
+	print(.jaddLibrary(paste(c(jniloc,"libfarmLP.jnilib"),collapse="/"),TRUE))
+	print(.jaddLibrary("libfarmLP.jnlib",jniloc))
 }
 
 setClass("FarmRepresentation")

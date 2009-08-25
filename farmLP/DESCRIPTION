@@ -9,5 +9,5 @@ Description: A mixed integer description of an arable farm. Finds optimal farmin
 License: GPL-3
 Suggests: 
 LazyLoad: yes
-Depends: rJava,sp,methods
+Depends: rJava,methods
 Packaged: Thu Aug 20 16:03:11 2009; iracooke
