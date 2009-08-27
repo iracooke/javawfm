@@ -34,7 +34,6 @@ JNIINSTDIR=$(JARDIR)
 
 PKG_LIBS=-L$(COINLIBDIR) -lCbc -lCgl -lOsiClp -lOsiCbc -lOsi -lClp -lCoinUtils 
 
-
 SUBDIRS = depends/coin-Cbc/
 
 
@@ -50,7 +49,7 @@ javajar:
 	ant -buildfile java/build.xml install
 	
 farmlib:	subdirs CBCPeer.o CBC.o jfm_lp_CBCPeer.h
-	$(CXX) -Q -dynamiclib $(JAVA_LIBS) $(JAVA_CPPFLAGS) -o $(FARMLP_LIB) $(PKG_LIBS) $(CBCLIBOBJECTS)
+	$(CXX) -Q -bundle $(JAVA_LIBS) $(JAVA_CPPFLAGS) -o $(FARMLP_LIB) $(PKG_LIBS) -llapack -lblas -lm CBCPeer.o CBC.o
 	mkdir -p $(JNIINSTDIR)
 	cp $(FARMLP_LIB) $(JNIINSTDIR)
 	
