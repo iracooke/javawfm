@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>farmLP/src/Makevars.in</string>
+	<string>farmLP/man/Farm-class.Rd</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -40,9 +40,9 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>31</integer>
 				<key>line</key>
-				<integer>6</integer>
+				<integer>17</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -54,16 +54,16 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>27</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>4</integer>
+				<integer>21</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>4</integer>
 		</dict>
-		<key>farmLP/R/CompositeFarm-methods.R</key>
+		<key>farmLP/R/CompositeFarm-class.R</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -77,12 +77,54 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>farmLP/R/Farm-methods.R</key>
+		<key>farmLP/R/Farm-class.R</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>25</integer>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>42</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>8</integer>
+		</dict>
+		<key>farmLP/R/FarmRepresentation-class.R</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>103</integer>
+				<key>line</key>
+				<integer>127</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>146</integer>
+		</dict>
+		<key>farmLP/R/database.R</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>farmLP/R/getParams.R</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
 				<key>line</key>
 				<integer>2</integer>
 			</dict>
@@ -91,7 +133,7 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>farmLP/configure</key>
+		<key>farmLP/R/set..R</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -99,6 +141,34 @@
 				<integer>0</integer>
 				<key>line</key>
 				<integer>0</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>farmLP/R/setParams.R</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>1</integer>
+				<key>line</key>
+				<integer>54</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>farmLP/R/xml.R</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>1</integer>
+				<key>line</key>
+				<integer>23</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -124,6 +194,20 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
+				<integer>21</integer>
+				<key>line</key>
+				<integer>39</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>11</integer>
+		</dict>
+		<key>farmLP/man/Farm.Rd</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
 				<integer>0</integer>
@@ -131,7 +215,21 @@
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>8</integer>
+			<integer>0</integer>
+		</dict>
+		<key>farmLP/man/FarmRepresentation-class.Rd</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>79</integer>
+				<key>line</key>
+				<integer>31</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>12</integer>
 		</dict>
 		<key>farmLP/man/farmLP-package.Rd</key>
 		<dict>
@@ -147,60 +245,22 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>farmLP/man/runSpatial.Rd</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>0</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>farmLP/src/Makevars</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>0</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>25</integer>
-		</dict>
-		<key>farmLP/src/Makevars.in</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>20</integer>
-				<key>line</key>
-				<integer>52</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>30</integer>
-		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
 		<string>farmLP/R/AAA.R</string>
-		<string>farmLP/src/Makevars</string>
-		<string>farmLP/src/Makevars.in</string>
-		<string>farmLP/configure</string>
-		<string>farmLP/R/Farm-methods.R</string>
-		<string>farmLP/R/CompositeFarm-methods.R</string>
+		<string>farmLP/R/database.R</string>
+		<string>farmLP/R/Farm-class.R</string>
+		<string>farmLP/man/Farm.Rd</string>
+		<string>farmLP/R/FarmRepresentation-class.R</string>
+		<string>farmLP/man/FarmRepresentation-class.Rd</string>
+		<string>farmLP/R/getParams.R</string>
+		<string>farmLP/R/set..R</string>
+		<string>farmLP/R/setParams.R</string>
+		<string>farmLP/R/CompositeFarm-class.R</string>
 		<string>farmLP/man/farmLP-package.Rd</string>
-		<string>farmLP/man/runSpatial.Rd</string>
 		<string>farmLP/man/Farm-class.Rd</string>
+		<string>farmLP/R/xml.R</string>
 		<string>farmLP/NAMESPACE</string>
 		<string>farmLP/DESCRIPTION</string>
 		<string>farmLP/install-sh</string>
@@ -208,6 +268,6 @@
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{581, 7}, {870, 673}}</string>
+	<string>{{435, 355}, {870, 673}}</string>
 </dict>
 </plist>

@@ -1,41 +1,42 @@
 \name{Farm-class}
+\Rdversion{1.1}
 \docType{class}
 \alias{Farm-class}
-\alias{Farm}
-\alias{model,Farm,Farm-method}
-\alias{solveFarm,Farm,Farm-method}
+\alias{set,Farm,jobjRef-method}
+\alias{set,Farm,character-method}
 
-\title{Class "Farm"}
-\description{ Represents a model description of a farm }
+\title{Class "Farm" }
+\description{Represents a farm model for a single farm}
+\section{Objects from the Class}{
+Objects can be created by calls to \code{\link{Farm}} 
+
+Alternatively a default arable farm can be created with a call to \code{\link{basicArableFarm}}, which provides a farm object initialized with parameters from the default database. 
+
+}
 \section{Slots}{
-  \describe{
-    \item{\code{model}:}{Internal reference to a java object containing the model description}
+	 \describe{
+    \item{\code{model}:}{Object of class \code{"jobjRef"} which is a reference to the internal java object representing the farm }
+    \item{\code{cropNames}:}{Object of class \code{"vector"} representing the crop names }
   }
+}
+\section{Extends}{
+Class \code{"\linkS4class{FarmRepresentation}"}, directly.
 }
 \section{Methods}{
   \describe{
-    \item{model}{\code{signature(obj = "jobjRef")}: retrieves the model reference }
-    \item{solvefm}{\code{signature(farm = "FarmRepresentation")}: Solves the internal linear programme and stores its state in the model object }
-    \item{summary}{\code{signature(farm = "FarmRepresentation")}: summarize object}
-  }
+    \item{set}{\code{signature(farm = "Farm", input = "jobjRef")}: Sets the multi objective preferences using a preference object. Typically created with a calls to \code{\link{parseXMLDocument}} or \code{\link{basicMOTADMOU}}}
+    \item{set}{\code{signature(farm = "Farm", input = "character")}: Sets the multi objective preferences using an xml preference file }
+	 }
 }
 
-\usage{
-	Farm(modelDescription)
-}
+\author{ Ira Cooke }
 
-\arguments{
-\item{modelDescription}{Path string to an xml file with model parameters}
+\seealso{
+	See also \code{\linkS4class{CompositeFarm}} and \code{\linkS4class{FarmRepresentation}} 
 }
-
-\author{ Ira R. Cooke, \email{iracooke@gmail.com}
-}
-
 \examples{
-	fm=Farm(pathForFarmDBFilename("example.profit"))
- 	 fm=set(fm,pathForFarmDBFilename("example.mou"))
- 	  fm=solvefm(fm)
-	  summary(fm)
+fm=basicArableFarm()
+solve(fm)
+print(data.frame(fm))
 }
-
 \keyword{classes}
