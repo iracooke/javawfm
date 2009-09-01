@@ -35,7 +35,7 @@ Class \code{"\linkS4class{FarmRepresentation}"}, directly.
 	See also \code{\linkS4class{CompositeFarm}} and \code{\linkS4class{FarmRepresentation}} 
 }
 \examples{
-fm=basicArableFarm()
+fm=Farm()
 solve(fm)
 print(data.frame(fm))
 }

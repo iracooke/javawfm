@@ -256,7 +256,7 @@ public class CompositeFarmRepresentation extends FarmRepresentation {
 	 * @see jfm.r.FarmRepresentation#solve()
 	 */
 	@Override
-	public int solve() {
+	public int solve(String failDump) {
 		isSolved=0;
 		JFMMath.normalize(weights);
 		LPX[] status=new LPX[weights.size()];
@@ -264,7 +264,7 @@ public class CompositeFarmRepresentation extends FarmRepresentation {
 		// First try to solve everything
 		try {
 			for(SimpleFarmRepresentation f:farmObjects){			
-				status[i]=f.farmObject.solve(false); 
+				status[i]=f.farmObject.solve(false,failDump); 
 				i++;
 			}
 		} catch (GLPKException ex){

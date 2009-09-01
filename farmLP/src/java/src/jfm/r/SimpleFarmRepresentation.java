@@ -249,9 +249,9 @@ public class SimpleFarmRepresentation extends FarmRepresentation {
 	}
 	
 	/** A wrapper for solve that can be easily called from rJava */
-	public int solve(){
+	public int solve(String failDump){
 		try {
-			LPX status = farmObject.solve(true);
+			LPX status = farmObject.solve(true,failDump);
 		//	System.out.println(Output.solution(this, false));
 			return status.toCPP();
 		} catch (Exception ex){

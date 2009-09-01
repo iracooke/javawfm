@@ -77,9 +77,6 @@
 		753F680D103EC4ED008D9608 /* FarmRepresentation.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = FarmRepresentation.java; sourceTree = "<group>"; };
 		753F680E103EC4ED008D9608 /* MOUDocumentEditor.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = MOUDocumentEditor.java; sourceTree = "<group>"; };
 		753F680F103EC4ED008D9608 /* SimpleFarmRepresentation.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = SimpleFarmRepresentation.java; sourceTree = "<group>"; };
-		753F6810103EC4ED008D9608 /* SimpleApp.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = SimpleApp.java; sourceTree = "<group>"; };
-		753F6811103EC4ED008D9608 /* SocialApp.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = SocialApp.java; sourceTree = "<group>"; };
-		753F6812103EC4ED008D9608 /* test.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = test.java; sourceTree = "<group>"; };
 		753F6814103EC4ED008D9608 /* JFMMath.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = JFMMath.java; sourceTree = "<group>"; };
 		753F6815103EC4ED008D9608 /* MathPrint.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = MathPrint.java; sourceTree = "<group>"; };
 		753F6817103EC4ED008D9608 /* BoundaryMaintenanceParser.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = BoundaryMaintenanceParser.java; sourceTree = "<group>"; };
@@ -154,9 +151,6 @@
 				753F67D9103EC4EC008D9608 /* model */,
 				753F6803103EC4ED008D9608 /* mou */,
 				753F6809103EC4ED008D9608 /* r */,
-				753F6810103EC4ED008D9608 /* SimpleApp.java */,
-				753F6811103EC4ED008D9608 /* SocialApp.java */,
-				753F6812103EC4ED008D9608 /* test.java */,
 				753F6813103EC4ED008D9608 /* utils */,
 				753F6816103EC4ED008D9608 /* xml */,
 			);

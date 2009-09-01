@@ -99,17 +99,19 @@ public final class Farm {
 	 * @param exceptionOnFail If true the program will exit if the solver fails to find an optimal solution 
 	 * @return The solution status of the solver object @see LPX 
 	 * */
-	public LPX solve(boolean exceptionOnFail) throws GLPKException , BadModelException {
+	public LPX solve(boolean exceptionOnFail,String dumpMatrix) throws GLPKException , BadModelException {
 		setFormulaVariables();
 		LPX status=matrix.updateAndSolve();
 		solutionStatus=status;
 		if ( exceptionOnFail && status != LPX.LPX_OPT){
 			StringBuffer message=new StringBuffer();
-			matrix.printCSV("fail_matrix.csv");
-			message.append("Matrix written to file matrix.csv");
+			matrix.printCSV(dumpMatrix);
+			message.append("Matrix written to file "+dumpMatrix);
 			throw new GLPKException(message.toString());
 		} else {
-			//matrix.printCSV("matrix.csv");
+			if ( dumpMatrix.length() > 0 ){
+				matrix.printCSV(dumpMatrix);
+			}
 			return status;
 		}
 	}

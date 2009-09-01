@@ -6,11 +6,20 @@
 ################### Constructor #######################
 # Create a new Farm object from its economic parameters
 #######################################################
-Farm <- function(econ) { 
-  farm=new("Farm")
-  farm@model=.jnew("jfm/r/SimpleFarmRepresentation",econ)
-  farm@cropNames=.jcall(farm@model,"[Ljava/lang/String;","cropNames")   
-  farm
+Farm <- function(farm.params=defaultArableFarmParameters(),obj.params=NULL) { 
+	farm=new("Farm")
+	if ( class(farm.params)=="FarmParameters"){
+		farm@model=.jnew("jfm/r/SimpleFarmRepresentation",document(farm.params))
+	} else {
+		farm@model=.jnew("jfm/r/SimpleFarmRepresentation",farm.params)
+	}
+	
+	if ( !is.null(obj.params)){
+		set(farm,obj.params)
+	}
+	
+	farm@cropNames=.jcall(farm@model,"[Ljava/lang/String;","cropNames")   
+	farm
 }
 
 ####### Functions for setting particular parameters #####
@@ -18,7 +27,11 @@ Farm <- function(econ) {
 #########################################################
 # Set the multi objective preferences for a farm object. #
 set.mou <- function(farm,mou){
-  .jcall(model(farm),"V","createAndApplyMOU",mou)
+	if ( class(mou)=="ObjectiveParameters"){
+		.jcall(model(farm),"V","createAndApplyMOU",document(mou))
+	} else {
+		.jcall(model(farm),"V","createAndApplyMOU",mou)
+	}
   farm
 }
 
@@ -38,5 +51,6 @@ if (!isGeneric("set")){
   setGeneric("set", function(farm,input,...) standardGeneric("set"))
 }
 setMethod("set", signature(farm="Farm",input="jobjRef"), function(farm,input) set.mou(farm,input)) 
+setMethod("set", signature(farm="Farm",input="ObjectiveParameters"), function(farm,input) set.mou(farm,input)) 
 setMethod("set", signature(farm="Farm",input="character"), function(farm,input) set.mou(farm,input))
 

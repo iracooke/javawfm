@@ -164,11 +164,7 @@ AC_SUBST(JAVAH)
 
 (cd src/depends/coin-Cbc/ && \
 ./configure \
---enable-static --disable-shared --with-pic \
-    --with-application=no --disable-dependency-tracking \
-    --disable-cplex-libcheck --disable-glpk-libcheck \
-    --disable-osl-libcheck --disable-soplex-libcheck \
-    --disable-xpress-libcheck )
+--enable-static --disable-shared --with-pic )
 
 
 # Checks for library functions.

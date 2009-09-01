@@ -12,9 +12,9 @@ if (!isGeneric("model")){
 setMethod("model", "FarmRepresentation", function(farm) farm@model)
 
 if (!isGeneric("cropNames")){
-  setGeneric("cropNames", function(farm) standardGeneric("cropNames"))
+  setGeneric("cropNames", function(object) standardGeneric("cropNames"))
 }
-setMethod("cropNames", "FarmRepresentation", function(farm) farm@cropNames)
+setMethod("cropNames", "FarmRepresentation", function(object) object@cropNames)
 
 # Getting state information about FarmRepresentation objects #
 #
@@ -166,15 +166,15 @@ setAs("FarmRepresentation","data.frame",function(from) as.data.frame.FarmReprese
 
 
 
-# Generic solve function for Farm objects #
-# Note: setGeneric doesn't seem to work here. Not sure why. Hope I don't break stuff
+# Generic solvelp function for Farm objects #
+# 
 ###########################################
 
-#if (!isGeneric("solve")){
-#	setGeneric("solve",function(farm),standardGeneric("farm"))
-#}
-setMethod("solve",signature(a = "FarmRepresentation"),function (a, b) 
+if (!isGeneric("solvelp")){
+	setGeneric("solvelp",function(farm,dumpFail) standardGeneric("solvelp"))
+}
+setMethod("solvelp",signature(farm = "FarmRepresentation",dumpFail="character"),function (farm,dumpFail="") 
 {
-	.jcall(model(a),"I","solve");
-	a;
+	.jcall(model(farm),"I","solve",dumpFail);
+	farm;
 })

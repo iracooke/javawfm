@@ -40,7 +40,7 @@ public abstract class FarmRepresentation {
 	public abstract void setDistanceFromSugarbeetFactory(double distance,double costPerKmPerHa);
 	
 	/** A wrapper for solve that can be easily called from rJava */
-	public abstract int solve();
+	public abstract int solve(String failDump);
 
 	public abstract double areaOfCropNamed(String name);
 	public abstract double priceOfCropNamed(String name);

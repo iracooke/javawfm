@@ -33,4 +33,6 @@ osxjPackage<-function(name,jars="*"){
 setClass("FarmRepresentation")
 setClass("Farm",representation(model="jobjRef",cropNames="vector"),prototype(model=.jnull("jfm/r/SimpleFarmRepresentation")),contains="FarmRepresentation")
 setClass("CompositeFarm",representation(model="jobjRef",cropNames="vector"),prototype(model=.jnull("jfm/r/CompositeFarmRepresentation")),contains="FarmRepresentation")
-
+setClass("Parameters")
+setClass("FarmParameters",representation(document="jobjRef"),contains="Parameters")
+setClass("ObjectiveParameters",representation(document="jobjRef"),contains="Parameters")

@@ -14,6 +14,10 @@ import java.util.*;
  *
  */
 public class FarmDocumentEditor {
+	public static String dump(Document doc){
+		return(DocumentEditor.printNode(doc, " "));
+	}
+	
 	public static String[] cropNames(Document doc){
 		NodeList crops = doc.getElementsByTagName("crop");
 		String[] names=new String[crops.getLength()];
