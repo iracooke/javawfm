@@ -88,8 +88,24 @@ public class SimpleFarmRepresentation extends FarmRepresentation {
 	}
 	
 	public String solutionSummary(){
-		return Output.solution(farmObject, false);		
+
+		if (isSolved()==0){
+			StringBuffer buff = new StringBuffer();
+			buff.append("Unsolved Simple Farm \n Crops \n \n");
+			String[] cnames=this.cropNames();
+			
+
+			for(int i=0;i<cnames.length;i++){
+				buff.append(cnames[i]+" ");
+			}
+
+			return buff.toString();
+
+		} else {
+			return Output.solution(farmObject, false);		
+		}
 	}
+	
 	public void solutionDetails(){
 		System.out.println(Output.solution(farmObject, true));
 	}
@@ -257,6 +273,10 @@ public class SimpleFarmRepresentation extends FarmRepresentation {
 		} catch (Exception ex){
 			throw new Error(ex.getCause()+" "+ex.getMessage());
 		}
+	}
+	
+	public String toString(){
+		return(farmObject.toString());
 	}
 	
 }

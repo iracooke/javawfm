@@ -1,6 +1,16 @@
+# Implementation of the Composite Farm class #
+#
+# Usually used to represent a farming enterprise using a weighted sum of solutions from 
+# farms with different soiltypes, objective weights and/or distances to sugarbeet factories
+#
+####################################
 
 
-CompositeFarm <- function(econ,mou=NULL,mouweights=c(1.0),spatialdata,SBFactories=NULL,haulagePerTonnePerKm=0.12,maxSBHaulageDistance=200) { # TODO: Type checks for arguments
+################### Constructor #######################
+# Create a new Farm object from its economic parameters
+#######################################################
+
+CompositeFarm <- function(econ,mou=NULL,mouweights=c(1.0),spatialdata,SBFactories=NULL,haulagePerTonnePerKm=0.12,maxSBHaulageDistance=200) { 
   farm=new("CompositeFarm")
   farm@model=.jnew("jfm/r/CompositeFarmRepresentation")
   rf=0
@@ -35,20 +45,7 @@ CompositeFarm <- function(econ,mou=NULL,mouweights=c(1.0),spatialdata,SBFactorie
   farm
 }
 
-summary.FarmRepresentation <- function(object,...){
-  summaryString=""
-  if ( isSolved(object)){
-    summaryString=.jcall(model(object),"Ljava/lang/String;","solutionSummary")
-  } else {
-    warning("Summary can only be calculated for solved farm objects")
-  }
-  cat(summaryString)
-}
 
-if (!isGeneric("summary"))
-  setGeneric("summary", function(object, ...)
-             standardGeneric("summary"))
-setMethod("summary","FarmRepresentation",summary.FarmRepresentation)
 
 
 

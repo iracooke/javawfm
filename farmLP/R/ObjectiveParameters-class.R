@@ -1,10 +1,10 @@
-# Implementation of the FarmParameters class #
+# Implementation of the ObjectiveParameters class #
 #
 ####################################
 
 
 ################### Constructor #######################
-# Create a new FarmParameters object 
+# Create a new ObjectiveParameters object 
 #######################################################
 ObjectiveParameters <- function(file=defaultArableObjectiveParameters()) { 
 	ObjectiveParameters=new("ObjectiveParameters")
@@ -19,5 +19,18 @@ ObjectiveParameters <- function(file=defaultArableObjectiveParameters()) {
 	return(ObjectiveParameters)
 }
 
+setRisk<-function(doc,value){
+    doc=.jcall("jfm/r/MOUDocumentEditor","Lorg/w3c/dom/Document;","setRisk",doc,as.double(value))
+    return(doc)
+}
 
+setWeightForObjective <- function(doc,objective,value){
+  doc=.jcall("jfm/r/MOUDocumentEditor","Lorg/w3c/dom/Document;","setObjectiveUAttribute",doc,objective,"weight",as.character(value))
+  return(doc)
+}
+
+setCropComplexity <- function(doc,wtval,xstring){
+  doc=.jcall("jfm/r/MOUDocumentEditor","Lorg/w3c/dom/Document;","setCropComplexity",doc,as.double(wtval),xstring)
+  return(doc)
+}
 

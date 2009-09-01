@@ -64,6 +64,6 @@ public abstract class FarmRepresentation {
 	
 	public abstract void setInputCost(String xmlInputName,double unitCost);
 	
-	
+	public abstract String toString();
 	
 }

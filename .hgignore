@@ -9,6 +9,8 @@ farmLP/config.status
 farmLP/autom4te.cache
 farmLP/src/Makefile
 farmLP/src/install-sh
+farmLP/src/*.o
+farmLP/src/*.jnilib
 osx/javawfm/build
 osx/javawfm/bin
 osx/javawfm/lib

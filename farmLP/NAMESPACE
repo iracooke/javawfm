@@ -7,7 +7,7 @@ exportClasses(Farm,CompositeFarm,FarmRepresentation,FarmParameters,ObjectivePara
 export(CompositeFarm,Farm,FarmParameters,ObjectiveParameters)
 
 #S4 Generic Methods defined by FarmRepresentation
-exportMethods(solvelp,model,isSolved,profit,eo,cropArea,setInputCost,cropNames,objectiveNames,objectiveValues,objectiveScaleFactors)
+exportMethods(guts,show,solvelp,model,isSolved,profit,eo,cropArea,cropNames,objectiveNames,objectiveValues,objectiveScaleFactors)
 
 #S4 Generic Methods defined by Farm
 exportMethods(set)
@@ -15,14 +15,18 @@ exportMethods(set)
 #S4 Generic Methods defined by Parameters
 exportMethods(document,show)
 
+
+
 # General methods
 export(parseXMLDocument,setWeightInMOUDocument,setRiskInMOUDocument,setCropComplexityInMOUDocument,setPriceInProfitDocument,setPricesInProfitDocument,setSubsidiesInProfitDocument,setSubsidyInProfitDocument)
 
-# Methods defined in database.R
+# Methods defined in database.R for accessing provided xml files
 export(defaultArableFarmParameters,defaultArableObjectiveParameters)
 
+# General methods defined in FarmParameters-class.R
+export(setRelativePriceForCrop,setRelativeCost,setRelativeRotationPenalties,setRelativeLabourRequirements,setRelativeYieldForCrop,setPriceForCrop,setSubsidyForCrop)
 
-# S3 methods to help coerce into data frames
+# S3 methods to coerce farms into data frames
 S3method(as.data.frame, FarmRepresentation)
 S3method(as.data.frame, Farm)
 S3method(as.data.frame, CompositeFarm)

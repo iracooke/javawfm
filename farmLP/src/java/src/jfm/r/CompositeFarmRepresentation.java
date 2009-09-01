@@ -28,6 +28,17 @@ public class CompositeFarmRepresentation extends FarmRepresentation {
 	private ArrayList<Double> soils=new ArrayList<Double>();
 	private ArrayList<Double> rainfall=new ArrayList<Double>();
 	
+	
+	public String toString(){
+		StringBuffer buff=new StringBuffer();
+		buff.append("Composite Farm with "+farmObjects.size()+" farms");
+		for(SimpleFarmRepresentation f:farmObjects){
+			buff.append(f.toString());
+		}
+		
+		return buff.toString();
+	}
+	
 	/**
 	 * 
 	 */
@@ -244,7 +255,18 @@ public class CompositeFarmRepresentation extends FarmRepresentation {
 	@Override
 	public String solutionSummary() {
 		StringBuffer buff=new StringBuffer();
+
 		String[] cnames=this.cropNames();
+
+		if ( isSolved()==0){
+			buff.append("Unsolved Composite Farm with "+farmObjects.size()+"farms \n");
+			for(int i=0;i<cnames.length;i++){
+				buff.append(cnames[i]+" ");
+			}
+			return buff.toString();
+		}
+		
+
 		for(int i=0;i<cnames.length;i++){
 			buff.append(MathPrint.f2.format(this.areaOfCropNamed(cnames[i]))+" ");
 		}

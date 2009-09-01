@@ -16,6 +16,26 @@ if (!isGeneric("cropNames")){
 }
 setMethod("cropNames", "FarmRepresentation", function(object) object@cropNames)
 
+
+# Methods for displaying FarmRepresentation objects #
+#
+################################################################
+if (!isGeneric("show")){
+	setGeneric("show", function(object) standardGeneric("show"))
+}
+setMethod("show","FarmRepresentation",function(object){
+	cat(.jcall(model(object),"Ljava/lang/String;","solutionSummary"),"\n")
+})
+
+if (!isGeneric("guts")){
+	setGeneric("guts", function(object) standardGeneric("guts"))
+}
+setMethod("guts","FarmRepresentation",function(object){
+		cat(.jcall(model(object),"S","toString"),"\n")
+})
+
+
+
 # Getting state information about FarmRepresentation objects #
 #
 ##############################################################
@@ -168,13 +188,14 @@ setAs("FarmRepresentation","data.frame",function(from) as.data.frame.FarmReprese
 
 # Generic solvelp function for Farm objects #
 # 
+# Unfortunately I can't seem to figure out how to completely suppress output from Cbc here
+# so making many calls to solvelp can produce alot of junk output.
 ###########################################
 
 if (!isGeneric("solvelp")){
-	setGeneric("solvelp",function(farm,dumpFail) standardGeneric("solvelp"))
+	setGeneric("solvelp",function(farm,dumpFail="") standardGeneric("solvelp"))
 }
-setMethod("solvelp",signature(farm = "FarmRepresentation",dumpFail="character"),function (farm,dumpFail="") 
+setMethod("solvelp",signature(farm = "FarmRepresentation"),function (farm,dumpFail="") 
 {
 	.jcall(model(farm),"I","solve",dumpFail);
-	farm;
 })

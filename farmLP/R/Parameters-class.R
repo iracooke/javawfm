@@ -1,3 +1,8 @@
+# Abstract Parameters class #
+#
+# Defines generics that apply to all subclasses
+####################################
+
 if (!isGeneric("document")){
    setGeneric("document", function(params) standardGeneric("document"))
 }

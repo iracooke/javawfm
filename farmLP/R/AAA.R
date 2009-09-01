@@ -1,5 +1,5 @@
 
-# This function is a replacement for .jpackage to be used on OSX because it's really hard to get a jnilib into the right place for .jpackage to search for it on OSX 
+# This function is a replacement for .jpackage to be used on OSX because it's really hard to reliably get a jnilib into the right place for .jpackage to search for it on OSX (ie into libs/arch in the package directory )
 osxjPackage<-function(name,jars="*"){
 	jloc = system.file("java",package="farmLP")
 	if (!rJava:::.jniInitialized) .jinit()

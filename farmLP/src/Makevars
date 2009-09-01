@@ -21,7 +21,7 @@ COININCDIR = depends/coin-Cbc/include
 # Directory with COIN libraries
 COINLIBDIR = depends/coin-Cbc/lib/
 
-PKG_CXXFLAGS=-fPIC -g -O2 -Iinclude -I/System/Library/Frameworks/JavaVM.framework/Versions/1.5.0/Home/include -I$(COININCDIR)
+PKG_CXXFLAGS=-Iinclude -I/System/Library/Frameworks/JavaVM.framework/Versions/1.5.0/Home/include -I$(COININCDIR)
 
 RINSTDIR=../inst/
 #JNIINSTDIR=$(RINSTDIR)/jnilibs
@@ -32,14 +32,9 @@ OBJECTS =
 
 JNIINSTDIR=$(JARDIR)
 
-PKG_LIBS=-L$(COINLIBDIR) -lCbc -lCgl -lOsiClp -lOsiCbc -lOsi -lClp -lCoinUtils -llapack -lm -lblas
-
-#-lRlapack -L/Library/Frameworks/R.framework/Resources/lib/i386 -lRblas -lgfortran -F/Library/Frameworks/R.framework/.. -framework R 
+PKG_LIBS=-L$(COINLIBDIR) -lCbc -lCgl -lOsiClp -lOsiCbc -lOsi -lClp -lCoinUtils 
 
 SUBDIRS = depends/coin-Cbc/
-
-
-#g++ -arch i386 -dynamiclib -Wl,-headerpad_max_install_names -mmacosx-version-min=10.4 -undefined dynamic_lookup -single_module -multiply_defined suppress -L/usr/local/lib -o Rsymphony.so R_symphony.o -LSYMPHONY/lib -lSym -lCgl -lOsiClp -lClp -lOsi -lCoinUtils -L/Library/Frameworks/R.framework/Resources/lib/i386 -lRlapack -L/Library/Frameworks/R.framework/Resources/lib/i386 -lRblas -lgfortran -F/Library/Frameworks/R.framework/.. -framework R -Wl,-framework -Wl,CoreFoundation
 
 
 FARMLP_LIB=libfarmLP.jnilib
@@ -50,27 +45,20 @@ all: $(SHLIB) jnilib
 	
 jnilib: javajar farmlib subdirs CBCPeer.o CBC.o jfm_lp_CBCPeer.h
 	
-
 javajar:
 	ant -buildfile java/build.xml install
 	
-
 farmlib:	subdirs CBCPeer.o CBC.o jfm_lp_CBCPeer.h
-	$(CXX) -Q -fPIC -dynamiclib  $(JAVA_LIBS) $(JAVA_CPPFLAGS) -o $(FARMLP_LIB) $(PKG_LIBS)  CBCPeer.o CBC.o
+	$(CXX) -Q -bundle $(JAVA_LIBS) $(JAVA_CPPFLAGS) -o $(FARMLP_LIB) $(PKG_LIBS) -llapack -lblas -lm CBCPeer.o CBC.o
 	mkdir -p $(JNIINSTDIR)
 	cp $(FARMLP_LIB) $(JNIINSTDIR)
 	
-
-
 jfm_lp_CBCPeer.h	:	./java/src/jfm/lp/CBCPeer.java javajar
 	javah -jni -classpath $(JARDIR)/javawfm.jar jfm.lp.CBCPeer
 	
-
-
 CBCPeer.o: CBCPeer.cpp jfm_lp_CBCPeer.h subdirs
-	$(CXX)  -c $< $(PKG_CXXFLAGS)
+	$(CXX) -c $< $(PKG_CXXFLAGS)
 	
-
 CBC.o: CBC.cpp jfm_lp_CBCPeer.h subdirs
 	$(CXX) -c $< $(PKG_CXXFLAGS)
 
