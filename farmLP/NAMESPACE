@@ -15,15 +15,17 @@ exportMethods(set)
 #S4 Generic Methods defined by Parameters
 exportMethods(document,show)
 
+#S4 Methods defined by ObjectiveParameters
+export(setWeightForObjective,setRisk,setCropComplexity)
 
-
-# General methods
-export(parseXMLDocument,setWeightInMOUDocument,setRiskInMOUDocument,setCropComplexityInMOUDocument,setPriceInProfitDocument,setPricesInProfitDocument,setSubsidiesInProfitDocument,setSubsidyInProfitDocument)
+# Methods defined in xml.R
+export(parseXMLDocument)
 
 # Methods defined in database.R for accessing provided xml files
 export(defaultArableFarmParameters,defaultArableObjectiveParameters)
 
 # General methods defined in FarmParameters-class.R
+export(setPriceForCrop,setSubsidyForCrop)
 export(setRelativePriceForCrop,setRelativeCost,setRelativeRotationPenalties,setRelativeLabourRequirements,setRelativeYieldForCrop,setPriceForCrop,setSubsidyForCrop)
 
 # S3 methods to coerce farms into data frames
