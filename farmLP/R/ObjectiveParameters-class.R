@@ -19,18 +19,18 @@ ObjectiveParameters <- function(file=defaultArableObjectiveParameters()) {
 	return(ObjectiveParameters)
 }
 
-setRisk<-function(doc,value){
-    doc=.jcall("jfm/r/MOUDocumentEditor","Lorg/w3c/dom/Document;","setRisk",doc,as.double(value))
-    return(doc)
+setRisk<-function(params,value){
+	.jcall("jfm/r/MOUDocumentEditor","Lorg/w3c/dom/Document;","setRisk",document(params),as.double(value))
+    return(params)
 }
 
-setWeightForObjective <- function(doc,objective,value){
-  doc=.jcall("jfm/r/MOUDocumentEditor","Lorg/w3c/dom/Document;","setObjectiveUAttribute",doc,objective,"weight",as.character(value))
-  return(doc)
+setWeightForObjective <- function(params,objective,value){
+	.jcall("jfm/r/MOUDocumentEditor","Lorg/w3c/dom/Document;","setObjectiveUAttribute",document(params),objective,"weight",as.character(value))
+  return(params)
 }
 
-setCropComplexity <- function(doc,wtval,xstring){
-  doc=.jcall("jfm/r/MOUDocumentEditor","Lorg/w3c/dom/Document;","setCropComplexity",doc,as.double(wtval),xstring)
-  return(doc)
+setCropComplexity <- function(params,wtval,xstring){
+	.jcall("jfm/r/MOUDocumentEditor","Lorg/w3c/dom/Document;","setCropComplexity",document(params),as.double(wtval),xstring)
+  return(params)
 }
 

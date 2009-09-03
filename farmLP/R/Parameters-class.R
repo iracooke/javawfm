@@ -13,5 +13,5 @@ if (!isGeneric("show")){
    setGeneric("show", function(object) standardGeneric("show"))
 }
 setMethod("show", "Parameters", function(object) 
-cat(.jcall("jfm/r/FarmDocumentEditor","S","dump",document(object)),"\n")
+{ pp=.jcall("jfm/r/FarmDocumentEditor","S","dump",document(object)) ; cat(pp,"\n"); pp}
 )

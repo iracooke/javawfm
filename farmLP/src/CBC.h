@@ -2,7 +2,6 @@
 #define CBC_H_
 
 #include <coin/CbcModel.hpp>
-//#include <CbcModel.hpp>
 #include <coin/OsiClpSolverInterface.hpp>
 #include <jni.h>
 #include <iostream>

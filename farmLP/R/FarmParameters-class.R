@@ -26,52 +26,59 @@ setMethod("cropNames", "FarmParameters", function(object)
   .jcall("jfm/r/FarmDocumentEditor","[Ljava/lang/String;","cropNames",document(object))
 )
 
+### Set the solver type glpk or cbc #####
+#
+#########################################
+setSolverType<-function(params,solver){
+	.jcall("jfm/r/FarmDocumentEditor","Lorg/w3c/dom/Document;","setAttributeOfTagFilteredByAttribute",document(params),"farm",as.character(solver),"nil","nil","solver")
+}
 
 #### Set absolute values for prices and subsidies ###
 #
 #####################################################
-setPriceForCrop<-function(doc,newPrice,cropName){
-    doc=.jcall("jfm/r/FarmDocumentEditor","Lorg/w3c/dom/Document;","setPriceForCrop",doc,as.double(newPrice),cropName)
-    return(doc)
+setPriceForCrop<-function(params,newPrice,cropName){
+	.jcall("jfm/r/FarmDocumentEditor","Lorg/w3c/dom/Document;","setPriceForCrop",document(params),as.double(newPrice),cropName)
+    return(params)
 }
 
-setSubsidyForCrop <- function(doc,newSubsidy,cropName){
-  doc=.jcall("jfm/r/FarmDocumentEditor","Lorg/w3c/dom/Document;","setSubsidyForCrop",doc,as.double(newSubsidy),cropName)
-  return(doc)
+setSubsidyForCrop <- function(params,newSubsidy,cropName){
+	.jcall("jfm/r/FarmDocumentEditor","Lorg/w3c/dom/Document;","setSubsidyForCrop",document(params),as.double(newSubsidy),cropName)
+  return(params)
 }
+
 
 
 #### Functions for setting relative prices, rotation penalties, labour requirements and yields ###
 #
 #########################################################################################
-setRelativePriceForCrop <- function(profitDoc,cropName,val){ profitDoc=.jcall("jfm/r/FarmDocumentEditor","Lorg/w3c/dom/Document;","setRelativePriceForCrop",profitDoc,as.double(val),cropName)
-  profitDoc
+setRelativePriceForCrop <- function(params,cropName,val){ .jcall("jfm/r/FarmDocumentEditor","Lorg/w3c/dom/Document;","setRelativePriceForCrop",document(params),as.double(val),cropName)
+  params
 }
 
-setRelativeRotationPenalties <- function(profitDoc,val){  profitDoc=.jcall("jfm/r/FarmDocumentEditor","Lorg/w3c/dom/Document;","setRelativeRotationPenalties",profitDoc,as.double(val))
-  profitDoc
+setRelativeRotationPenalties <- function(params,val){  .jcall("jfm/r/FarmDocumentEditor","Lorg/w3c/dom/Document;","setRelativeRotationPenalties",document(params),as.double(val))
+params
 }
 
-setRelativeLabourRequirements <- function(profitDoc,val){  profitDoc=.jcall("jfm/r/FarmDocumentEditor","Lorg/w3c/dom/Document;","setRelativeWorkrateFormulas",profitDoc,as.double(val))
-  profitDoc
+setRelativeLabourRequirements <- function(params,val){  .jcall("jfm/r/FarmDocumentEditor","Lorg/w3c/dom/Document;","setRelativeWorkrateFormulas",document(params),as.double(val))
+  params
 }
 
-setRelativeYieldForCrop <- function(profitDoc,cropName,val){
- profitDoc=.jcall("jfm/r/FarmDocumentEditor","Lorg/w3c/dom/Document;","setMultiplierOnYieldFormulaForCrop",profitDoc,as.double(val),cropName)
-  profitDoc
+setRelativeYieldForCrop <- function(params,cropName,val){
+	.jcall("jfm/r/FarmDocumentEditor","Lorg/w3c/dom/Document;","setMultiplierOnYieldFormulaForCrop",document(params),as.double(val),cropName)
+  params
 }
 
 
 ###### Set farming costs relative to the default #####
 #
 ######################################################
-setRelativeCost<-function(document,value,costType="Input",inputName="N fertiliser"){
-switch(name,
-	Input=setRelativeCostForInput(document,inputName,value),
-	Machinery=setRelativeMachineryCost(document,value),
-	Fuel=setRelativeFuelCost(document,value),
-	Labour=setRelativeLabourCost(document,value),
-	AreaSubsidy=setRelativeAreaSubsidy(document,value),
+setRelativeCost<-function(params,value,costType="Input",inputName="N fertiliser"){
+switch(costType,
+	Input=setRelativeCostForInput(params,inputName,value),
+	Machinery=setRelativeMachineryCost(params,value),
+	Fuel=setRelativeFuelCost(params,value),
+	Labour=setRelativeLabourCost(params,value),
+	AreaSubsidy=setRelativeAreaSubsidy(params,value),
 	stop("costType unknown"))
 }
 
@@ -79,28 +86,32 @@ switch(name,
 #### Internal functions used by setRelativeCost ######
 #
 ######################################################
-setRelativeCostForInput <- function(profitDoc,inputName,val){
-	profitDoc=.jcall("jfm/r/FarmDocumentEditor","Lorg/w3c/dom/Document;","setRelativeAttributeOfTagFilteredByAttribute",profitDoc,"input",as.double(val),"type",inputName,"unitCost")
-	profitDoc
+setRelativeCostForInput <- function(params,inputName,val){
+	.jcall("jfm/r/FarmDocumentEditor","Lorg/w3c/dom/Document;","setRelativeAttributeOfTagFilteredByAttribute",document(params),"input",as.double(val),"type",inputName,"unitCost")
+	params
 }
 
-setRelativeMachineryCost <- function(profitDoc,val){
-  profitDoc=.jcall("jfm/r/FarmDocumentEditor","Lorg/w3c/dom/Document;","setRelativeAttributeOfTagFilteredByAttribute",profitDoc,"machine",as.double(val),"nil","nil","cost")
-  profitDoc
+setRelativeMachineryCost <- function(params,val){
+	.jcall("jfm/r/FarmDocumentEditor","Lorg/w3c/dom/Document;","setRelativeAttributeOfTagFilteredByAttribute",document(params),"machine",as.double(val),"nil","nil","cost")
+  params
 }
 
-setRelativeFuelCost <- function(profitDoc,val){
-  profitDoc=.jcall("jfm/r/FarmDocumentEditor","Lorg/w3c/dom/Document;","setRelativeAttributeOfTagFilteredByAttribute",profitDoc,"farm",as.double(val),"nil","nil","fuelprice")
-  profitDoc
-}
-setRelativeLabourCost <- function(profitDoc,val){
- profitDoc=.jcall("jfm/r/FarmDocumentEditor","Lorg/w3c/dom/Document;","setRelativeAttributeOfTagFilteredByAttribute",profitDoc,"labour",as.double(val),"nil","nil","cost")
-  profitDoc
+setRelativeFuelCost <- function(params,val){
+	.jcall("jfm/r/FarmDocumentEditor","Lorg/w3c/dom/Document;","setRelativeAttributeOfTagFilteredByAttribute",document(params),"farm",as.double(val),"nil","nil","fuelprice")
+  params
 }
 
-setRelativeAreaSubsidy <- function(profitDoc,val){
-  profitDoc=.jcall("jfm/r/FarmDocumentEditor","Lorg/w3c/dom/Document;","setRelativeAttributeOfTagFilteredByAttribute",profitDoc,"crop",as.double(val),"nil","nil","subsidy")
-  profitDoc                       
+
+
+
+setRelativeLabourCost <- function(params,val){
+	.jcall("jfm/r/FarmDocumentEditor","Lorg/w3c/dom/Document;","setRelativeAttributeOfTagFilteredByAttribute",document(params),"labour",as.double(val),"nil","nil","cost")
+  params
+}
+
+setRelativeAreaSubsidy <- function(params,val){
+	.jcall("jfm/r/FarmDocumentEditor","Lorg/w3c/dom/Document;","setRelativeAttributeOfTagFilteredByAttribute",document(params),"crop",as.double(val),"nil","nil","subsidy")
+	params
 }
 
 

@@ -3,6 +3,8 @@ syntax: glob
 
 .DS_Store
 farmLP/src/depends/coin-Cbc
+farmLP/src/depends/glpk-4.39
+farmLP/src/depends/glpk
 farmLP/src/java/build
 farmLP/config.log
 farmLP/config.status
@@ -11,6 +13,9 @@ farmLP/src/Makefile
 farmLP/src/install-sh
 farmLP/src/*.o
 farmLP/src/*.jnilib
+farmLP/src/*.so
+farmLP/src/jfm_lp_*
+
 osx/javawfm/build
 osx/javawfm/bin
 osx/javawfm/lib

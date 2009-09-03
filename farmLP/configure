@@ -3609,7 +3609,7 @@ if (eval "$ac_cpp conftest.$ac_ext") 2>&5 |
 else
   ac_cv_header_stdc=no
 fi
-rm -f conftest*
+rm -f -r conftest*
 
 fi
 
@@ -3630,7 +3630,7 @@ if (eval "$ac_cpp conftest.$ac_ext") 2>&5 |
 else
   ac_cv_header_stdc=no
 fi
-rm -f conftest*
+rm -f -r conftest*
 
 fi
 
@@ -4443,16 +4443,20 @@ fi
 
 
 
+GLPKINSTDIR=`pwd`;
+GLPKINSTDIR=${GLPKINSTDIR}/src/depends/glpk/
 
+(cd src/depends/glpk-4.39/ && \
+./configure \
+--enable-static --disable-shared --with-pic --prefix=$GLPKINSTDIR)
 
+(echo "Done configuring GLPK")
 
 (cd src/depends/coin-Cbc/ && \
 ./configure \
---enable-static --disable-shared --with-pic \
-    --with-application=no --disable-dependency-tracking \
-    --disable-cplex-libcheck --disable-glpk-libcheck \
-    --disable-osl-libcheck --disable-soplex-libcheck \
-    --disable-xpress-libcheck )
+--enable-static --disable-shared --with-pic )
+
+(echo $GLPKINSTDIR)
 
 
 # Checks for library functions.

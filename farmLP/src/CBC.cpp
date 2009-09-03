@@ -1,5 +1,6 @@
 #include "CBC.h"
 
+//! Constructor for the CBC solver 
 CBC::CBC(JNIEnv *env,jdoubleArray soln_j,jdoubleArray pvector_j,jdoubleArray cbounds_j,
 		jintArray cboundtypes_j, jdoubleArray pmatrixv_j,jintArray pmatrixri_j,jintArray pmatrixci_j, 
 		jdoubleArray rbounds_j, jintArray rboundtypes_j,
@@ -9,32 +10,22 @@ CBC::CBC(JNIEnv *env,jdoubleArray soln_j,jdoubleArray pvector_j,jdoubleArray cbo
 	matrixLoaded=FALSE;
 	needsInitialSolve=TRUE;
 	solver=0;
-//	printf("Getting array elements ");
+	
+	// Translate java arguments into C and store their values as instance variables
 	getArrayElements(env,soln_j,pvector_j,cbounds_j,cboundtypes_j,
 			pmatrixv_j,pmatrixri_j,pmatrixci_j,rbounds_j,rboundtypes_j,columntypes_j,rownames_j,colnames_j);
-//	printf("Setting object sense \n");
-//	printf("Done ");
-	/*
-	if ( arraysLoaded ){
-		
-		loadMatrix();
-	} else {
-		printf("Error: can't initialise problem. Arraysl not loaded \n");
-		exit(1);
-	}*/
 
-	// Clean up array storage without copying results
+	// Clean up array storage without copying results .. this allows java to GC the objects
 	releaseArrayElements(env,soln_j,pvector_j,cbounds_j,cboundtypes_j,
 			pmatrixv_j,pmatrixri_j,pmatrixci_j,rbounds_j,rboundtypes_j,columntypes_j,JNI_ABORT);
 	
 }
 
+
+//! Contruct the constraint matrix 
 void CBC::loadMatrix(){
-//	printf("Loading matrix \n \n");
 	nrows=rboundtypessize;
 	ncols=cboundtypessize;
-//	std::cout << "Ncols " << ncols << std::endl;
-//	std::cout << "Nrows " << nrows << std::endl;
 	double *col_lb       = new double[ncols];//the column lower bounds
 	double *col_ub       = new double[ncols];//the column upper bounds
 	for(int c = 0; c < ncols;c++){
@@ -292,7 +283,7 @@ void CBC::solve(){
 }
 
 
-
+/*! Translates all the java data into C data and sets instance variables in the CBC object with their values */
 void CBC::getArrayElements(JNIEnv *env,jdoubleArray soln_j,jdoubleArray pvector_j,jdoubleArray cbounds_j,
 		jintArray cboundtypes_j, jdoubleArray pmatrixv_j, jintArray pmatrixri_j,jintArray pmatrixci_j,
 		jdoubleArray rbounds_j, jintArray rboundtypes_j,
@@ -315,6 +306,7 @@ void CBC::getArrayElements(JNIEnv *env,jdoubleArray soln_j,jdoubleArray pvector_
 	rboundtypes=env->GetIntArrayElements(rboundtypes_j,0);
 	columntypes=env->GetIntArrayElements(columntypes_j,0);
 	rownames_c=new char*[rboundtypessize];	
+	
 	for ( int i=0;i<rboundtypessize;i++){
 		jcharArray rowarray=(jcharArray)env->GetObjectArrayElement(rownames_j,i);
 		int rowlen=env->GetArrayLength(rowarray);
@@ -326,6 +318,7 @@ void CBC::getArrayElements(JNIEnv *env,jdoubleArray soln_j,jdoubleArray pvector_
 		rownames_c[i][rowlen]='\0'; // This is really important. The char sequences must be null terminated
 		env->ReleaseCharArrayElements(rowarray,rowelements,0);
 	}
+	
 	colnames_c=new char*[vectorsize];
 	for ( int i=0;i<vectorsize;i++){
 		jcharArray colarray=(jcharArray)env->GetObjectArrayElement(colnames_j,i);

@@ -6,6 +6,15 @@
 	objectVersion = 45;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		75999FC2104ECFEC00116C5A /* CBC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75999FC0104ECFEC00116C5A /* CBC.cpp */; };
+		75999FC3104ECFEC00116C5A /* CBC.h in Headers */ = {isa = PBXBuildFile; fileRef = 75999FC1104ECFEC00116C5A /* CBC.h */; };
+		75999FC5104ECFFC00116C5A /* CBCPeer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75999FC4104ECFFC00116C5A /* CBCPeer.cpp */; };
+		75999FC9104F182700116C5A /* GLPK.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75999FC6104F182700116C5A /* GLPK.cpp */; };
+		75999FCA104F182700116C5A /* GLPK.h in Headers */ = {isa = PBXBuildFile; fileRef = 75999FC7104F182700116C5A /* GLPK.h */; };
+		75999FCB104F182700116C5A /* GLPKPeer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75999FC8104F182700116C5A /* GLPKPeer.cpp */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		0A603A8F0B8FCE76009D4747 /* resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = resources; sourceTree = "<group>"; };
 		0A603BA90B913D5E009D4747 /* bin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bin; sourceTree = "<group>"; };
@@ -109,6 +118,12 @@
 		753F6832103EC4EE008D9608 /* XMLException.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = XMLException.java; sourceTree = "<group>"; };
 		753F6833103EC4EE008D9608 /* XMLObjectException.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = XMLObjectException.java; sourceTree = "<group>"; };
 		753F6834103EC4EE008D9608 /* XMLSyntaxException.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = XMLSyntaxException.java; sourceTree = "<group>"; };
+		75999FC0104ECFEC00116C5A /* CBC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CBC.cpp; path = ../../farmLP/src/CBC.cpp; sourceTree = SOURCE_ROOT; };
+		75999FC1104ECFEC00116C5A /* CBC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBC.h; path = ../../farmLP/src/CBC.h; sourceTree = SOURCE_ROOT; };
+		75999FC4104ECFFC00116C5A /* CBCPeer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CBCPeer.cpp; path = ../../farmLP/src/CBCPeer.cpp; sourceTree = SOURCE_ROOT; };
+		75999FC6104F182700116C5A /* GLPK.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GLPK.cpp; path = ../../farmLP/src/GLPK.cpp; sourceTree = SOURCE_ROOT; };
+		75999FC7104F182700116C5A /* GLPK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLPK.h; path = ../../farmLP/src/GLPK.h; sourceTree = SOURCE_ROOT; };
+		75999FC8104F182700116C5A /* GLPKPeer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GLPKPeer.cpp; path = ../../farmLP/src/GLPKPeer.cpp; sourceTree = SOURCE_ROOT; };
 		EB9FD8720AEECD83008E157E /* build.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = build.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -140,6 +155,12 @@
 		753F67A7103D5F1B008D9608 /* native */ = {
 			isa = PBXGroup;
 			children = (
+				75999FC6104F182700116C5A /* GLPK.cpp */,
+				75999FC7104F182700116C5A /* GLPK.h */,
+				75999FC8104F182700116C5A /* GLPKPeer.cpp */,
+				75999FC4104ECFFC00116C5A /* CBCPeer.cpp */,
+				75999FC0104ECFEC00116C5A /* CBC.cpp */,
+				75999FC1104ECFEC00116C5A /* CBC.h */,
 			);
 			name = native;
 			sourceTree = "<group>";
@@ -304,6 +325,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75999FC3104ECFEC00116C5A /* CBC.h in Headers */,
+				75999FCA104F182700116C5A /* GLPK.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,6 +389,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75999FC2104ECFEC00116C5A /* CBC.cpp in Sources */,
+				75999FC5104ECFFC00116C5A /* CBCPeer.cpp in Sources */,
+				75999FC9104F182700116C5A /* GLPK.cpp in Sources */,
+				75999FCB104F182700116C5A /* GLPKPeer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

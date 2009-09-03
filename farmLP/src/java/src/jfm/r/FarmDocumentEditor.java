@@ -54,6 +54,8 @@ public class FarmDocumentEditor {
 		throw new Error("No crop named "+cropName);		
 	}
 	
+	
+	
 	public static ArrayList<Node> getNodesForAttributeOfTagFilteredByAttribute(Document doc,String tagName,String filterAttribute,String filterAttributeValue,String attName){
 	//	System.out.println(tagName+" "+filterAttribute+" "+filterAttributeValue+" "+attName);
 		ArrayList<Node> nodes = new ArrayList<Node>();
@@ -83,6 +85,14 @@ public class FarmDocumentEditor {
 			double oldval=Double.parseDouble(n.getNodeValue());
 //			System.out.println("Setting "+n.getNodeName()+attName+" of "+filterAttribute+ " "+tagName+" to "+multiplier*oldval);
 			n.setNodeValue(Double.toString(multiplier*oldval));
+		}
+		return doc;
+	}
+	
+	public static Document setAttributeOfTagFilteredByAttribute(Document doc,String tagName,String newValue,String filterAttribute,String filterAttributeValue,String attName){
+		ArrayList<Node> nodes = getNodesForAttributeOfTagFilteredByAttribute(doc,tagName,filterAttribute,filterAttributeValue,attName);
+		for( Node n: nodes){
+			n.setNodeValue(newValue);
 		}
 		return doc;
 	}

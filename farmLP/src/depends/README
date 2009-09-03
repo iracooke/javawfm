@@ -1,11 +1,22 @@
-Javawfm depends on coin-Cbc:
-- The coin-Cbc web page is https://projects.coin-or.org/Cbc
+Javawfm depends on coin-Cbc and glpk. 
+- The coin-Cbc web page is https://projects.coin-or.org/Cbc and the source is distributed under the Common Public Licence (CPL) see http://www.opensource.org/licenses/cpl1.0.php for details
+- The glpk web page is http://www.gnu.org/software/glpk/ and the source is distributed under the GNU Public Licence version 3. 
 
-To fulful the dependency on coin-Cbc:
-- Check out the latest sources 
-svn co https://projects.coin-or.org/svn/Cbc/stable/2.3 ./coin-Cbc
-- Configure and Build
-cd coin-Cbc
-./configure -C
-make
-make install
+
+
+To fulfil dependencies on these packages simply check out the sources into this directory (farmLP/src/depends) as described below. They should then be automatically configured and built correctly when building farmLP itself.
+
+coin-CBC:
+- To fulfil the dependency on coin-Cbc check out the sources for version 2.0. Note: this is 
+a relatively old version. A bug has been introduced with version 2.3 so use 2.0 for now.
+- From within this directory (ie farmLP/src/depends/) execute the following command (requires subversion)
+
+svn co https://projects.coin-or.org/svn/Cbc/stable/2.0 ./coin-Cbc
+
+glpk:
+- To fulfil the dependency on glpk, first get a tarball of version 4.39 from the glpk web page http://www.gnu.org/software/glpk/
+- From within this directory (ie farmLP/src/depends/) unpack the archive as follows
+
+tar -xvf glpk-4.39.tar 
+
+
