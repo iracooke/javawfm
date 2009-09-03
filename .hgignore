@@ -4,6 +4,7 @@ syntax: glob
 .DS_Store
 farmLP/src/depends/coin-Cbc
 farmLP/src/depends/glpk-4.39
+farmLP/src/depends/glpk-4.39.tar
 farmLP/src/depends/glpk
 farmLP/src/java/build
 farmLP/config.log

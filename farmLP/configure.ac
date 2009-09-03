@@ -162,18 +162,21 @@ AC_SUBST(JAVAH)
 GLPKINSTDIR=`pwd`;
 GLPKINSTDIR=${GLPKINSTDIR}/src/depends/glpk/
 
+ARCHFLAG=`uname -m`;
+
 (echo "Configuring GLPK")
+(echo $ARCHFLAG)
 
 (cd src/depends/glpk-4.39/ && \
 ./configure \
---enable-static --disable-shared --with-pic --prefix=$GLPKINSTDIR CXXFLAGS="`$CPPFLAGS`" CFLAGS="`$CFLAGS`")
+--enable-static --disable-shared --with-pic --prefix=$GLPKINSTDIR CC="$CC")
 
 (echo "Done configuring GLPK")
 
 (echo "Configuring coin-Cbc")
 (cd src/depends/coin-Cbc/ && \
 ./configure \
---enable-static --disable-shared --with-pic CXXFLAGS="`$CPPFLAGS`" CFLAGS="`$CFLAGS`")
+--enable-static --disable-shared --with-pic CC="$CC" )
 
 (echo "Done configuring coin-CBC")
 
