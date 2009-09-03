@@ -9,9 +9,6 @@
 \description{Represents a farm model for a single farm}
 \section{Objects from the Class}{
 Objects can be created by calls to \code{\link{Farm}} 
-
-Alternatively a default arable farm can be created with a call to \code{\link{basicArableFarm}}, which provides a farm object initialized with parameters from the default database. 
-
 }
 \section{Slots}{
 	 \describe{
@@ -35,8 +32,10 @@ Class \code{"\linkS4class{FarmRepresentation}"}, directly.
 	See also \code{\linkS4class{CompositeFarm}} and \code{\linkS4class{FarmRepresentation}} 
 }
 \examples{
-fm=Farm()
-solve(fm)
-print(data.frame(fm))
+
+fm=Farm() # Create a default Farm object
+solvelp(fm) # Solve the farm
+show(fm)
+
 }
 \keyword{classes}

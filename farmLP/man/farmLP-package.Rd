@@ -4,8 +4,7 @@
 \alias{farmLP}
 \docType{package}
 \title{
-R Interface to the Silsoe Whole Farm Model
-~~ package title ~~
+Linear Programming Model of an Arable Farm
 }
 \description{
 	Package for finding optimal farming plans given economic and social preference information
