@@ -164,20 +164,18 @@ GLPKINSTDIR=${GLPKINSTDIR}/src/depends/glpk/
 
 (echo "Configuring GLPK")
 
-# Only add the -arch command if configuring for host os mac snow leopard
-
 (cd src/depends/glpk-4.39/ && \
 ./configure \
---enable-static --disable-shared --with-pic --prefix=$GLPKINSTDIR CXXFLAGS=${CPPFLAGS} CFLAGS=${CFLAGS})
+--enable-static --disable-shared --with-pic --prefix=$GLPKINSTDIR CXXFLAGS="`$CPPFLAGS`" CFLAGS="`$CFLAGS`")
 
 (echo "Done configuring GLPK")
 
+(echo "Configuring coin-Cbc")
 (cd src/depends/coin-Cbc/ && \
 ./configure \
---enable-static --disable-shared --with-pic CXXFLAGS=${CPPFLAGS} CFLAGS=${CFLAGS})
+--enable-static --disable-shared --with-pic CXXFLAGS="`$CPPFLAGS`" CFLAGS="`$CFLAGS`")
 
-(echo $GLPKINSTDIR)
-
+(echo "Done configuring coin-CBC")
 
 # Checks for library functions.
 
