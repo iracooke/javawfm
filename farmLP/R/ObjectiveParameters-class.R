@@ -19,6 +19,14 @@ ObjectiveParameters <- function(file=defaultArableObjectiveParameters()) {
 	return(ObjectiveParameters)
 }
 
+# Extracting the names of objectives
+if (!isGeneric("objectiveNames")){
+  setGeneric("objectiveNames", function(object) standardGeneric("objectiveNames"))
+}
+setMethod("objectiveNames","ObjectiveParameters",function(object){
+	.jcall("jfm/r/MOUDocumentEditor","[S","objectiveNames",document(object))
+})
+
 setRisk<-function(params,value){
 	.jcall("jfm/r/MOUDocumentEditor","Lorg/w3c/dom/Document;","setRisk",document(params),as.double(value))
     return(params)
@@ -27,6 +35,10 @@ setRisk<-function(params,value){
 setWeightForObjective <- function(params,objective,value){
 	.jcall("jfm/r/MOUDocumentEditor","Lorg/w3c/dom/Document;","setObjectiveUAttribute",document(params),objective,"weight",as.character(value))
   return(params)
+}
+
+getWeightForObjective<-function(params,objective){
+	return(.jcall("jfm/r/MOUDocumentEditor","S","getObjectiveUAttribute",document(params),objective,"weight"))
 }
 
 setCropComplexity <- function(params,wtval,xstring){

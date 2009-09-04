@@ -21,7 +21,8 @@ Class \code{"\linkS4class{FarmRepresentation}"}, directly.
 }
 \section{Methods}{
   \describe{
-    \item{set}{\code{signature(farm = "Farm", input = "jobjRef")}: Sets the multi objective preferences using a preference object. Typically created with a calls to \code{\link{parseXMLDocument}} or \code{\link{basicMOTADMOU}}}
+    \item{set}{\code{signature(farm = "Farm", input = "jobjRef")}: Sets the multi objective preferences using an ObjectiveParameters document object, typically created using \code{document(ObjectiveParameters())}}
+	\item{set}{\code{signature(farm = "Farm", input = "ObjectiveParameters")}: Sets the multi objective preferences using an ObjectiveParameters object, typically created using \code{ObjectiveParameters()}}
     \item{set}{\code{signature(farm = "Farm", input = "character")}: Sets the multi objective preferences using an xml preference file }
 	 }
 }
@@ -32,10 +33,8 @@ Class \code{"\linkS4class{FarmRepresentation}"}, directly.
 	See also \code{\linkS4class{CompositeFarm}} and \code{\linkS4class{FarmRepresentation}} 
 }
 \examples{
+showClass("Farm")
 
-fm=Farm() # Create a default Farm object
-solvelp(fm) # Solve the farm
-show(fm)
 
 }
 \keyword{classes}

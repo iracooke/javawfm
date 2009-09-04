@@ -162,23 +162,70 @@ AC_SUBST(JAVAH)
 GLPKINSTDIR=`pwd`;
 GLPKINSTDIR=${GLPKINSTDIR}/src/depends/glpk/
 
-ARCHFLAG=`uname -m`;
+AC_SUBST(GLPKINSTDIR)
 
-(echo "Configuring GLPK")
-(echo $ARCHFLAG)
+case "${host_os}" in
+  darwin*)
+    JNISO=.jnilib
+	;;	
+  *)
+    ;;
+esac
 
-(cd src/depends/glpk-4.39/ && \
-./configure \
---enable-static --disable-shared --with-pic --prefix=$GLPKINSTDIR CC="$CC")
+if test -z `echo ${R_ARCH}`; then
+	R_ARCH=/`arch`;
+fi
 
-(echo "Done configuring GLPK")
+case "${R_ARCH}" in /i386*)
+	ARCHFLAG=i386 ;;
+	*) ARCHFLAG=ppc 
+	;;
+esac
+AC_SUBST(ARCHFLAG)
 
-(echo "Configuring coin-Cbc")
-(cd src/depends/coin-Cbc/ && \
-./configure \
---enable-static --disable-shared --with-pic CC="$CC" )
+(echo $host_os)
+case "${host_os}" in 
+	darwin*)
+	(echo "Configuring for Darwin")
+	# Manually set the -arch flag for compilation. On snow leopard configure scripts tend to get this wrong
+	#	ARCHFLAG=`uname -m`;
+	
 
-(echo "Done configuring coin-CBC")
+	(echo "Configuring GLPK")
+	(echo $ARCHFLAG)
+	(cd src/depends/glpk-4.39/ && \
+		./configure \
+		--enable-static --disable-shared --with-pic --prefix=$GLPKINSTDIR CFLAGS="-arch $ARCHFLAG" )
+
+	(echo "Done configuring GLPK")
+
+	(echo "Configuring coin-Cbc")
+	(cd src/depends/coin-Cbc/ && \
+		./configure \
+		--enable-static --disable-shared --with-pic ADD_CXXFLAGS="-arch $ARCHFLAG" ADD_CFLAGS="-arch $ARCHFLAG ")
+
+	(echo "Done configuring coin-CBC")
+	;;
+*)
+	# On all systems other than darwin assume that configure can guess the architecture appropriately. 
+	(echo "Configuring GLPK")
+	(cd src/depends/glpk-4.39/ && \
+		./configure \
+		--enable-static --disable-shared --with-pic --prefix=$GLPKINSTDIR )
+
+	(echo "Done configuring GLPK")
+
+	(echo "Configuring coin-Cbc")
+	(cd src/depends/coin-Cbc/ && \
+		./configure \
+		--enable-static --disable-shared --with-pic)
+
+	(echo "Done configuring coin-CBC")
+	;;
+esac
+
+
+
 
 # Checks for library functions.
 

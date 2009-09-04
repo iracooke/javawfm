@@ -27,36 +27,35 @@ COINLIBDIR = depends/coin-Cbc/lib/
 PKG_CXXFLAGS=-Iinclude -I/System/Library/Frameworks/JavaVM.framework/Versions/1.5.0/Home/include -I$(COININCDIR) -I$(GLPKINCDIR)
 
 RINSTDIR=../inst/
-LIBSINSTDIR=$(R_LIBRARY_DIR)/farmLP/libs/
+
 
 JARDIR = $(RINSTDIR)/java
-JNIINSTDIR=$(LIBSINSTDIR)/@ARCHFLAG@/
+JNIINSTDIR=$(JARDIR)/@ARCHFLAG@/
 
-OBJECTS = 
+OBJECTS = CBCPeer.o CBC.o GLPK.o GLPKPeer.o
 
 PKG_LIBS=-L$(COINLIBDIR) -L$(GLPKLIBDIR) -lglpk -lCbc -lCgl -lOsiClp -lOsiCbc -lOsi -lClp -lCoinUtils 
 
 SUBDIRSCBC = depends/coin-Cbc/
 SUBDIRSGLPK = depends/glpk-4.39/
 
-#SHLIB_EXT=.jnilib
-#SHLIB_LIBADD=lib
-#SHLIB=libfarmLP.jnilib
+SHLIB_EXT=.jnilib
+SHLIB_LIBADD=lib
+SHLIB=libfarmLP.jnilib
 FARMLP_LIB=@JNIPREFIX@farmLP@JNISO@
 
 .PHONY: all subdirs javajar
 
-all: $(SHLIB) jnilib 
+all: $(SHLIB)
+$(SHLIB): javajar subdirs CBCPeer.o CBC.o jfm_lp_CBCPeer.h GLPKPeer.o GLPK.o jfm_lp_GLPKPeer.h
 	
-jnilib: javajar farmlib subdirs CBCPeer.o CBC.o jfm_lp_CBCPeer.h GLPKPeer.o GLPK.o jfm_lp_GLPKPeer.h
-	
+
 javajar:
+	echo $(SHLIB)
+	echo $(R_LIBRARY_DIR)
 	ant -buildfile java/build.xml install
 	
-farmlib:	subdirs CBCPeer.o CBC.o jfm_lp_CBCPeer.h GLPKPeer.o GLPK.o
-	$(CXX) -Q -bundle $(JAVA_LIBS) $(JAVA_CPPFLAGS) -o $(FARMLP_LIB) $(PKG_LIBS) -llapack -lblas -lm CBCPeer.o CBC.o GLPK.o GLPKPeer.o
-	mkdir -p $(JNIINSTDIR)
-	cp $(FARMLP_LIB) $(JNIINSTDIR)
+
 	
 jfm_lp_CBCPeer.h	:	./java/src/jfm/lp/CBCPeer.java javajar 
 	javah -jni -classpath $(JARDIR)/javawfm.jar jfm.lp.CBCPeer

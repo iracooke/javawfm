@@ -114,10 +114,10 @@ setMethod("cropYield",signature(farm="FarmRepresentation",cropName="character"),
 
 # Extracting the names of objectives
 if (!isGeneric("objectiveNames")){
-  setGeneric("objectiveNames", function(farm) standardGeneric("objectiveNames"))
+  setGeneric("objectiveNames", function(object) standardGeneric("objectiveNames"))
 }
-setMethod("objectiveNames","FarmRepresentation",function(farm){
-	.jcall(model(farm),"[Ljava/lang/String;","objectiveNames")
+setMethod("objectiveNames","FarmRepresentation",function(object){
+	.jcall(model(object),"[Ljava/lang/String;","objectiveNames")
 })
 
 #Extracting the solved values of objectives

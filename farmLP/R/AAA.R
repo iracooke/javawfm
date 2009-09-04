@@ -14,20 +14,25 @@ osxjPackage<-function(name,jars="*"){
 			else rJava:::.jaddClassPath(paste(classes,jars,sep=.Platform$file.sep))
 		}
 	}
+	libloc=system.file("libs",package="farmLP")
 
-	path=paste(c(jloc,"libfarmLP.jnilib"),collapse="/")
+	path=paste(c(libloc,.Platform$r_arch,"libfarmLP.jnilib"),collapse="/")
 	rJava:::.jaddLibrary(name, path)
 }
 
 
 .onLoad <- function(libname,pkgname){
 	require(methods)	
-	# On linux and windows the native lib is in libs whereas in osx its in the java directory
-	if (nchar(system.file("libs",package="farmLP"))){		
-		.jpackage(pkgname,nativeLibrary=TRUE)
-	} else {
-		osxjPackage(pkgname)
+	# We need a special jpackage command on osx
+	si=Sys.info()
+	if ( !is.null(si)){
+		if ( si["sysname"]== "Darwin"){
+			osxjPackage(pkgname)
+			return()
+		}
 	}
+	
+	.jpackage(pkgname,nativeLibrary=TRUE)
 }
 
 setClass("FarmRepresentation")

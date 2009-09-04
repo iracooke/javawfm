@@ -682,6 +682,8 @@ JAVA_HOME
 JAVA
 JAVAC
 JAVAH
+GLPKINSTDIR
+ARCHFLAG
 LIBOBJS
 LTLIBOBJS'
 ac_subst_files=''
@@ -4446,23 +4448,70 @@ fi
 GLPKINSTDIR=`pwd`;
 GLPKINSTDIR=${GLPKINSTDIR}/src/depends/glpk/
 
-ARCHFLAG=`uname -m`;
 
-(echo "Configuring GLPK")
-(echo $ARCHFLAG)
 
-(cd src/depends/glpk-4.39/ && \
-./configure \
---enable-static --disable-shared --with-pic --prefix=$GLPKINSTDIR CC="$CC")
+case "${host_os}" in
+  darwin*)
+    JNISO=.jnilib
+	;;
+  *)
+    ;;
+esac
 
-(echo "Done configuring GLPK")
+if test -z `echo ${R_ARCH}`; then
+	R_ARCH=/`arch`;
+fi
 
-(echo "Configuring coin-Cbc")
-(cd src/depends/coin-Cbc/ && \
-./configure \
---enable-static --disable-shared --with-pic CC="$CC" )
+case "${R_ARCH}" in /i386*)
+	ARCHFLAG=i386 ;;
+	*) ARCHFLAG=ppc
+	;;
+esac
 
-(echo "Done configuring coin-CBC")
+
+(echo $host_os)
+case "${host_os}" in
+	darwin*)
+	(echo "Configuring for Darwin")
+	# Manually set the -arch flag for compilation. On snow leopard configure scripts tend to get this wrong
+	#	ARCHFLAG=`uname -m`;
+
+
+	(echo "Configuring GLPK")
+	(echo $ARCHFLAG)
+	(cd src/depends/glpk-4.39/ && \
+		./configure \
+		--enable-static --disable-shared --with-pic --prefix=$GLPKINSTDIR CFLAGS="-arch $ARCHFLAG" )
+
+	(echo "Done configuring GLPK")
+
+	(echo "Configuring coin-Cbc")
+	(cd src/depends/coin-Cbc/ && \
+		./configure \
+		--enable-static --disable-shared --with-pic ADD_CXXFLAGS="-arch $ARCHFLAG" ADD_CFLAGS="-arch $ARCHFLAG ")
+
+	(echo "Done configuring coin-CBC")
+	;;
+*)
+	# On all systems other than darwin assume that configure can guess the architecture appropriately.
+	(echo "Configuring GLPK")
+	(cd src/depends/glpk-4.39/ && \
+		./configure \
+		--enable-static --disable-shared --with-pic --prefix=$GLPKINSTDIR )
+
+	(echo "Done configuring GLPK")
+
+	(echo "Configuring coin-Cbc")
+	(cd src/depends/coin-Cbc/ && \
+		./configure \
+		--enable-static --disable-shared --with-pic)
+
+	(echo "Done configuring coin-CBC")
+	;;
+esac
+
+
+
 
 # Checks for library functions.
 
@@ -5150,11 +5199,13 @@ JAVA_HOME!$JAVA_HOME$ac_delim
 JAVA!$JAVA$ac_delim
 JAVAC!$JAVAC$ac_delim
 JAVAH!$JAVAH$ac_delim
+GLPKINSTDIR!$GLPKINSTDIR$ac_delim
+ARCHFLAG!$ARCHFLAG$ac_delim
 LIBOBJS!$LIBOBJS$ac_delim
 LTLIBOBJS!$LTLIBOBJS$ac_delim
 _ACEOF
 
-  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 69; then
+  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 71; then
     break
   elif $ac_last_try; then
     { { echo "$as_me:$LINENO: error: could not make $CONFIG_STATUS" >&5

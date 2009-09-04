@@ -14,9 +14,9 @@ COINLIBDIR = ./depends/coin-Cbc/lib/
 PKG_CPPFLAGS+=-Iinclude -I/System/Library/Frameworks/JavaVM.framework/Versions/1.5.0/Home/include -I$(COININCDIR)
 CXX=g++
 
-GLPKINCDIR=depends/glpk/include
+GLPKINCDIR=/Users/iracooke/Sources/javawfm/farmLP/src/depends/glpk//include
 
-GLPKLIBDIR=depends/glpk/lib
+GLPKLIBDIR=/Users/iracooke/Sources/javawfm/farmLP/src/depends/glpk//lib
 
 # Directory with COIN header files
 COININCDIR = depends/coin-Cbc/include
@@ -27,20 +27,21 @@ COINLIBDIR = depends/coin-Cbc/lib/
 PKG_CXXFLAGS=-Iinclude -I/System/Library/Frameworks/JavaVM.framework/Versions/1.5.0/Home/include -I$(COININCDIR) -I$(GLPKINCDIR)
 
 RINSTDIR=../inst/
-#JNIINSTDIR=$(RINSTDIR)/jnilibs
-JNIINSTDIR=$(RINSTDIR)/libs/i386
+LIBSINSTDIR=$(R_LIBRARY_DIR)/farmLP/libs/
 
 JARDIR = $(RINSTDIR)/java
-OBJECTS = 
+JNIINSTDIR=$(LIBSINSTDIR)/i386/
 
-JNIINSTDIR=$(JARDIR)
+OBJECTS = 
 
 PKG_LIBS=-L$(COINLIBDIR) -L$(GLPKLIBDIR) -lglpk -lCbc -lCgl -lOsiClp -lOsiCbc -lOsi -lClp -lCoinUtils 
 
 SUBDIRSCBC = depends/coin-Cbc/
 SUBDIRSGLPK = depends/glpk-4.39/
 
-
+#SHLIB_EXT=.jnilib
+#SHLIB_LIBADD=lib
+#SHLIB=libfarmLP.jnilib
 FARMLP_LIB=libfarmLP.jnilib
 
 .PHONY: all subdirs javajar
@@ -77,8 +78,9 @@ CBC.o: CBC.cpp jfm_lp_CBCPeer.h subdirs
 	$(CXX) -c $< $(PKG_CXXFLAGS)
 
 subdirs:
-	$(MAKE) install -C $(SUBDIRSCBC)
+	mkdir -p /Users/iracooke/Sources/javawfm/farmLP/src/depends/glpk/
 	$(MAKE) install -C $(SUBDIRSGLPK)
+	$(MAKE) install -C $(SUBDIRSCBC)
 
 clean:
 	$(MAKE) clean -C $(SUBDIRSCBC)

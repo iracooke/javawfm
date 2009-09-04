@@ -72,13 +72,13 @@ setRelativeYieldForCrop <- function(params,cropName,val){
 ###### Set farming costs relative to the default #####
 #
 ######################################################
-setRelativeCost<-function(params,value,costType="Input",inputName="N fertiliser"){
+setRelativeCost<-function(params,val,costType="Input",inputName="N fertiliser"){
 switch(costType,
-	Input=setRelativeCostForInput(params,inputName,value),
-	Machinery=setRelativeMachineryCost(params,value),
-	Fuel=setRelativeFuelCost(params,value),
-	Labour=setRelativeLabourCost(params,value),
-	AreaSubsidy=setRelativeAreaSubsidy(params,value),
+	Input=setRelativeCostForInput(params,inputName,val),
+	Machinery=setRelativeMachineryCost(params,val),
+	Fuel=setRelativeFuelCost(params,val),
+	Labour=setRelativeLabourCost(params,val),
+	AreaSubsidy=setRelativeAreaSubsidy(params,val),
 	stop("costType unknown"))
 }
 

@@ -40,6 +40,44 @@ public class MOUDocumentEditor {
 		throw new Error("No "+objName+" Objective defined");
 	}
 	
+	public static String getObjectiveUAttribute(Document doc,String objName,String attName){
+		NodeList objectives = doc.getElementsByTagName("ObjectiveU");
+		
+		for(int n =0; n < objectives.getLength(); n++){
+			Node obj = objectives.item(n);
+			int typeAtt =DocumentEditor.findAttribute(obj,"type"); 
+			if (typeAtt  == -1 ){
+				throw new Error("type attribute not defined for an ObjectiveU node");
+			}
+			if ( obj.getAttributes().item(typeAtt).getNodeValue().equals(objName) ){
+				int attId = DocumentEditor.findAttribute(obj,attName);
+				if ( attId == -1 ){
+					throw new Error("No "+attName+" attribute defined for "+objName);
+				}
+				return obj.getAttributes().item(attId).getNodeValue();
+			}
+			
+		}
+		throw new Error("No "+objName+" Objective defined");
+	}
+	
+	
+	public static String[] objectiveNames(Document doc){
+		NodeList objectives = doc.getElementsByTagName("ObjectiveU");
+		String[] names=new String[objectives.getLength()];
+		for(int n =0; n < objectives.getLength(); n++){
+			Node objective = objectives.item(n);
+			int idAtt =DocumentEditor.findAttribute(objective,"type"); 
+			if (idAtt  == -1 ){
+				throw new Error("type attribute not defined for objective node");
+			}
+			names[n]=objective.getAttributes().item(idAtt).getNodeValue();
+			
+		}
+		return names;
+	}
+	
+	
 	public static Document setRisk(Document doc,double newRiskValue){
 		return setObjectiveUAttribute(doc,"varrisk","weight",Double.toString(newRiskValue));
 	}

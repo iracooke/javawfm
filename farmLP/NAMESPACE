@@ -10,16 +10,16 @@ export(CompositeFarm,Farm,FarmParameters,ObjectiveParameters)
 exportMethods(guts,show,solvelp,model,isSolved,profit,eo,cropArea,cropNames,objectiveNames,objectiveValues,objectiveScaleFactors,setInputCost)
 
 #S4 Generic Methods defined by Farm
-exportMethods(set)
+#exportMethods(set)
 
 #S4 Generic Methods defined by Parameters
 exportMethods(document,show)
 
 #S4 Methods defined by ObjectiveParameters
-export(setWeightForObjective,setRisk,setCropComplexity)
+export(setWeightForObjective,getWeightForObjective)
 
 # Methods defined in xml.R
-export(parseXMLDocument)
+#export(parseXMLDocument)
 
 # Methods defined in database.R for accessing provided xml files
 export(defaultArableFarmParameters,defaultArableObjectiveParameters)

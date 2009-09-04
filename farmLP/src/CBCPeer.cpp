@@ -28,27 +28,28 @@ Java_jfm_lp_CBCPeer_solveWithNewProblem(JNIEnv *env, jobject,jdoubleArray soln_j
 				jdoubleArray rbounds_j, jintArray rboundtypes_j,
 				jintArray columntypes_j,jobjectArray rownames_j,jobjectArray colnames_j,jlong objptr) {	
 	CBC* ptr = (CBC*)objptr;
-	ptr->solveWithNewProblem(env,soln_j,pvector_j,cbounds_j,
+	jint returnval=ptr->solveWithNewProblem(env,soln_j,pvector_j,cbounds_j,
 			cboundtypes_j, pmatrixv_j, pmatrixri_j,pmatrixci_j,
 			rbounds_j, rboundtypes_j,
 			columntypes_j,rownames_j,colnames_j);
+	return returnval;
 }
 
 /*! Unsupported function for solving a matrix whose coefficients have changed but matrix has remained the same */
-JNIEXPORT jint JNICALL
+/*JNIEXPORT jint JNICALL
 Java_jfm_lp_CBCPeer_solveWithNewCoefficients(JNIEnv *env, jobject,jdoubleArray soln_j,
 		jdoubleArray pvector_j,jdoubleArray cbounds_j,
 		jintArray cboundtypes_j,jintArray columntypes_j,jlong objptr) {	
 	CBC* ptr = (CBC*)objptr;
 	ptr->solveWithNewCoefficients(env,soln_j,pvector_j,cbounds_j,cboundtypes_j,columntypes_j);
-}
+}*
 
 /*! Also unsupported. For setting whether to spew output to the user or not */
-JNIEXPORT void JNICALL
+/*JNIEXPORT void JNICALL
 Java_jfm_lp_CBCPeer_setTermOut(JNIEnv *env, jobject, jint objptr,jlong flag) {
 	CBC* ptr=(CBC*)objptr;
-	//ptr->setTermOut(env,flag);
-}
+	ptr->setTermOut(env,flag);
+}*/
 
 /*! Release memory associated with the solver */
 JNIEXPORT void JNICALL

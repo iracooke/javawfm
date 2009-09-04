@@ -4,10 +4,10 @@
 \alias{farmLP}
 \docType{package}
 \title{
-Linear Programming Model of an Arable Farm
+Mixed Integer model of an Arable Farm
 }
 \description{
-	Package for finding optimal farming plans given economic and social preference information
+A mixed integer description of an arable farm. Finds optimal farming plans given economic and social preference information.
 }
 \details{
 \tabular{ll}{
@@ -16,50 +16,47 @@ Type: \tab Package\cr
 Version: \tab 1.0\cr
 Date: \tab 2009-08-20\cr
 License: \tab GPL-3\cr
-Suggests: \tab \cr
+Suggests: \tab sp\cr
 LazyLoad: \tab yes\cr
-Depends: \tab rJava,sp,methods\cr
+Depends: \tab rJava,methods\cr
 Packaged: \tab Thu Aug 20 16:03:11 2009; iracooke\cr
-Built: \tab R 2.9.1; universal-apple-darwin8.11.1; 2009-08-21 13:56:15 UTC; unix\cr
+Built: \tab R 2.9.1; universal-apple-darwin8.11.1; 2009-09-04 13:10:43 UTC; unix\cr
 }
 
 Index:
 \preformatted{
+CompositeFarm           CompositeFarm
+CompositeFarm-class     Class "CompositeFarm"
+Farm                    Farm
 Farm-class              Class "Farm"
-applyCroppingPredictionToBBSVariables
-                        Substitute Predicted cropping data for data
-                        recorded at bbs sites
-bbsPredict              Predict Bird Abundance for a BBS Square
-closestPoint            Finding Closest Points
-closestPointIndices     Matching Indices of Spatial Points
-farmland-package        A model of arable farmland
-landscapeColSums        Summarize a list of SpatialPointsDataFrame
-                        objects
-lowlandArable           Filtering lowland farms
-pointsInPolygons        Filtering points by polygons
-printBarplot            Print a barplot
-runFBS                  Run a farm model over a set of FBS farms
-runSpatial              Run a farm model over every pixel in a map
-spatialListBarplot      Barplot from a list of SpatialPointsDataFrames
-startEPSDevice          Prepare for printing
+FarmParameters          Create and set values on FarmParameters objects
+FarmParameters-class    Class "FarmParameters"
+FarmRepresentation-class
+                        Class "FarmRepresentation"
+ObjectiveParameters     Create ObjectiveParameters objects
+ObjectiveParameters-class
+                        Class "ObjectiveParameters"
+Parameters-class        Class "Parameters"
+SBFactories             Locations of Sugarbeet factories in the UK
+defaultArableFarmParameters
+                        Functions to create default Parameters
 }
-~~ An overview of how to use the package, including the most important functions ~~
+
 }
 \author{
 Ira R. Cooke
 
 Maintainer: Ira R. Cooke <iracooke@gmail.com>
-~~ The author and/or maintainer of the package ~~
 }
-\references{
-~~ Literature or other references for background information ~~
-}
-~~ Optionally other standard keywords, one per line, from file KEYWORDS in the R documentation directory ~~
 \keyword{ package }
-\seealso{
-~~ Optional links to other man pages, e.g. ~~
-~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
-}
+
 \examples{
-~~ simple examples of the most important functions ~~
+farm=Farm()
+
+crops=cropNames(farm)
+
+solvelp(farm)
+areas=sapply(crops,function(x) cropArea(farm,x))
+
+
 }
