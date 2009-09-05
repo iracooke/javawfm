@@ -137,17 +137,17 @@ Make sure you have Java Development Kit installed and correctly registered in R.
 If in doubt, re-run "R CMD javareconf" as root.
 ])])
 
-AC_MSG_CHECKING([JNI data types])
-AC_TRY_RUN(
-	[
+#AC_MSG_CHECKING([JNI data types])
+#AC_TRY_RUN(
+#	[
 #include <jni.h>
-int main(void) {
-  return (sizeof(int)==sizeof(jint) && sizeof(long)==sizeof(long) && sizeof(jbyte)==sizeof(char) && sizeof(jshort)==sizeof(short) && sizeof(jfloat)==sizeof(float) && sizeof(jdouble)==sizeof(double))?0:1;
-}
-	],
-	[AC_MSG_RESULT([ok])],
-	[AC_MSG_ERROR([One or more JNI types differ from the corresponding native type. You may need to use non-standard compiler flags or a different compiler in order to fix this.])],
-	[AC_MSG_RESULT([don't know (cross-compiling)])])
+#int main(void) {
+#  return (sizeof(int)==sizeof(jint) && sizeof(long)==sizeof(long) && sizeof(jbyte)==sizeof(char) && #sizeof(jshort)==sizeof(short) && sizeof(jfloat)==sizeof(float) && sizeof(jdouble)==sizeof(double))?0:1;
+#}
+#	],
+#	[AC_MSG_RESULT([ok])],
+#	[AC_MSG_ERROR([One or more JNI types differ from the corresponding native type. You may need to use non-standard #compiler flags or a different compiler in order to fix this.])],
+#	[AC_MSG_RESULT([don't know (cross-compiling)])])
 
 
 AC_SUBST(JAVA_LIBS)
@@ -173,7 +173,7 @@ case "${host_os}" in
 esac
 
 if test -z `echo ${R_ARCH}`; then
-	R_ARCH=/`arch`;
+	R_ARCH=/`uname -m`;
 fi
 
 case "${R_ARCH}" in /i386*)
@@ -183,9 +183,12 @@ case "${R_ARCH}" in /i386*)
 esac
 AC_SUBST(ARCHFLAG)
 
+
+
 (echo $host_os)
 case "${host_os}" in 
 	darwin*)
+	PLATFORM=Darwin
 	(echo "Configuring for Darwin")
 	# Manually set the -arch flag for compilation. On snow leopard configure scripts tend to get this wrong
 	#	ARCHFLAG=`uname -m`;
@@ -208,7 +211,8 @@ case "${host_os}" in
 	;;
 *)
 	# On all systems other than darwin assume that configure can guess the architecture appropriately. 
-	(echo "Configuring GLPK")
+	(echo "Configuring GLPK for Linux")
+	PLATFORM=linux
 	(cd src/depends/glpk-4.39/ && \
 		./configure \
 		--enable-static --disable-shared --with-pic --prefix=$GLPKINSTDIR )
@@ -225,7 +229,7 @@ case "${host_os}" in
 esac
 
 
-
+AC_SUBST(PLATFORM)
 
 # Checks for library functions.
 

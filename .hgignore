@@ -6,6 +6,9 @@ farmLP/src/depends/coin-Cbc
 farmLP/src/depends/glpk-4.39
 farmLP/src/depends/glpk-4.39.tar
 farmLP/src/depends/glpk
+farmLP.Rcheck
+*.tgz
+*.gz
 farmLP/src/java/build
 farmLP/config.log
 farmLP/config.status

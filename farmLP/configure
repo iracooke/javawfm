@@ -4379,61 +4379,17 @@ fi
 rm -f core conftest.err conftest.$ac_objext conftest_ipa8_conftest.oo \
       conftest$ac_exeext conftest.$ac_ext
 
-{ echo "$as_me:$LINENO: checking JNI data types" >&5
-echo $ECHO_N "checking JNI data types... $ECHO_C" >&6; }
-if test "$cross_compiling" = yes; then
-  { echo "$as_me:$LINENO: result: don't know (cross-compiling)" >&5
-echo "${ECHO_T}don't know (cross-compiling)" >&6; }
-else
-  cat >conftest.$ac_ext <<_ACEOF
-/* confdefs.h.  */
-_ACEOF
-cat confdefs.h >>conftest.$ac_ext
-cat >>conftest.$ac_ext <<_ACEOF
-/* end confdefs.h.  */
-
+#AC_MSG_CHECKING([JNI data types])
+#AC_TRY_RUN(
+#	[
 #include <jni.h>
-int main(void) {
-  return (sizeof(int)==sizeof(jint) && sizeof(long)==sizeof(long) && sizeof(jbyte)==sizeof(char) && sizeof(jshort)==sizeof(short) && sizeof(jfloat)==sizeof(float) && sizeof(jdouble)==sizeof(double))?0:1;
-}
-
-_ACEOF
-rm -f conftest$ac_exeext
-if { (ac_try="$ac_link"
-case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
-  (eval "$ac_link") 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); } && { ac_try='./conftest$ac_exeext'
-  { (case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
-  (eval "$ac_try") 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; }; then
-  { echo "$as_me:$LINENO: result: ok" >&5
-echo "${ECHO_T}ok" >&6; }
-else
-  echo "$as_me: program exited with status $ac_status" >&5
-echo "$as_me: failed program was:" >&5
-sed 's/^/| /' conftest.$ac_ext >&5
-
-( exit $ac_status )
-{ { echo "$as_me:$LINENO: error: One or more JNI types differ from the corresponding native type. You may need to use non-standard compiler flags or a different compiler in order to fix this." >&5
-echo "$as_me: error: One or more JNI types differ from the corresponding native type. You may need to use non-standard compiler flags or a different compiler in order to fix this." >&2;}
-   { (exit 1); exit 1; }; }
-fi
-rm -f core *.core core.conftest.* gmon.out bb.out conftest$ac_exeext conftest.$ac_objext conftest.$ac_ext
-fi
-
-
+#int main(void) {
+#  return (sizeof(int)==sizeof(jint) && sizeof(long)==sizeof(long) && sizeof(jbyte)==sizeof(char) && #sizeof(jshort)==sizeof(short) && sizeof(jfloat)==sizeof(float) && sizeof(jdouble)==sizeof(double))?0:1;
+#}
+#	],
+#	[AC_MSG_RESULT([ok])],
+#	[AC_MSG_ERROR([One or more JNI types differ from the corresponding native type. You may need to use non-standard #compiler flags or a different compiler in order to fix this.])],
+#	[AC_MSG_RESULT([don't know (cross-compiling)])])
 
 
 
@@ -4459,7 +4415,7 @@ case "${host_os}" in
 esac
 
 if test -z `echo ${R_ARCH}`; then
-	R_ARCH=/`arch`;
+	R_ARCH=/`uname -m`;
 fi
 
 case "${R_ARCH}" in /i386*)
@@ -4469,9 +4425,12 @@ case "${R_ARCH}" in /i386*)
 esac
 
 
+
+
 (echo $host_os)
 case "${host_os}" in
 	darwin*)
+	PLATFORM=Darwin
 	(echo "Configuring for Darwin")
 	# Manually set the -arch flag for compilation. On snow leopard configure scripts tend to get this wrong
 	#	ARCHFLAG=`uname -m`;
@@ -4494,7 +4453,8 @@ case "${host_os}" in
 	;;
 *)
 	# On all systems other than darwin assume that configure can guess the architecture appropriately.
-	(echo "Configuring GLPK")
+	(echo "Configuring GLPK for Linux")
+	PLATFORM=linux
 	(cd src/depends/glpk-4.39/ && \
 		./configure \
 		--enable-static --disable-shared --with-pic --prefix=$GLPKINSTDIR )
