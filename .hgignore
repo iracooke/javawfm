@@ -13,7 +13,7 @@ farmR/src/java/build
 farmR/config.log
 farmR/config.status
 farmR/autom4te.cache
-farmR/src/Makefile
+farmR/src/Makevars
 farmR/src/install-sh
 farmR/src/*.o
 farmR/src/*.jnilib
