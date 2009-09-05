@@ -1,7 +1,7 @@
 
 # This function is a replacement for .jpackage to be used on OSX because it's really hard to reliably get a jnilib into the right place for .jpackage to search for it on OSX (ie into libs/arch in the package directory )
 osxjPackage<-function(name,jars="*"){
-	jloc = system.file("java",package="farmLP")
+	jloc = system.file("java",package="farmR")
 	if (!rJava:::.jniInitialized) .jinit()
 	classes <- system.file("java", package=name, lib.loc=NULL)
 	if (nchar(classes)) {
@@ -14,9 +14,9 @@ osxjPackage<-function(name,jars="*"){
 			else rJava:::.jaddClassPath(paste(classes,jars,sep=.Platform$file.sep))
 		}
 	}
-	libloc=system.file("libs",package="farmLP")
+	libloc=system.file("libs",package="farmR")
 
-	path=paste(c(libloc,.Platform$r_arch,"libfarmLP.jnilib"),collapse="/")
+	path=paste(c(libloc,.Platform$r_arch,"libfarmR.jnilib"),collapse="/")
 	rJava:::.jaddLibrary(name, path)
 }
 

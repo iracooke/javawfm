@@ -2,7 +2,7 @@
 \docType{methods}
 \alias{guts-methods}
 \alias{guts}
-\title{ Methods for Function guts in Package `farmLP' }
+\title{ Methods for Function guts in Package `farmR' }
 \description{
 Spill the guts of the Farm or Composite farm all over the screen
 }

@@ -2,7 +2,7 @@
 \docType{methods}
 \alias{solvelp-methods}
 \alias{solvelp}
-\title{ Methods for Function solvelp in Package `farmLP' }
+\title{ Methods for Function solvelp in Package `farmR' }
 \description{
 Solve the model
 }

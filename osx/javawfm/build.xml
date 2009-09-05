@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="javawfm" default="install" basedir=".">
-	<property name="src" location="../../farmLP/src/java/src/"/> <!-- java source folder -->
+	<property name="src" location="../../farmR/src/java/src/"/> <!-- java source folder -->
 	<property name="bin" location="bin"/> <!-- intermediate build products -->
 	<property name="jars" location="jars"/> <!-- jar files -->
-	<property name="lib" location="../../farmLP/src/depends/libs"/> <!-- local libraries linked against -->
+	<property name="lib" location="../../farmR/src/depends/libs"/> <!-- local libraries linked against -->
 	<property name="dist" location="dist"/> <!-- build product location -->
 	<property name="resources" location="resources"/> <!-- location of general java resources -->
     <property name="compile.debug" value="true"/>

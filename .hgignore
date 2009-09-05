@@ -2,23 +2,23 @@
 syntax: glob
 
 .DS_Store
-farmLP/src/depends/coin-Cbc
-farmLP/src/depends/glpk-4.39
-farmLP/src/depends/glpk-4.39.tar
-farmLP/src/depends/glpk
-farmLP.Rcheck
+farmR/src/depends/coin-Cbc
+farmR/src/depends/glpk-4.39
+farmR/src/depends/glpk-4.39.tar
+farmR/src/depends/glpk
+farmR.Rcheck
 *.tgz
 *.gz
-farmLP/src/java/build
-farmLP/config.log
-farmLP/config.status
-farmLP/autom4te.cache
-farmLP/src/Makefile
-farmLP/src/install-sh
-farmLP/src/*.o
-farmLP/src/*.jnilib
-farmLP/src/*.so
-farmLP/src/jfm_lp_*
+farmR/src/java/build
+farmR/config.log
+farmR/config.status
+farmR/autom4te.cache
+farmR/src/Makefile
+farmR/src/install-sh
+farmR/src/*.o
+farmR/src/*.jnilib
+farmR/src/*.so
+farmR/src/jfm_lp_*
 
 osx/javawfm/build
 osx/javawfm/bin

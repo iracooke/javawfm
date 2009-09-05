@@ -4,18 +4,18 @@ Javawfm depends on coin-Cbc and glpk.
 
 
 
-To fulfil dependencies on these packages simply check out the sources into this directory (farmLP/src/depends) as described below. They should then be automatically configured and built correctly when building farmLP itself.
+To fulfil dependencies on these packages simply check out the sources into this directory (farmR/src/depends) as described below. They should then be automatically configured and built correctly when building farmR itself.
 
 coin-CBC:
 - To fulfil the dependency on coin-Cbc check out the sources for version 2.0. Note: this is 
 a relatively old version. A bug has been introduced with version 2.3 so use 2.0 for now.
-- From within this directory (ie farmLP/src/depends/) execute the following command (requires subversion)
+- From within this directory (ie farmR/src/depends/) execute the following command (requires subversion)
 
 svn co https://projects.coin-or.org/svn/Cbc/stable/2.0 ./coin-Cbc
 
 glpk:
 - To fulfil the dependency on glpk, first get a tarball of version 4.39 from the glpk web page http://www.gnu.org/software/glpk/
-- From within this directory (ie farmLP/src/depends/) unpack the archive as follows
+- From within this directory (ie farmR/src/depends/) unpack the archive as follows
 
 tar -xvf glpk-4.39.tar 
 

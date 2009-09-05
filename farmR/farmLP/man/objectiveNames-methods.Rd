@@ -2,7 +2,7 @@
 \docType{methods}
 \alias{objectiveNames-methods}
 \alias{objectiveNames}
-\title{  Methods for Function objectiveNames in Package `farmLP' }
+\title{  Methods for Function objectiveNames in Package `farmR' }
 \description{
 Get a list of the names of all the objectives defined in a FarmRepresentation or ObjectiveParameters object
 }

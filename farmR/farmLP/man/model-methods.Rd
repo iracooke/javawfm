@@ -2,7 +2,7 @@
 \docType{methods}
 \alias{model-methods}
 \alias{model}
-\title{ Methods for Function model in Package `farmLP' }
+\title{ Methods for Function model in Package `farmR' }
 \description{
 Extract the internal java model object from a \code{FarmRepresentation} 
 }

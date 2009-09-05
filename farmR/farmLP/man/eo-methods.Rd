@@ -2,7 +2,7 @@
 \docType{methods}
 \alias{eo-methods}
 \alias{eo}
-\title{ Methods for Function eo in Package `farmLP' }
+\title{ Methods for Function eo in Package `farmR' }
 \description{
 Extract values of the "enterprise output" from \code{FarmRepresentation} objects
 }

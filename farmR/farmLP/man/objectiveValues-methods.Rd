@@ -2,7 +2,7 @@
 \docType{methods}
 \alias{objectiveValues-methods}
 \alias{objectiveValues}
-\title{ Methods for Function objectiveValues in Package `farmLP' }
+\title{ Methods for Function objectiveValues in Package `farmR' }
 \description{
 Get a list of objective values
 }

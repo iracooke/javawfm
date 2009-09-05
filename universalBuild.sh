@@ -1,4 +1,4 @@
-pkg=farmLP_1.0
+pkg=farmR_1.0
 rm -rf /tmp/pkg
 mkdir /tmp/pkg
 R_ARCH=/i386 R CMD INSTALL -l /tmp/pkg $pkg.tar.gz

@@ -1,8 +1,11 @@
 package jfm.lp;
-
 import jfm.lp.Matrix.PrimitiveMatrix;
+import jfm.utils.*;
 
-public class CBCPeer extends LPPeer {
+/** \internal Provides an interface between the matrix and its JNI LPX equivalent. Provides functions 
+  to create a solver (JNI) object and to use that object to solve LP problems. Each GLPKPeer 
+  object should be linked to exactly one matrix object and one c++ JNI LP object  */
+final class GLPKPeer extends LPPeer {
 	/** A reference to the primitive matrix residing within the parent lp::matrix 
 	 * object */
 	private PrimitiveMatrix matrix;
@@ -25,33 +28,34 @@ public class CBCPeer extends LPPeer {
 	private native int solveWithNewProblem(double[] soln,double[] pvector, 
 			double[] cbounds,int[] cboundtypes,double[] pmatrixv, int[] pmatrixri,int[] pmatrixci,
 			double[] rbounds, int[] rboundtypes,int[] columntypes,char[][] rownames,char[][] colnames,long p);
-	
-	
 	/** Native function for creating a new LP object */
-	protected CBCPeer(Matrix matrix_){
-		super(LPPeer.Solver.CLP);
+	protected GLPKPeer(Matrix matrix_){
+		super(LPPeer.Solver.GLPK);
 		matrix=matrix_.primitiveMatrix;
 		lpobj = create(matrix.solution,matrix.structure,matrix.columnBounds,
 				matrix.columnBoundTypes,matrix.matrixElements,matrix.matrixRowIndexes,matrix.matrixColIndexes,
 				matrix.rowBounds,matrix.rowBoundTypes,matrix.columnTypes,matrix.rowNames,matrix.colNames);
+//		System.out.print("done \n");
 	}
 	
-	/** Solve the LP problem  object */
+	/** Solve the LP problem specified in the matrix associated with this GLPKPeer object */
 	protected LPX solve(){
+//		System.out.print("Calling the LPX Solver ");
 		int status;
 		if ( matrix.constraintsChanged){
+//			System.out.print("with new problem ");			
 			status=solveWithNewProblem(matrix.solution,matrix.structure,matrix.columnBounds,
 				matrix.columnBoundTypes,matrix.matrixElements,matrix.matrixRowIndexes,matrix.matrixColIndexes,
 				matrix.rowBounds,matrix.rowBoundTypes,matrix.columnTypes,matrix.rowNames,matrix.colNames,lpobj);
 		} else {
+//			System.out.print("with new coefficients");
 			// This is the default and we do it even when there are no changes
-			// Doesn't work			status=solveWithNewCoefficients(matrix.solution,matrix.structure,matrix.columnBounds,matrix.columnBoundTypes,matrix.columnTypes,lpobj);
-			status=solveWithNewProblem(matrix.solution,matrix.structure,matrix.columnBounds,
-									   matrix.columnBoundTypes,matrix.matrixElements,matrix.matrixRowIndexes,matrix.matrixColIndexes,
-									   matrix.rowBounds,matrix.rowBoundTypes,matrix.columnTypes,matrix.rowNames,matrix.colNames,lpobj);
+			status=solveWithNewCoefficients(matrix.solution,matrix.structure,matrix.columnBounds,matrix.columnBoundTypes,matrix.columnTypes,lpobj);
 		}
 		matrix.acceptChanges();
 		matrix.commitSolution();
+		
+//		System.out.print(" done \n");
 		return LPX.intToGLPKType(status);
 	}
 	
@@ -82,11 +86,11 @@ public class CBCPeer extends LPPeer {
     }
 	/** Load native LPX solving library */
 	static {
-	//	System.out.println("Loading native library");
-	//	String jlpath = System.getProperty("java.library.path");
-	//	System.out.println(jlpath);
-		System.loadLibrary("farmLP");		
-	//	System.out.println("Loaded");
+//		System.out.println("Loading native library");
+//		String jlpath = System.getProperty("java.library.path");
+//		System.out.println(jlpath);
+		System.loadLibrary("farmR");		
+//		System.out.println("Loaded");
 	}
-
 }
+

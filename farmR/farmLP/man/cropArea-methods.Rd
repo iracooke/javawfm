@@ -2,9 +2,9 @@
 \docType{methods}
 \alias{cropArea-methods}
 \alias{cropArea}
-\title{ Methods for Function cropArea in Package `farmLP'}
+\title{ Methods for Function cropArea in Package `farmR'}
 \description{
- Methods for function \code{cropArea} in Package `farmLP' 
+ Methods for function \code{cropArea} in Package `farmR' 
 }
 \section{Methods}{
 \describe{

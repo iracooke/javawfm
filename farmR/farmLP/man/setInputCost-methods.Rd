@@ -2,7 +2,7 @@
 \docType{methods}
 \alias{setInputCost-methods}
 \alias{setInputCost}
-\title{ Methods for Function setInputCost in Package `farmLP' }
+\title{ Methods for Function setInputCost in Package `farmR' }
 \description{
 Set the cost of named inputs
 }

@@ -2,7 +2,7 @@
 \docType{methods}
 \alias{isSolved-methods}
 \alias{isSolved}
-\title{ Methods for Function isSolved in Package `farmLP' }
+\title{ Methods for Function isSolved in Package `farmR' }
 \description{
 Determine whether
 }

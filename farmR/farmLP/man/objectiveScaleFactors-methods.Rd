@@ -2,7 +2,7 @@
 \docType{methods}
 \alias{objectiveScaleFactors-methods}
 \alias{objectiveScaleFactors}
-\title{ Methods for Function objectiveScaleFactors in Package `farmLP' }
+\title{ Methods for Function objectiveScaleFactors in Package `farmR' }
 \description{
 Get the normalised objective weights
 }

@@ -2,7 +2,7 @@
 \docType{methods}
 \alias{profit-methods}
 \alias{profit}
-\title{ Methods for Function profit in Package `farmLP' }
+\title{ Methods for Function profit in Package `farmR' }
 \description{
 Get the profit value for a solved farm
 }

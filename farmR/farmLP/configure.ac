@@ -1,5 +1,5 @@
 AC_PREREQ(2.61)
-AC_INIT(farmLP,1.0,iracooke@gmail.com)
+AC_INIT(farmR,1.0,iracooke@gmail.com)
 AC_CONFIG_SRCDIR([src/CBC.h])
 AC_CONFIG_HEADER([])
 AC_CONFIG_AUX_DIR([tools])

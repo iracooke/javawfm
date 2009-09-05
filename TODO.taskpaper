@@ -1,13 +1,13 @@
 R:
-- farmLP functions [totally minimalist]
-- Fix portability issues due to using .jinit in farmLP and not putting the jni code in the libs dir
-- Remove all farmLP functions from the farmland package and include deps on these for farmland
-- Decide what data to include with farmland
-- Write documentation for farmland functions
 - Write a vignette for the farmland package
 
 Build:
 Archive:
+- farmR functions [totally minimalist] @done(2009-09-05) @project(R)
+- Fix portability issues due to using .jinit in farmLP and not putting the jni code in the libs dir @done(2009-09-05) @project(R)
+- Remove all farmLP functions from the farmland package and include deps on these for farmland @done(2009-09-05) @project(R)
+- Decide what data to include with farmland @done(2009-09-05) @project(R)
+- Write documentation for farmland functions @done(2009-09-05) @project(R)
 - Create an R package called farmLP containing a minimalist subset of functions @done @project(R)
 - Create a new R package to include local @done @project(R)
 - Change Makevars.darwin to Makevars.unix and have it use this for all unix flavours @done @project(Build)

@@ -1,4 +1,4 @@
-Package: farmLP
+Package: farmR
 Type: Package
 Title: Mixed Integer model of Arable Farms
 Version: 1.0
