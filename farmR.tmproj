@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>farmR/R/CompositeFarm-class.R</string>
+	<string>universalBuild.sh</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -16,11 +16,37 @@
 			<key>sourceDirectory</key>
 			<string>farmR</string>
 		</dict>
+		<dict>
+			<key>filename</key>
+			<string>universalBuild.sh</string>
+			<key>lastUsed</key>
+			<date>2009-09-06T12:33:59Z</date>
+			<key>selected</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>filename</key>
+			<string>winBuild.sh</string>
+		</dict>
 	</array>
 	<key>fileHierarchyDrawerWidth</key>
 	<integer>240</integer>
 	<key>metaData</key>
 	<dict>
+		<key>farmR/DESCRIPTION</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>13</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
 		<key>farmR/NAMESPACE</key>
 		<dict>
 			<key>caret</key>
@@ -40,14 +66,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>14</integer>
-				<key>line</key>
 				<integer>41</integer>
+				<key>line</key>
+				<integer>22</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>29</integer>
+			<integer>9</integer>
 		</dict>
 		<key>farmR/R/CompositeFarm-class.R</key>
 		<dict>
@@ -110,60 +136,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>31</integer>
+				<integer>35</integer>
 				<key>line</key>
-				<integer>235</integer>
+				<integer>212</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>203</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>235</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>31</integer>
-				<key>line</key>
-				<integer>235</integer>
-			</dict>
-		</dict>
-		<key>farmR/configure.win</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>12</integer>
-				<key>line</key>
-				<integer>1</integer>
-			</dict>
-			<key>columnSelection</key>
-			<false/>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>1</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>12</integer>
-				<key>line</key>
-				<integer>1</integer>
-			</dict>
+			<integer>193</integer>
 		</dict>
 		<key>farmR/man/FarmParameters.Rd</key>
 		<dict>
@@ -251,11 +231,25 @@
 			<key>firstVisibleLine</key>
 			<integer>18</integer>
 		</dict>
+		<key>universalBuild.sh</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>17</integer>
+				<key>line</key>
+				<integer>3</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
-		<string>farmR/configure.win</string>
 		<string>farmR/R/AAA.R</string>
+		<string>farmR/DESCRIPTION</string>
 		<string>farmR/R/CompositeFarm-class.R</string>
 		<string>farmR/src/CBCPeer.cpp</string>
 		<string>farmR/src/java/src/jfm/lp/CBCPeer.java</string>
@@ -267,10 +261,11 @@
 		<string>farmR/src/Makevars.Darwin</string>
 		<string>farmR/src/Makevars.in</string>
 		<string>farmR/configure.ac</string>
+		<string>universalBuild.sh</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{244, 80}, {947, 685}}</string>
+	<string>{{556, 89}, {947, 685}}</string>
 </dict>
 </plist>

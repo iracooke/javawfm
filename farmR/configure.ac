@@ -210,7 +210,7 @@ case "${host_os}" in
 	(echo "Done configuring coin-CBC")
 	;;
 *)
-	# On all systems other than darwin assume that configure can guess the architecture appropriately. 
+	# On all systems other than darwinassume that configure can guess the architecture appropriately. 
 	(echo "Configuring GLPK for Linux")
 	PLATFORM=linux
 	(cd src/depends/glpk-4.39/ && \

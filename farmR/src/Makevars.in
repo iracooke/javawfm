@@ -28,7 +28,6 @@ COINLIBDIR = depends/coin-Cbc/lib/
 
 
 PKG_CXXFLAGS+=-Iinclude @JAVA_CPPFLAGS@ -I$(COININCDIR) -I$(GLPKINCDIR)
-#PKG_CXXFLAGS=-Iinclude -I/System/Library/Frameworks/JavaVM.framework/Versions/1.5.0/Home/include -I$(COININCDIR) -I$(GLPKINCDIR)
 
 RINSTDIR=../inst/
 LIBSINSTDIR=$(R_LIBRARY_DIR)/farmR/libs/
@@ -43,9 +42,6 @@ PKG_LIBS=-L$(COINLIBDIR) -L$(GLPKLIBDIR) -lglpk -lCbc -lCgl -lOsiClp -lOsiCbc -l
 SUBDIRSCBC = depends/coin-Cbc/
 SUBDIRSGLPK = depends/glpk-4.39/
 
-#SHLIB_EXT=.jnilib
-#SHLIB_LIBADD=lib
-#SHLIB=libfarmR.jnilib
 FARMLP_LIB=@JNIPREFIX@farmR@JNISO@
 
 include Makevars.@PLATFORM@
