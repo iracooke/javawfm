@@ -2,6 +2,7 @@
 \Rdversion{1.1}
 \alias{FarmParameters}
 \alias{setSolverType}
+\alias{getSolverType}
 \alias{setPriceForCrop}
 \alias{setSubsidyForCrop}
 \alias{setRelativePriceForCrop}
@@ -18,6 +19,7 @@ Create FarmParameters objects from xml files or from the defaults and customise 
 \usage{
 	FarmParameters(file = defaultArableFarmParameters())
 	setSolverType(params,solver)
+	getSolverType(params)
 	setPriceForCrop(params,newPrice,cropName)
 	setSubsidyForCrop(params,newSubsidy,cropName)
 	setRelativePriceForCrop(params,cropName,val)

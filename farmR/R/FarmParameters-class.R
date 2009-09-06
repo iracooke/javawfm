@@ -16,6 +16,7 @@ FarmParameters <- function(file=defaultArableFarmParameters()) {
 		}
 		FarmParameters@document=parseXMLDocument(file)
 	}
+	
 	return(FarmParameters)
 }
 
@@ -26,11 +27,16 @@ setMethod("cropNames", "FarmParameters", function(object)
   .jcall("jfm/r/FarmDocumentEditor","[Ljava/lang/String;","cropNames",document(object))
 )
 
-### Set the solver type glpk or cbc #####
+### Set or get the solver type:  glpk or cbc #####
 #
 #########################################
 setSolverType<-function(params,solver){
 	.jcall("jfm/r/FarmDocumentEditor","Lorg/w3c/dom/Document;","setAttributeOfTagFilteredByAttribute",document(params),"farm",as.character(solver),"nil","nil","solver")
+}
+
+getSolverType<-function(params){
+	solvers=.jcall("jfm/r/FarmDocumentEditor","[S","getAttributesOfTagFilteredByAttribute",document(params),"farm","nil","nil","solver")
+	return(solvers[1])
 }
 
 #### Set absolute values for prices and subsidies ###

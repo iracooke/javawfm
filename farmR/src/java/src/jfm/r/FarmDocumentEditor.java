@@ -89,6 +89,23 @@ public class FarmDocumentEditor {
 		return doc;
 	}
 	
+	
+	
+	public static String[] getAttributesOfTagFilteredByAttribute(Document doc,String tagName,String filterAttribute,String filterAttributeValue,String attName){
+		ArrayList<Node> nodes = getNodesForAttributeOfTagFilteredByAttribute(doc,tagName,filterAttribute,filterAttributeValue,attName);
+		int i=0;
+		
+		String[]  attributes=new String[nodes.size()];
+		for( Node n: nodes){			
+			attributes[i]=n.getNodeValue();
+			i=i+1;
+		}
+		
+		return attributes;
+	}
+	
+	
+	
 	public static Document setAttributeOfTagFilteredByAttribute(Document doc,String tagName,String newValue,String filterAttribute,String filterAttributeValue,String attName){
 		ArrayList<Node> nodes = getNodesForAttributeOfTagFilteredByAttribute(doc,tagName,filterAttribute,filterAttributeValue,attName);
 		for( Node n: nodes){

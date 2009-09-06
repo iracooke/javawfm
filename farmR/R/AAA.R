@@ -1,6 +1,8 @@
 
-# This function is a replacement for .jpackage to be used on OSX because it's really hard to reliably get a jnilib into the right place for .jpackage to search for it on OSX (ie into libs/arch in the package directory )
-osxjPackage<-function(name,jars="*"){
+.packageGlobals<-new.env()
+
+
+hackjClassPath<-function(name,jars="*"){
 	jloc = system.file("java",package="farmR")
 	if (!rJava:::.jniInitialized) .jinit()
 	classes <- system.file("java", package=name, lib.loc=NULL)
@@ -14,6 +16,19 @@ osxjPackage<-function(name,jars="*"){
 			else rJava:::.jaddClassPath(paste(classes,jars,sep=.Platform$file.sep))
 		}
 	}
+}
+
+winjPackage<-function(name,jars="*"){
+	hackjClassPath(name)
+	jloc=system.file("java",package="farmR")
+
+	path=paste(c(jloc,"farmR.dll"),collapse="/")
+	rJava:::.jaddLibrary(name, path)
+}
+
+# This function is a replacement for .jpackage to be used on OSX because it's really hard to reliably get a jnilib into the right place for .jpackage to search for it on OSX (ie into libs/arch in the package directory )
+osxjPackage<-function(name,jars="*"){
+	hackjClassPath(name)
 	libloc=system.file("libs",package="farmR")
 
 	path=paste(c(libloc,.Platform$r_arch,"libfarmR.jnilib"),collapse="/")
@@ -23,16 +38,34 @@ osxjPackage<-function(name,jars="*"){
 
 .onLoad <- function(libname,pkgname){
 	require(methods)	
-	# We need a special jpackage command on osx
 	si=Sys.info()
 	if ( !is.null(si)){
 		if ( si["sysname"]== "Darwin"){
 			osxjPackage(pkgname)
 			return()
 		}
+		if ( si["sysname"]=="Windows"){
+			winjPackage(pkgname)
+			return()
+		}
 	}
-	
+	# This is all that is needed for nice linux systems
 	.jpackage(pkgname,nativeLibrary=TRUE)
+}
+
+
+.onAttach<-function(libname,pkgname){
+	si=Sys.info()
+	if ( !is.null(si)){
+		if ( si["sysname"]=="Windows"){
+			.packageGlobals$supportedSolvers<-c("glpk")
+			.packageGlobals$defaultSolver<-"glpk"
+			return()
+		}
+	}
+	# Define global package variables
+	.packageGlobals$supportedSolvers<-c("cbc","glpk")
+	.packageGlobals$defaultSolver<-"cbc"	
 }
 
 setClass("FarmRepresentation")

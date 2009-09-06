@@ -120,6 +120,10 @@ public final class Farm {
 		return solutionStatus;
 	}
 	
+	public String solver(){
+		return matrix.getSolverType().xmlName;
+	}
+	
 	public Map<ObjectiveType,Objective> objectives(){
 		return matrix.objectives();
 	}

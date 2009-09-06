@@ -154,6 +154,10 @@ public class CompositeFarmRepresentation extends FarmRepresentation {
 		return weightedProfit;
 	}
 	
+	public String solver(){
+		return(farmObjects.get(0).solver());
+	}
+	
 	public double eo(){
 		double weightedeo=0;
 		// Normalize weights first

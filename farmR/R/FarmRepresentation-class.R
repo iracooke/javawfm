@@ -16,6 +16,13 @@ if (!isGeneric("cropNames")){
 }
 setMethod("cropNames", "FarmRepresentation", function(object) object@cropNames)
 
+if (!isGeneric("solver")){
+  setGeneric("solver", function(object) standardGeneric("solver"))
+}
+setMethod("solver", "FarmRepresentation", function(object) 
+.jcall(model(object),"S","solver")
+)
+
 
 # Methods for displaying FarmRepresentation objects #
 #
@@ -197,5 +204,10 @@ if (!isGeneric("solvelp")){
 }
 setMethod("solvelp",signature(farm = "FarmRepresentation"),function (farm,dumpFail="") 
 {
-	.jcall(model(farm),"I","solve",dumpFail);
+	solver=solver(farm);
+	if (solver %in% .packageGlobals$supportedSolvers){
+		.jcall(model(farm),"I","solve",dumpFail);
+	} else {		
+		stop("Cannot solve farm because the solver type ",solver," is not supported on this platform. Try setting the solver to one of the supported solvers (",.packageGlobals$supportedSolvers,")")
+	}
 })

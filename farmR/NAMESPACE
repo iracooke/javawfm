@@ -26,7 +26,7 @@ export(defaultArableFarmParameters,defaultArableObjectiveParameters)
 
 # General methods defined in FarmParameters-class.R
 export(setPriceForCrop,setSubsidyForCrop)
-export(setSolverType)
+export(setSolverType,getSolverType)
 export(setRelativePriceForCrop,setRelativeCost,setRelativeRotationPenalties,setRelativeLabourRequirements,setRelativeYieldForCrop,setPriceForCrop,setSubsidyForCrop)
 
 # S3 methods to coerce farms into data frames

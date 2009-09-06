@@ -37,6 +37,8 @@ public abstract class FarmRepresentation {
 	
 	public abstract int isSolved();
 	
+	public abstract String solver();
+	
 	public abstract void setDistanceFromSugarbeetFactory(double distance,double costPerKmPerHa);
 	
 	/** A wrapper for solve that can be easily called from rJava */

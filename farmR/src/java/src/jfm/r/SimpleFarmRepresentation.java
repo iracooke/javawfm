@@ -26,6 +26,10 @@ public class SimpleFarmRepresentation extends FarmRepresentation {
 		farmObject=Farm.fromXML(doc);
 	}
 	
+	public String solver(){
+		return(farmObject.solver());
+	}
+	
 	public void setYieldForCrop(String xmlCropName,double yield){
 		try {
 			Crop cp = farmObject.cropping.getCrop(Types.xmlToCropType(xmlCropName));
