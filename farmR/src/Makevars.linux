@@ -2,12 +2,9 @@
 .PHONY: all subdirs 
 
 
-
 all: subdirs jfm_lp_CBCPeer.h jfm_lp_GLPKPeer.h
 
 subdirs:
-	mkdir -p $(GLPKINSTDIR)
-	$(MAKE) install -C $(SUBDIRSGLPK)
 	$(MAKE) install -C $(SUBDIRSCBC)
 
 jfm_lp_CBCPeer.h:	./java/src/jfm/lp/CBCPeer.java 

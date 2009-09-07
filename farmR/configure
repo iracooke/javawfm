@@ -578,7 +578,7 @@ PACKAGE_VERSION='1.0'
 PACKAGE_STRING='farmR 1.0'
 PACKAGE_BUGREPORT='iracooke@gmail.com'
 
-ac_unique_file="src/CBC.h"
+ac_unique_file="src/glpkjni.h"
 # Factoring default headers for most tests.
 ac_includes_default="\
 #include <stdio.h>
@@ -4436,13 +4436,8 @@ case "${host_os}" in
 	#	ARCHFLAG=`uname -m`;
 
 
-	(echo "Configuring GLPK")
+	(echo "Configuring ")
 	(echo $ARCHFLAG)
-	(cd src/depends/glpk-4.39/ && \
-		./configure \
-		--enable-static --disable-shared --with-pic --prefix=$GLPKINSTDIR CFLAGS="-arch $ARCHFLAG" )
-
-	(echo "Done configuring GLPK")
 
 	(echo "Configuring coin-Cbc")
 	(cd src/depends/coin-Cbc/ && \
@@ -4452,14 +4447,9 @@ case "${host_os}" in
 	(echo "Done configuring coin-CBC")
 	;;
 *)
-	# On all systems other than darwin assume that configure can guess the architecture appropriately.
-	(echo "Configuring GLPK for Linux")
+	# On all systems other than darwinassume that configure can guess the architecture appropriately.
+	(echo "Configuring ")
 	PLATFORM=linux
-	(cd src/depends/glpk-4.39/ && \
-		./configure \
-		--enable-static --disable-shared --with-pic --prefix=$GLPKINSTDIR )
-
-	(echo "Done configuring GLPK")
 
 	(echo "Configuring coin-Cbc")
 	(cd src/depends/coin-Cbc/ && \

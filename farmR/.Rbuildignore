@@ -1,0 +1,13 @@
+src/depends/coin-Cbc/Data
+src/depends/glpk-4.39/examples
+autom4te.cache
+config.status
+config.log
+src/Doxyfile
+src/depends/coin-Cbc/lib
+src/depends/coin-Cbc/bin
+src/depends/coin-Cbc/share
+src/depends/coin-Cbc/config.status
+src/depends/coin-Cbc/config.log
+src/depends/coin-Cbc/doxydoc
+src/Makevars$

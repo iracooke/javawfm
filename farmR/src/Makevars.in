@@ -14,11 +14,7 @@ COINLIBDIR = ./depends/coin-Cbc/lib/
 
 CXX=@CXX@
 
-GLPKINCDIR=@GLPKINSTDIR@/include
-
-GLPKLIBDIR=@GLPKINSTDIR@/lib
-
-GLPKINSTDIR=@GLPKINSTDIR@
+GLPKINCDIR=.
 
 # Directory with COIN header files
 COININCDIR = depends/coin-Cbc/include
@@ -37,10 +33,9 @@ JNIINSTDIR=$(LIBSINSTDIR)/@ARCHFLAG@/
 
 
 
-PKG_LIBS=-L$(COINLIBDIR) -L$(GLPKLIBDIR) -lglpk -lCbc -lCgl -lOsiClp -lOsiCbc -lOsi -lClp -lCoinUtils 
+PKG_LIBS=-L$(COINLIBDIR) -lCbc -lCgl -lOsiClp -lOsiCbc -lOsi -lClp -lCoinUtils 
 
 SUBDIRSCBC = depends/coin-Cbc/
-SUBDIRSGLPK = depends/glpk-4.39/
 
 FARMLP_LIB=@JNIPREFIX@farmR@JNISO@
 

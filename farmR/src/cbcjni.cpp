@@ -1,4 +1,4 @@
-#include "CBC.h"
+#include "cbcjni.h"
 
 //! Constructor for the CBC solver 
 CBC::CBC(JNIEnv *env,jdoubleArray soln_j,jdoubleArray pvector_j,jdoubleArray cbounds_j,

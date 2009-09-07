@@ -1,4 +1,4 @@
-#include "GLPK.h"
+#include "glpkjni.h"
 
 // ---- Helper functions ---- //
 

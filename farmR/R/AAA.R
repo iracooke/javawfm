@@ -19,11 +19,12 @@ hackjClassPath<-function(name,jars="*"){
 }
 
 winjPackage<-function(name,jars="*"){
-	hackjClassPath(name)
-	jloc=system.file("java",package="farmR")
+	.jpackage(name,nativeLibrary=TRUE)
+#	hackjClassPath(name)
+#	jloc=system.file("libs",package="farmR")
 
-	path=paste(c(jloc,"farmR.dll"),collapse="/")
-	rJava:::.jaddLibrary(name, path)
+#	path=paste(c(jloc,"farmR.dll"),collapse="/")
+#	rJava:::.jaddLibrary(name, path)
 }
 
 # This function is a replacement for .jpackage to be used on OSX because it's really hard to reliably get a jnilib into the right place for .jpackage to search for it on OSX (ie into libs/arch in the package directory )
@@ -35,22 +36,21 @@ osxjPackage<-function(name,jars="*"){
 	rJava:::.jaddLibrary(name, path)
 }
 
-
 .onLoad <- function(libname,pkgname){
 	require(methods)	
 	si=Sys.info()
 	if ( !is.null(si)){
 		if ( si["sysname"]== "Darwin"){
 			osxjPackage(pkgname)
-			return()
-		}
-		if ( si["sysname"]=="Windows"){
+		} else if ( si["sysname"]=="Windows"){
 			winjPackage(pkgname)
-			return()
-		}
+		} else {
+			.jpackage(pkgname,nativeLibrary=TRUE)
+		}		
+	} else {
+		cat("Warning: System not recognised. attempting to load jni library using defaults\n")
+		.jpackage(pkgname,nativeLibrary=TRUE)
 	}
-	# This is all that is needed for nice linux systems
-	.jpackage(pkgname,nativeLibrary=TRUE)
 }
 
 

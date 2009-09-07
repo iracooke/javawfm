@@ -1,5 +1,5 @@
-#ifndef CBC_H_
-#define CBC_H_
+#ifndef CBCJNI_H_
+#define CBCJNI_H_
 
 #include <coin/CbcModel.hpp>
 #include <coin/OsiClpSolverInterface.hpp>
@@ -93,4 +93,4 @@ public:
 	virtual ~CBC();
 };
 
-#endif /*CBC_H_*/
+#endif /*CBCJNI_H_*/

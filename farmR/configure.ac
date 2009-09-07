@@ -1,6 +1,6 @@
 AC_PREREQ(2.61)
 AC_INIT(farmR,1.0,iracooke@gmail.com)
-AC_CONFIG_SRCDIR([src/CBC.h])
+AC_CONFIG_SRCDIR([src/glpkjni.h])
 AC_CONFIG_HEADER([])
 AC_CONFIG_AUX_DIR([tools])
 
@@ -194,13 +194,8 @@ case "${host_os}" in
 	#	ARCHFLAG=`uname -m`;
 	
 
-	(echo "Configuring GLPK")
+	(echo "Configuring ")
 	(echo $ARCHFLAG)
-	(cd src/depends/glpk-4.39/ && \
-		./configure \
-		--enable-static --disable-shared --with-pic --prefix=$GLPKINSTDIR CFLAGS="-arch $ARCHFLAG" )
-
-	(echo "Done configuring GLPK")
 
 	(echo "Configuring coin-Cbc")
 	(cd src/depends/coin-Cbc/ && \
@@ -211,13 +206,8 @@ case "${host_os}" in
 	;;
 *)
 	# On all systems other than darwinassume that configure can guess the architecture appropriately. 
-	(echo "Configuring GLPK for Linux")
+	(echo "Configuring ")
 	PLATFORM=linux
-	(cd src/depends/glpk-4.39/ && \
-		./configure \
-		--enable-static --disable-shared --with-pic --prefix=$GLPKINSTDIR )
-
-	(echo "Done configuring GLPK")
 
 	(echo "Configuring coin-Cbc")
 	(cd src/depends/coin-Cbc/ && \

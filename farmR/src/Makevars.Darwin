@@ -1,46 +1,43 @@
 
 OBJECTS = 
 
-.PHONY: all subdirs javajar
+glpobjects := $(patsubst %.c,%.o,$(wildcard *.c))
 
-all: $(SHLIB) jnilib 
+.PHONY: all farmlib
+
+all: $(SHLIB) 
+$(SHLIB): farmlib
 	
-jnilib: javajar farmlib subdirs CBCPeer.o CBC.o jfm_lp_CBCPeer.h GLPKPeer.o GLPK.o jfm_lp_GLPKPeer.h
-	
-javajar:
-	ant -buildfile java/build.xml install
-	
-farmlib:	subdirs CBCPeer.o CBC.o jfm_lp_CBCPeer.h GLPKPeer.o GLPK.o
-	$(CXX) -Q -bundle $(JAVA_LIBS) $(JAVA_CPPFLAGS) -o $(FARMLP_LIB) $(PKG_LIBS) -llapack -lblas -lm CBCPeer.o CBC.o GLPK.o GLPKPeer.o
+
+farmlib: $(glpobjects) cbcpeer.o glpkpeer.o glpkjni.o cbcjni.o
+	$(CXX) -Q -bundle -Wl,-headerpad_max_install_names -mmacosx-version-min=10.4 -undefined dynamic_lookup -single_module -multiply_defined suppress $(JAVA_LIBS) $(JAVA_CPPFLAGS) -o $(FARMLP_LIB) $(PKG_LIBS) -llapack -lblas -lm cbcpeer.o cbcjni.o glpkjni.o glpkpeer.o $(glpobjects)
 	mkdir -p $(JNIINSTDIR)
 	cp $(FARMLP_LIB) $(JNIINSTDIR)
-	
-jfm_lp_CBCPeer.h	:	./java/src/jfm/lp/CBCPeer.java javajar 
+
+
+javajar:
+	ant -buildfile java/build.xml install
+
+jfm_lp_CBCPeer.h:	./java/src/jfm/lp/CBCPeer.java javajar 
 	javah -jni -classpath $(JARDIR)/javawfm.jar jfm.lp.CBCPeer
-	
 
 jfm_lp_GLPKPeer.h: ./java/src/jfm/lp/GLPKPeer.java javajar 
 	javah -jni -classpath $(JARDIR)/javawfm.jar jfm.lp.GLPKPeer
 
-GLPK.o: GLPK.cpp jfm_lp_GLPKPeer.h subdirs
-	$(CXX) -c $< $(PKG_CXXFLAGS)
-	
-GLPKPeer.o: GLPKPeer.cpp jfm_lp_GLPKPeer.h subdirs
+glpkjni.o: glpkjni.cpp jfm_lp_GLPKPeer.h subdirs
 	$(CXX) -c $< $(PKG_CXXFLAGS)
 
-CBCPeer.o: CBCPeer.cpp jfm_lp_CBCPeer.h subdirs
+glpkpeer.o: glpkpeer.cpp jfm_lp_GLPKPeer.h subdirs
 	$(CXX) -c $< $(PKG_CXXFLAGS)
-	
-CBC.o: CBC.cpp jfm_lp_CBCPeer.h subdirs
+
+cbcpeer.o: cbcpeer.cpp jfm_lp_CBCPeer.h subdirs
+	$(CXX) -c $< $(PKG_CXXFLAGS)
+
+cbcjni.o: cbcjni.cpp jfm_lp_CBCPeer.h subdirs
 	$(CXX) -c $< $(PKG_CXXFLAGS)
 
 subdirs:
-	mkdir -p $(GLPKINSTDIR)
-	$(MAKE) install -C $(SUBDIRSGLPK)
 	$(MAKE) install -C $(SUBDIRSCBC)
 
 clean:
 	$(MAKE) clean -C $(SUBDIRSCBC)
-	$(MAKE) clean -C $(SUBDIRSGLPK)
-	
-	

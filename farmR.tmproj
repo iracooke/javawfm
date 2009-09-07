@@ -3,12 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>universalBuild.sh</string>
+	<string>farmR/src/Makevars.Darwin</string>
 	<key>documents</key>
 	<array>
 		<dict>
-			<key>expanded</key>
-			<true/>
 			<key>name</key>
 			<string>farmR</string>
 			<key>regexFolderFilter</key>
@@ -20,62 +18,30 @@
 			<key>filename</key>
 			<string>universalBuild.sh</string>
 			<key>lastUsed</key>
-			<date>2009-09-06T12:33:59Z</date>
+			<date>2009-09-07T11:29:43Z</date>
 			<key>selected</key>
 			<true/>
-		</dict>
-		<dict>
-			<key>filename</key>
-			<string>winBuild.sh</string>
 		</dict>
 	</array>
 	<key>fileHierarchyDrawerWidth</key>
 	<integer>240</integer>
 	<key>metaData</key>
 	<dict>
-		<key>farmR/DESCRIPTION</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>13</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>farmR/NAMESPACE</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>34</integer>
-				<key>line</key>
-				<integer>28</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
 		<key>farmR/R/AAA.R</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>41</integer>
+				<integer>1</integer>
 				<key>line</key>
-				<integer>22</integer>
+				<integer>26</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>9</integer>
+			<integer>0</integer>
 		</dict>
-		<key>farmR/R/CompositeFarm-class.R</key>
+		<key>farmR/R/xml.R</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -83,48 +49,6 @@
 				<integer>0</integer>
 				<key>line</key>
 				<integer>0</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>20</integer>
-		</dict>
-		<key>farmR/R/FarmParameters-class.R</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>2</integer>
-				<key>line</key>
-				<integer>17</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>farmR/R/FarmRepresentation-class.R</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>170</integer>
-				<key>line</key>
-				<integer>210</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>179</integer>
-		</dict>
-		<key>farmR/R/database.R</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>139</integer>
-				<key>line</key>
-				<integer>4</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -136,30 +60,30 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>35</integer>
+				<integer>29</integer>
 				<key>line</key>
-				<integer>212</integer>
+				<integer>2</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>193</integer>
+			<integer>184</integer>
 		</dict>
-		<key>farmR/man/FarmParameters.Rd</key>
+		<key>farmR/configure.win</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>22</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>21</integer>
+				<integer>26</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>45</integer>
+			<integer>0</integer>
 		</dict>
-		<key>farmR/src/CBCPeer.cpp</key>
+		<key>farmR/src/Doxyfile</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -178,46 +102,88 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>29</integer>
+				<integer>0</integer>
 				<key>line</key>
-				<integer>28</integer>
+				<integer>10</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>5</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>21</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>29</integer>
-				<key>line</key>
-				<integer>28</integer>
-			</dict>
+			<integer>2</integer>
 		</dict>
 		<key>farmR/src/Makevars.in</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
+				<integer>30</integer>
+				<key>line</key>
+				<integer>37</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>7</integer>
+		</dict>
+		<key>farmR/src/Makevars.linux</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>59</integer>
+				<key>line</key>
+				<integer>10</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>1</integer>
+				<key>line</key>
+				<integer>10</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>59</integer>
+				<key>line</key>
+				<integer>10</integer>
+			</dict>
+		</dict>
+		<key>farmR/src/Makevars.win</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
 				<integer>0</integer>
+				<key>line</key>
+				<integer>33</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>7</integer>
+		</dict>
+		<key>farmR/src/cbcjni.cpp</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>16</integer>
 				<key>line</key>
 				<integer>0</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>340</integer>
 		</dict>
-		<key>farmR/src/java/src/jfm/lp/CBCPeer.java</key>
+		<key>farmR/src/glpapi01.c</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -229,43 +195,26 @@
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>18</integer>
-		</dict>
-		<key>universalBuild.sh</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>17</integer>
-				<key>line</key>
-				<integer>3</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>151</integer>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
+		<string>farmR/src/Makevars.win</string>
+		<string>farmR/src/Doxyfile</string>
+		<string>farmR/configure.win</string>
+		<string>farmR/R/xml.R</string>
+		<string>farmR/src/Makevars.linux</string>
 		<string>farmR/R/AAA.R</string>
-		<string>farmR/DESCRIPTION</string>
-		<string>farmR/R/CompositeFarm-class.R</string>
-		<string>farmR/src/CBCPeer.cpp</string>
-		<string>farmR/src/java/src/jfm/lp/CBCPeer.java</string>
-		<string>farmR/R/FarmParameters-class.R</string>
-		<string>farmR/R/database.R</string>
-		<string>farmR/R/FarmRepresentation-class.R</string>
-		<string>farmR/NAMESPACE</string>
-		<string>farmR/man/FarmParameters.Rd</string>
 		<string>farmR/src/Makevars.Darwin</string>
-		<string>farmR/src/Makevars.in</string>
 		<string>farmR/configure.ac</string>
-		<string>universalBuild.sh</string>
+		<string>farmR/src/glpapi01.c</string>
+		<string>farmR/src/cbcjni.cpp</string>
+		<string>farmR/src/Makevars.in</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{556, 89}, {947, 685}}</string>
+	<string>{{302, 93}, {947, 685}}</string>
 </dict>
 </plist>
