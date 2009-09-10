@@ -13,6 +13,7 @@
 \alias{objectiveValues,FarmRepresentation-method}
 \alias{profit,FarmRepresentation-method}
 \alias{setInputCost,FarmRepresentation,character,numeric-method}
+\alias{constrainArea,FarmRepresentation,character,numeric-method}
 \alias{show,FarmRepresentation-method}
 \alias{solvelp,FarmRepresentation-method}
 
@@ -32,6 +33,9 @@
     \item{objectiveValues}{\code{signature(farm = "FarmRepresentation")}: Get the values of the objectives. Should only be called for solved farms }
     \item{profit}{\code{signature(farm = "FarmRepresentation")}: Get the value of the profit objective }
     \item{setInputCost}{\code{signature(farm = "FarmRepresentation", inputName = "character", inputCost = "numeric")}: Set the value of a particular input (potential values are \code{"Input","Machinery","Fuel","Labour","AreaSubsidy"}) }
+
+	\item{constrainArea}{\code{signature(farm = "FarmRepresentation", cropName = "character", lb = "numeric")}: Constrain the area of a particular crop on a farm to be the value \code{lb}. If an optional \code{ub} argument is supplied the constraint is to hold the area of the crop between lb and ub }
+
     \item{show}{\code{signature(object = "FarmRepresentation")}: Print a summary of the Farm to the screen }
     \item{solvelp}{\code{signature(farm = "FarmRepresentation")}: Solve the Model }
 	 }

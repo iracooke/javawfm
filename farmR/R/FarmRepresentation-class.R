@@ -157,6 +157,25 @@ setMethod("setInputCost",signature(farm="FarmRepresentation",inputName="characte
 })
 
 
+# Functions for adding constraints to FarmRepresentation objects ###
+#
+####################################################################
+
+# Add an area constraint for a particular crop
+if (!isGeneric("constrainArea")){
+	setGeneric("constrainArea",function(farm,cropName,lb,ub=NULL) standardGeneric("constrainArea"));
+}
+setMethod("constrainArea",signature(farm="FarmRepresentation",cropName="character",lb="numeric"), 
+function(farm,cropName,lb,ub=NULL){
+	if ( is.null(ub)){
+		.jcall(model(farm),"V","fixAreaOfCrop",as.double(lb),"setaside")		
+	} else {
+		.jcall(model(farm),"V","boundLimitAreaOfCrop",as.double(lb),as.double(ub),"setaside")
+	}
+});
+
+
+
 # Coercion from FarmRepresentation and subclasses into data frames #
 #
 ####################################################################

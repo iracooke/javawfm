@@ -7,7 +7,7 @@ exportClasses(Farm,CompositeFarm,FarmRepresentation,FarmParameters,ObjectivePara
 export(CompositeFarm,Farm,FarmParameters,ObjectiveParameters)
 
 #S4 Generic Methods defined by FarmRepresentation
-exportMethods(guts,show,solvelp,model,isSolved,profit,eo,cropArea,cropNames,objectiveNames,objectiveValues,objectiveScaleFactors,setInputCost)
+exportMethods(guts,show,solvelp,model,isSolved,profit,eo,cropArea,cropNames,objectiveNames,objectiveValues,objectiveScaleFactors,setInputCost,constrainArea)
 
 #S4 Generic Methods defined by Farm
 #exportMethods(set)
